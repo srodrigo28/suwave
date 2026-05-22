@@ -1179,22 +1179,30 @@
   width: 132px;
 }
 
+.installOverlay {
+  bottom: 0;
+  box-sizing: border-box;
+  display: none;
+  inset-inline: 0;
+  justify-content: center;
+  pointer-events: none;
+  position: fixed;
+  width: 100vw;
+  z-index: 20;
+}
+
 .installSheet {
   background: #fff;
   border: 1px solid #dfe5ec;
   border-radius: 26px 26px 0 0;
-  bottom: 0;
   box-shadow: 0 -24px 72px rgb(18 29 49 / 0.24);
   box-sizing: border-box;
   color: #101216;
-  display: none;
-  inset-inline: 0;
-  margin-inline: auto;
   max-width: 560px;
   padding: 15px 18px max(18px, env(safe-area-inset-bottom));
-  position: fixed;
+  pointer-events: auto;
+  position: relative;
   width: 100%;
-  z-index: 20;
 }
 
 .installSheet::before {
@@ -1334,8 +1342,11 @@
     height: 100%;
   }
 
+  .installOverlay {
+    display: flex;
+  }
+
   .installSheet {
-    display: block;
     max-width: none;
   }
 }

@@ -600,58 +600,60 @@ function InstallSheet({
   canInstall: boolean;
 }) {
   return (
-    <motion.aside
-      animate={{ opacity: 1, y: 0 }}
-      aria-label="Instalar Suwave"
-      className={styles.installSheet}
-      exit={{ opacity: 0, y: 32 }}
-      initial={{ opacity: 0, y: 36 }}
-      transition={{ duration: 0.28, ease: "easeOut" }}
-    >
-      <button
-        aria-label="Fechar convite de instalação"
-        className={styles.installClose}
-        onClick={onClose}
-        type="button"
+    <div className={styles.installOverlay}>
+      <motion.aside
+        animate={{ opacity: 1, y: 0 }}
+        aria-label="Instalar Suwave"
+        className={styles.installSheet}
+        exit={{ opacity: 0, y: 32 }}
+        initial={{ opacity: 0, y: 36 }}
+        transition={{ duration: 0.28, ease: "easeOut" }}
       >
-        <FaTimes aria-hidden="true" />
-      </button>
+        <button
+          aria-label="Fechar convite de instalação"
+          className={styles.installClose}
+          onClick={onClose}
+          type="button"
+        >
+          <FaTimes aria-hidden="true" />
+        </button>
 
-      <div className={styles.installLead}>
-        <span className={styles.installMark}>
-          <Image
-            alt=""
-            fill
-            sizes="54px"
-            src="/suwave-logo-transparent.png"
-          />
-        </span>
-        <div>
-          <strong>Instalar Suwave</strong>
-          <p>Abra mais rápido e use como aplicativo no celular.</p>
+        <div className={styles.installLead}>
+          <span className={styles.installMark}>
+            <Image
+              alt=""
+              fill
+              sizes="54px"
+              src="/suwave-logo-transparent.png"
+            />
+          </span>
+          <div>
+            <strong>Instalar Suwave</strong>
+            <p>Abra mais rápido e use como aplicativo no celular.</p>
+          </div>
         </div>
-      </div>
 
-      {isIOS ? (
-        <p className={styles.installHint}>
-          No iPhone, toque em Compartilhar e depois em Adicionar à Tela de Início.
-        </p>
-      ) : !canInstall ? (
-        <p className={styles.installHint}>
-          Se o navegador não abrir a instalação, use o menu e toque em Instalar app.
-        </p>
-      ) : null}
+        {isIOS ? (
+          <p className={styles.installHint}>
+            No iPhone, toque em Compartilhar e depois em Adicionar à Tela de Início.
+          </p>
+        ) : !canInstall ? (
+          <p className={styles.installHint}>
+            Se o navegador não abrir a instalação, use o menu e toque em Instalar app.
+          </p>
+        ) : null}
 
-      <div className={styles.installActions}>
-        <button onClick={onClose} type="button">
-          Agora não
-        </button>
-        <button onClick={onInstall} type="button">
-          <FaDownload aria-hidden="true" />
-          {canInstall ? "Instalar" : "Entendi"}
-        </button>
-      </div>
-    </motion.aside>
+        <div className={styles.installActions}>
+          <button onClick={onClose} type="button">
+            Agora não
+          </button>
+          <button onClick={onInstall} type="button">
+            <FaDownload aria-hidden="true" />
+            {canInstall ? "Instalar" : "Entendi"}
+          </button>
+        </div>
+      </motion.aside>
+    </div>
   );
 }
 
