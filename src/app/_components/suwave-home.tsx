@@ -16,6 +16,7 @@ import {
   FaChevronDown,
   FaChevronRight,
   FaCube,
+  FaDownload,
   FaGraduationCap,
   FaHamburger,
   FaHandshake,
@@ -27,6 +28,7 @@ import {
   FaSearch,
   FaShoppingCart,
   FaTicketAlt,
+  FaTimes,
   FaFilter,
   FaUserGraduate,
   FaUserTie,
@@ -85,6 +87,22 @@ const jobCategoryItems = [
   { name: "Estágio", icon: FaGraduationCap, action: undefined },
   { name: "Jovem aprendiz", icon: FaUserGraduate, action: undefined },
 ] as const;
+
+type InstallPromptEvent = Event & {
+  prompt: () => Promise<void>;
+  userChoice: Promise<{ outcome: "accepted" | "dismissed" }>;
+};
+
+function isIOSDevice() {
+  if (typeof navigator === "undefined") {
+    return false;
+  }
+
+  return (
+    /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
+  );
+}
 
 type Listing = {
   title: string;
@@ -570,7 +588,79 @@ function BottomNav() {
   );
 }
 
+function InstallSheet({
+  isIOS,
+  onClose,
+  onInstall,
+  canInstall,
+}: {
+  isIOS: boolean;
+  onClose: () => void;
+  onInstall: () => void;
+  canInstall: boolean;
+}) {
+  return (
+    <motion.aside
+      animate={{ opacity: 1, y: 0 }}
+      aria-label="Instalar Suwave"
+      className={styles.installSheet}
+      exit={{ opacity: 0, y: 32 }}
+      initial={{ opacity: 0, y: 36 }}
+      transition={{ duration: 0.28, ease: "easeOut" }}
+    >
+      <button
+        aria-label="Fechar convite de instalação"
+        className={styles.installClose}
+        onClick={onClose}
+        type="button"
+      >
+        <FaTimes aria-hidden="true" />
+      </button>
+
+      <div className={styles.installLead}>
+        <span className={styles.installMark}>
+          <Image
+            alt=""
+            fill
+            sizes="54px"
+            src="/suwave-logo-transparent.png"
+          />
+        </span>
+        <div>
+          <strong>Instalar Suwave</strong>
+          <p>Abra mais rápido e use como aplicativo no celular.</p>
+        </div>
+      </div>
+
+      {isIOS ? (
+        <p className={styles.installHint}>
+          No iPhone, toque em Compartilhar e depois em Adicionar à Tela de Início.
+        </p>
+      ) : !canInstall ? (
+        <p className={styles.installHint}>
+          Se o navegador não abrir a instalação, use o menu e toque em Instalar app.
+        </p>
+      ) : null}
+
+      <div className={styles.installActions}>
+        <button onClick={onClose} type="button">
+          Agora não
+        </button>
+        <button onClick={onInstall} type="button">
+          <FaDownload aria-hidden="true" />
+          {canInstall ? "Instalar" : "Entendi"}
+        </button>
+      </div>
+    </motion.aside>
+  );
+}
+
 export function SuwaveHome() {
+  const [installPrompt, setInstallPrompt] = useState<InstallPromptEvent | null>(
+    null,
+  );
+  const [showInstallSheet, setShowInstallSheet] = useState(false);
+  const [isIOS] = useState(isIOSDevice);
   const [showSplash, setShowSplash] = useState(true);
   const [screen, setScreen] = useState<"home" | "categories" | "jobs">("home");
 
@@ -579,6 +669,58 @@ export function SuwaveHome() {
 
     return () => window.clearTimeout(splashTimer);
   }, []);
+
+  useEffect(() => {
+    const isStandalone =
+      window.matchMedia("(display-mode: standalone)").matches ||
+      ("standalone" in navigator &&
+        Boolean((navigator as Navigator & { standalone?: boolean }).standalone));
+    const isMobileViewport = window.matchMedia("(max-width: 560px)").matches;
+    const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
+    if (isStandalone || !isMobileViewport || !isTouchDevice) {
+      return;
+    }
+
+    const sheetTimer = window.setTimeout(() => setShowInstallSheet(true), 700);
+
+    const handleInstallPrompt = (event: Event) => {
+      event.preventDefault();
+      setInstallPrompt(event as InstallPromptEvent);
+      setShowInstallSheet(true);
+    };
+
+    const handleInstalled = () => {
+      setInstallPrompt(null);
+      setShowInstallSheet(false);
+    };
+
+    window.addEventListener("beforeinstallprompt", handleInstallPrompt);
+    window.addEventListener("appinstalled", handleInstalled);
+
+    return () => {
+      window.clearTimeout(sheetTimer);
+
+      window.removeEventListener("beforeinstallprompt", handleInstallPrompt);
+      window.removeEventListener("appinstalled", handleInstalled);
+    };
+  }, []);
+
+  const handleInstall = async () => {
+    if (isIOS) {
+      setShowInstallSheet(false);
+      return;
+    }
+
+    if (!installPrompt) {
+      setShowInstallSheet(false);
+      return;
+    }
+
+    await installPrompt.prompt();
+    await installPrompt.userChoice;
+    setInstallPrompt(null);
+    setShowInstallSheet(false);
+  };
 
   return (
     <main className={styles.stage}>
@@ -659,6 +801,16 @@ export function SuwaveHome() {
           </AnimatePresence>
         </div>
       </motion.section>
+      <AnimatePresence>
+        {showInstallSheet && !showSplash ? (
+          <InstallSheet
+            canInstall={Boolean(installPrompt)}
+            isIOS={isIOS}
+            onClose={() => setShowInstallSheet(false)}
+            onInstall={handleInstall}
+          />
+        ) : null}
+      </AnimatePresence>
     </main>
   );
 }

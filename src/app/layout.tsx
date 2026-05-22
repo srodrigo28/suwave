@@ -15,6 +15,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Suwave",
   description: "Home mobile do marketplace Suwave.",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Suwave",
+  },
 };
 
 export default function RootLayout({
