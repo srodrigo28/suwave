@@ -507,6 +507,7 @@
   min-width: 0;
   padding: 12px 8px 10px;
   text-align: center;
+  text-decoration: none;
 }
 
 .category span {
@@ -671,159 +672,6 @@
   font-size: 15px;
 }
 
-.categoriesScreen {
-  height: calc(100% - 58px);
-  overflow: hidden;
-}
-
-.categoriesHeader {
-  align-items: center;
-  border-bottom: 1px solid #eceef1;
-  display: grid;
-  grid-template-columns: 54px 1fr 54px;
-  height: 82px;
-}
-
-.categoriesHeader button {
-  background: transparent;
-  border: 0;
-  color: #17191d;
-  cursor: pointer;
-  display: grid;
-  font-size: 22px;
-  height: 54px;
-  padding: 0;
-  place-items: center;
-  width: 54px;
-}
-
-.categoriesHeader h1 {
-  font-size: 18px;
-  font-weight: 700;
-  grid-column: 2;
-  letter-spacing: 0;
-  margin: 0;
-  text-align: center;
-}
-
-.categoryMenuLayout {
-  display: grid;
-  grid-template-columns: minmax(126px, 31%) minmax(0, 1fr);
-  height: calc(100% - 82px);
-}
-
-.categoryMenu {
-  background: #fafafa;
-  border-right: 1px solid #e6e9ee;
-  display: grid;
-  gap: 1px;
-  grid-auto-rows: minmax(32px, auto);
-  overflow: auto;
-  padding: 12px 0 20px;
-  scrollbar-width: none;
-}
-
-.categoryMenu::-webkit-scrollbar {
-  display: none;
-}
-
-.categoryMenu button {
-  background: transparent;
-  border: 0;
-  color: #121418;
-  cursor: pointer;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0;
-  line-height: 1.25;
-  min-height: 32px;
-  overflow-wrap: anywhere;
-  padding: 8px 14px;
-  position: relative;
-  text-align: left;
-}
-
-.categoryMenu button.categoryMenuActive {
-  color: #006dff;
-}
-
-.categoryMenu button.categoryMenuActive::after {
-  background: #006dff;
-  border-radius: 999px;
-  bottom: 6px;
-  content: "";
-  position: absolute;
-  right: 0;
-  top: 6px;
-  width: 3px;
-}
-
-.jobCategoryPanel {
-  align-content: start;
-  display: grid;
-  gap: 25px 11px;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  overflow: auto;
-  padding: 72px clamp(13px, 3vw, 24px) 28px;
-}
-
-.jobCategory {
-  align-items: center;
-  background: transparent;
-  border: 1px solid transparent;
-  border-radius: 8px;
-  color: #111318;
-  cursor: pointer;
-  display: grid;
-  font-size: 10px;
-  font-weight: 600;
-  gap: 8px;
-  justify-items: center;
-  letter-spacing: 0;
-  line-height: 1.2;
-  min-height: 96px;
-  min-width: 0;
-  padding: 10px 5px;
-  text-align: center;
-}
-
-.jobCategory span {
-  color: #14171c;
-  display: grid;
-  height: 48px;
-  place-items: center;
-  width: 52px;
-}
-
-.jobCategory svg {
-  font-size: 42px;
-}
-
-.jobCategory:first-child svg {
-  color: #08a635;
-}
-
-.jobCategory:nth-child(2) svg {
-  color: #a56325;
-}
-
-.jobCategory:nth-child(3) svg {
-  color: #c1d329;
-}
-
-.jobCategory:nth-child(4) svg {
-  color: #3218d6;
-}
-
-.jobCategory:nth-child(5) svg {
-  color: #148628;
-}
-
-.jobCategoryActive {
-  border-color: #145df5;
-  box-shadow: 0 0 0 1px rgb(20 93 245 / 0.08);
-}
-
 .jobsScreen {
   height: calc(100% - 58px);
   overflow: auto;
@@ -851,7 +699,8 @@
   text-align: center;
 }
 
-.jobsHeader button {
+.jobsHeader button,
+.jobsHeader a {
   background: transparent;
   border: 0;
   color: #1a1c20;
@@ -861,6 +710,7 @@
   height: 44px;
   padding: 0;
   place-items: center;
+  text-decoration: none;
   width: 44px;
 }
 
@@ -903,6 +753,7 @@
   min-height: 112px;
   padding: 16px 16px 16px 10px;
   text-align: left;
+  text-decoration: none;
 }
 
 .companyFeatured {
@@ -1110,7 +961,8 @@
   text-align: center;
 }
 
-.companyHeader button {
+.companyHeader button,
+.companyHeader a {
   background: transparent;
   border: 0;
   color: #171a1f;
@@ -1120,6 +972,7 @@
   height: 44px;
   padding: 0;
   place-items: center;
+  text-decoration: none;
   width: 44px;
 }
 
@@ -1405,6 +1258,7 @@
   justify-content: flex-end;
   min-width: 0;
   padding: 0;
+  text-decoration: none;
 }
 
 .navItem span {
@@ -1633,7 +1487,6 @@
   }
 
   .homeScreen,
-  .categoriesScreen,
   .jobsScreen,
   .companyScreen {
     height: 100%;
@@ -1683,28 +1536,6 @@
 
   .jobsScreen {
     padding-inline: 16px;
-  }
-
-  .categoryMenuLayout {
-    grid-template-columns: 108px minmax(0, 1fr);
-  }
-
-  .categoryMenu button {
-    padding-inline: 10px;
-  }
-
-  .jobCategoryPanel {
-    gap: 18px 6px;
-    padding-inline: 8px;
-  }
-
-  .jobCategory {
-    min-height: 88px;
-    padding-inline: 2px;
-  }
-
-  .jobCategory svg {
-    font-size: 36px;
   }
 
   .header {

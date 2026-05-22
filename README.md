@@ -35,9 +35,9 @@ O projeto reúne uma home promocional, cards de ofertas, categorias de serviços
 
 <p align="center">
   <img src="./preview/emprego/1-emprego-menu.png" alt="Menu de empregos" width="180" />
-  <img src="./preview/emprego/2-emprego.png" alt="Lista de empresas com vagas" width="180" />
-  <img src="./preview/emprego/3-emprego-list.png" alt="Detalhe da empresa e vagas" width="180" />
-  <img src="./preview/emprego/4-emprego-vagas.png" alt="Continuação das vagas" width="180" />
+  <img src="./preview/emprego/2-empresa-list.png" alt="Lista de empresas com vagas" width="180" />
+  <img src="./preview/emprego/3-empresa-description.png" alt="Detalhe da empresa e vagas" width="180" />
+  <img src="./preview/emprego/4-empresa-vagas.png" alt="Continuação das vagas" width="180" />
 </p>
 
 ## Destaques
@@ -83,11 +83,28 @@ npm run lint
 ```text
 src/app/
   _components/
-    suwave-home.tsx
+    app-shell.tsx
     suwave-home.module.css
+  companies/
+    [companySlug]/
+  home/
+    _components/
+  jobs/
+    companies/
+      page.tsx
+    page.tsx
+  listings/
+    vehicles/
+      pickups/
+        page.tsx
+    page.tsx
   layout.tsx
   manifest.ts
   page.tsx
+
+src/models/
+src/repositories/
+src/shared/
 
 preview/
   atual/
