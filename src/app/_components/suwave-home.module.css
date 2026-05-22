@@ -1078,6 +1078,302 @@
   justify-self: end;
 }
 
+.companyScreen {
+  height: calc(100% - 58px);
+  position: relative;
+}
+
+.companyContent {
+  height: calc(100% - 70px);
+  overflow: auto;
+  padding: 12px clamp(18px, 3.4vw, 25px) 30px;
+  scrollbar-width: none;
+}
+
+.companyContent::-webkit-scrollbar {
+  display: none;
+}
+
+.companyHeader {
+  align-items: center;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  height: 62px;
+  margin-bottom: 10px;
+}
+
+.companyHeader h1 {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.companyHeader button {
+  background: transparent;
+  border: 0;
+  color: #171a1f;
+  cursor: pointer;
+  display: grid;
+  font-size: 21px;
+  height: 44px;
+  padding: 0;
+  place-items: center;
+  width: 44px;
+}
+
+.companyHeader button:last-child {
+  justify-self: end;
+  font-size: 18px;
+}
+
+.companyIntro {
+  align-items: center;
+  color: #101317;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 76px minmax(0, 1fr) 16px;
+  margin-bottom: 14px;
+  min-height: 82px;
+}
+
+.companyIntro .companyLogo {
+  height: 66px;
+  width: 66px;
+}
+
+.companyIntro > span {
+  display: grid;
+  min-width: 0;
+}
+
+.companyIntro strong {
+  font-size: 14px;
+  font-weight: 850;
+  letter-spacing: 0;
+  line-height: 1.2;
+  margin-bottom: 5px;
+}
+
+.companyIntro small {
+  font-size: 12px;
+  letter-spacing: 0;
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+
+.companyIntro em {
+  align-items: center;
+  display: flex;
+  font-size: 11px;
+  font-style: normal;
+  gap: 5px;
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+.binoVacancyBanner {
+  align-content: center;
+  background: #fff;
+  border: 1px solid #e9edf2;
+  border-radius: 10px;
+  color: #08751d;
+  cursor: pointer;
+  display: grid;
+  justify-items: center;
+  margin-bottom: 20px;
+  min-height: 246px;
+  padding: 18px;
+  width: 100%;
+}
+
+.binoVacancyBanner svg {
+  font-size: 65px;
+  line-height: 1;
+  margin-bottom: 0;
+}
+
+.binoVacancyBanner b {
+  font-size: 33px;
+  font-weight: 950;
+  letter-spacing: 0;
+  line-height: 1;
+  margin-bottom: 18px;
+}
+
+.binoVacancyBanner strong {
+  font-size: 30px;
+  font-weight: 950;
+  letter-spacing: 0;
+  line-height: 0.94;
+  max-width: 190px;
+  text-align: center;
+}
+
+.binoVacancyBanner small {
+  color: #13161a;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0;
+  margin-top: 14px;
+}
+
+.companyAbout {
+  color: #101317;
+  margin-bottom: 18px;
+}
+
+.companyAbout h2,
+.vacancySection h2 {
+  font-size: 14px;
+  font-weight: 850;
+  letter-spacing: 0;
+  line-height: 1.2;
+  margin: 0 0 10px;
+}
+
+.companyAbout p {
+  font-size: 12px;
+  font-weight: 550;
+  letter-spacing: 0;
+  line-height: 1.5;
+  margin: 0 0 14px;
+}
+
+.companyAbout dl {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+
+.companyAbout dl div {
+  align-items: center;
+  display: grid;
+  gap: 9px;
+  grid-template-columns: minmax(132px, 1fr) minmax(0, 1fr);
+}
+
+.companyAbout dt {
+  align-items: center;
+  display: flex;
+  font-size: 11px;
+  font-weight: 750;
+  gap: 10px;
+  letter-spacing: 0;
+  line-height: 1.15;
+}
+
+.companyAbout dt svg {
+  flex: 0 0 auto;
+  font-size: 15px;
+}
+
+.companyAbout dd {
+  font-size: 11px;
+  letter-spacing: 0;
+  line-height: 1.25;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.vacancySection {
+  display: grid;
+  gap: 12px;
+  padding-bottom: 18px;
+}
+
+.vacancySection h2 {
+  margin-bottom: 2px;
+}
+
+.vacancyRow {
+  align-items: center;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 58px minmax(0, 1fr) minmax(104px, auto);
+  min-height: 78px;
+}
+
+.vacancyIcon {
+  align-items: center;
+  border-radius: 50%;
+  color: #fff;
+  display: grid;
+  font-size: 25px;
+  height: 56px;
+  justify-self: center;
+  place-items: center;
+  width: 56px;
+}
+
+.vacancyIcon.violet {
+  background: #6a26eb;
+}
+
+.vacancyIcon.blue {
+  background: #0a4c9f;
+}
+
+.vacancyIcon.green {
+  background: #08751d;
+}
+
+.vacancyIcon.yellow {
+  background: #ffab18;
+}
+
+.vacancyIcon.teal {
+  background: #13aab8;
+}
+
+.vacancyCopy {
+  display: grid;
+  min-width: 0;
+}
+
+.vacancyCopy strong {
+  font-size: 12px;
+  font-weight: 850;
+  letter-spacing: 0;
+  line-height: 1.25;
+  margin-bottom: 7px;
+}
+
+.vacancyCopy small,
+.vacancyCopy em {
+  align-items: center;
+  color: #20242a;
+  display: flex;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 650;
+  gap: 5px;
+  letter-spacing: 0;
+  line-height: 1.25;
+  margin-bottom: 5px;
+}
+
+.vacancyCopy svg {
+  flex: 0 0 auto;
+  font-size: 12px;
+}
+
+.vacancyRow button {
+  background: #007a1d;
+  border: 0;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 800;
+  height: 40px;
+  letter-spacing: 0;
+  line-height: 1.1;
+  min-width: 104px;
+  padding: 0 9px;
+}
+
 .bottomNav {
   align-items: end;
   background: rgb(255 255 255 / 0.98);
@@ -1338,7 +1634,8 @@
 
   .homeScreen,
   .categoriesScreen,
-  .jobsScreen {
+  .jobsScreen,
+  .companyScreen {
     height: 100%;
   }
 
@@ -1377,6 +1674,10 @@
   }
 
   .content {
+    padding-inline: 16px;
+  }
+
+  .companyContent {
     padding-inline: 16px;
   }
 
@@ -1504,5 +1805,32 @@
 
   .companyCopy small {
     margin-bottom: 9px;
+  }
+
+  .companyIntro {
+    grid-template-columns: 66px minmax(0, 1fr) 14px;
+  }
+
+  .binoVacancyBanner {
+    min-height: 220px;
+  }
+
+  .binoVacancyBanner strong {
+    font-size: 27px;
+  }
+
+  .vacancyRow {
+    grid-template-columns: 52px minmax(0, 1fr) 98px;
+  }
+
+  .vacancyIcon {
+    font-size: 22px;
+    height: 48px;
+    width: 48px;
+  }
+
+  .vacancyRow button {
+    min-width: 98px;
+    padding-inline: 6px;
   }
 }

@@ -8,7 +8,11 @@ import {
   FaBars,
   FaBell,
   FaBox,
+  FaBoxes,
   FaBriefcase,
+  FaBroom,
+  FaBreadSlice,
+  FaCashRegister,
   FaCamera,
   FaCar,
   FaClock,
@@ -21,17 +25,21 @@ import {
   FaHamburger,
   FaHandshake,
   FaHome,
+  FaGlobe,
   FaMapMarkerAlt,
   FaMedkit,
   FaPercent,
   FaPlus,
   FaSearch,
+  FaShareAlt,
   FaShoppingCart,
+  FaStore,
   FaTicketAlt,
   FaTimes,
   FaFilter,
   FaUserGraduate,
   FaUserTie,
+  FaUsers,
   FaWhatsapp,
 } from "react-icons/fa";
 import styles from "./suwave-home.module.css";
@@ -168,6 +176,14 @@ type Company = {
   featured?: boolean;
 };
 
+type JobVacancy = {
+  title: string;
+  role: string;
+  schedule: string;
+  icon: IconType;
+  tone: "violet" | "blue" | "green" | "yellow" | "teal";
+};
+
 const jobCompanies: Company[] = [
   {
     name: "Supermercado Bino",
@@ -201,6 +217,44 @@ const jobCompanies: Company[] = [
     brand: "teresa",
   },
 ];
+
+const binoVacancies: JobVacancy[] = [
+  {
+    title: "Operador de Caixa",
+    role: "CLT",
+    schedule: "Tempo integral",
+    icon: FaCashRegister,
+    tone: "violet",
+  },
+  {
+    title: "Repositor de Mercadorias",
+    role: "CLT",
+    schedule: "Tempo integral",
+    icon: FaBoxes,
+    tone: "blue",
+  },
+  {
+    title: "Auxiliar de Limpeza",
+    role: "CLT",
+    schedule: "Meio período",
+    icon: FaBroom,
+    tone: "green",
+  },
+  {
+    title: "Auxiliar de Padaria",
+    role: "CLT",
+    schedule: "Tempo integral",
+    icon: FaBreadSlice,
+    tone: "yellow",
+  },
+  {
+    title: "Jovem Aprendiz",
+    role: "Aprendiz",
+    schedule: "Meio período",
+    icon: FaUserGraduate,
+    tone: "teal",
+  },
+] as const;
 
 const containerMotion: Variants = {
   hidden: {},
@@ -481,7 +535,140 @@ function CompanyLogo({ brand }: { brand: Company["brand"] }) {
   );
 }
 
-function JobsScreen({ onBack }: { onBack: () => void }) {
+function VacancyRow({ vacancy }: { vacancy: JobVacancy }) {
+  const Icon = vacancy.icon;
+
+  return (
+    <motion.article className={styles.vacancyRow} variants={riseMotion}>
+      <span className={`${styles.vacancyIcon} ${styles[vacancy.tone]}`}>
+        <Icon aria-hidden="true" />
+      </span>
+      <span className={styles.vacancyCopy}>
+        <strong>{vacancy.title}</strong>
+        <small>
+          <FaUsers aria-hidden="true" />
+          {vacancy.role}
+        </small>
+        <em>
+          <FaClock aria-hidden="true" />
+          {vacancy.schedule}
+        </em>
+      </span>
+      <button type="button">Enviar mensagem</button>
+    </motion.article>
+  );
+}
+
+function CompanyScreen({ onBack }: { onBack: () => void }) {
+  return (
+    <motion.div
+      animate={{ opacity: 1, x: 0 }}
+      className={styles.companyScreen}
+      exit={{ opacity: 0, x: 28 }}
+      initial={{ opacity: 0, x: 28 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+    >
+      <div className={styles.companyContent}>
+        <header className={styles.companyHeader}>
+          <button aria-label="Voltar para vagas" onClick={onBack} type="button">
+            <FaChevronLeft aria-hidden="true" />
+          </button>
+          <h1>Supermercado Bino</h1>
+          <button aria-label="Compartilhar empresa" type="button">
+            <FaShareAlt aria-hidden="true" />
+          </button>
+        </header>
+
+        <section className={styles.companyIntro}>
+          <CompanyLogo brand="bino" />
+          <span>
+            <strong>Supermercado Bino</strong>
+            <small>Supermercado</small>
+            <em>
+              <FaMapMarkerAlt aria-hidden="true" />
+              Sinop - MT
+            </em>
+          </span>
+          <FaChevronRight aria-hidden="true" />
+        </section>
+
+        <button className={styles.binoVacancyBanner} type="button">
+          <FaShoppingCart aria-hidden="true" />
+          <b>BINO</b>
+          <strong>VAGAS ABERTAS</strong>
+          <small>Clique aqui, saiba mais</small>
+        </button>
+
+        <section className={styles.companyAbout}>
+          <h2>Sobre a empresa</h2>
+          <p>
+            O Supermercado Bino está há mais de 5 anos atendendo Sinop e região
+            com qualidade, preço justo e atendimento de excelência.
+          </p>
+
+          <dl>
+            <div>
+              <dt>
+                <FaStore aria-hidden="true" />
+                Segmento
+              </dt>
+              <dd>Supermercado</dd>
+            </div>
+            <div>
+              <dt>
+                <FaUsers aria-hidden="true" />
+                Funcionários
+              </dt>
+              <dd>150 a 200</dd>
+            </div>
+            <div>
+              <dt>
+                <FaClock aria-hidden="true" />
+                Horário de funcionamento
+              </dt>
+              <dd>07:00 às 22:00</dd>
+            </div>
+            <div>
+              <dt>
+                <FaWhatsapp aria-hidden="true" />
+                WhatsApp
+              </dt>
+              <dd>(66) 9 9999-9999</dd>
+            </div>
+            <div>
+              <dt>
+                <FaGlobe aria-hidden="true" />
+                Site
+              </dt>
+              <dd>www.supermercadobino.com.br</dd>
+            </div>
+          </dl>
+        </section>
+
+        <motion.section
+          animate="visible"
+          className={styles.vacancySection}
+          initial="hidden"
+          variants={containerMotion}
+        >
+          <h2>Vagas disponíveis</h2>
+          {binoVacancies.map((vacancy) => (
+            <VacancyRow key={vacancy.title} vacancy={vacancy} />
+          ))}
+        </motion.section>
+      </div>
+      <BottomNav />
+    </motion.div>
+  );
+}
+
+function JobsScreen({
+  onBack,
+  onOpenCompany,
+}: {
+  onBack: () => void;
+  onOpenCompany: () => void;
+}) {
   return (
     <motion.div
       animate={{ opacity: 1, x: 0 }}
@@ -517,6 +704,7 @@ function JobsScreen({ onBack }: { onBack: () => void }) {
               company.featured ? styles.companyFeatured : ""
             }`}
             key={company.name}
+            onClick={company.brand === "bino" ? onOpenCompany : undefined}
             type="button"
             variants={riseMotion}
             whileTap={{ scale: 0.985 }}
@@ -664,7 +852,9 @@ export function SuwaveHome() {
   const [showInstallSheet, setShowInstallSheet] = useState(false);
   const [isIOS] = useState(isIOSDevice);
   const [showSplash, setShowSplash] = useState(true);
-  const [screen, setScreen] = useState<"home" | "categories" | "jobs">("home");
+  const [screen, setScreen] = useState<
+    "home" | "categories" | "jobs" | "company"
+  >("home");
 
   useEffect(() => {
     const splashTimer = window.setTimeout(() => setShowSplash(false), 1550);
@@ -745,7 +935,12 @@ export function SuwaveHome() {
                 key="home"
                 transition={{ duration: 0.28, ease: "easeOut" }}
               >
-                <div className={styles.content}>
+                <motion.div
+                  animate="visible"
+                  className={styles.content}
+                  initial="hidden"
+                  variants={containerMotion}
+                >
                   <motion.header className={styles.header} variants={riseMotion}>
                     <div className={styles.balance}>
                       <small>Saldo</small>
@@ -788,7 +983,7 @@ export function SuwaveHome() {
                       ))}
                     </motion.div>
                   </motion.section>
-                </div>
+                </motion.div>
                 <BottomNav />
               </motion.div>
             ) : screen === "categories" ? (
@@ -797,8 +992,14 @@ export function SuwaveHome() {
                 onBack={() => setScreen("home")}
                 onOpenJobs={() => setScreen("jobs")}
               />
+            ) : screen === "jobs" ? (
+              <JobsScreen
+                key="jobs"
+                onBack={() => setScreen("categories")}
+                onOpenCompany={() => setScreen("company")}
+              />
             ) : (
-              <JobsScreen key="jobs" onBack={() => setScreen("categories")} />
+              <CompanyScreen key="company" onBack={() => setScreen("jobs")} />
             )}
           </AnimatePresence>
         </div>
