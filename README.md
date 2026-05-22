@@ -40,6 +40,14 @@ O projeto reúne uma home promocional, cards de ofertas, categorias de serviços
   <img src="./preview/emprego/4-empresa-vagas.png" alt="Continuação das vagas" width="180" />
 </p>
 
+### Fluxo de caminhonetes
+
+<p align="center">
+  <img src="./preview/feito/1-caminhonete-categoria.png" alt="Categoria de caminhonetes" width="180" />
+  <img src="./preview/feito/2-caminhonete-list.png" alt="Lista de caminhonetes" width="180" />
+  <img src="./preview/feito/3-caminhonete-detalhes.png" alt="Detalhes da caminhonete" width="180" />
+</p>
+
 ## Destaques
 
 - Home mobile com banner promocional, busca e navegação inferior.
@@ -109,6 +117,7 @@ src/shared/
 preview/
   atual/
   emprego/
+  feito/
 
 public/
   marketplace/

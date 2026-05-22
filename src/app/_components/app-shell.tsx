@@ -31,28 +31,13 @@ function SplashScreen() {
   return (
     <motion.div
       className={styles.splash}
-      exit={{ opacity: 0, scale: 1.03 }}
-      transition={{ duration: 0.46, ease: "easeInOut" }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.24, ease: "easeOut" }}
     >
-      <motion.div
-        animate={{ opacity: 1, scale: 1, rotate: 0 }}
-        className={styles.splashLogo}
-        initial={{ opacity: 0, scale: 0.72, rotate: -8 }}
-        transition={{ duration: 0.6, type: "spring", bounce: 0.34 }}
-      >
-        <Image
-          alt="Logo Suwave"
-          height={312}
-          priority
-          src="/suwave-logo-transparent.png"
-          width={312}
-        />
-      </motion.div>
-      <motion.i
-        animate={{ scaleX: 1 }}
-        initial={{ scaleX: 0 }}
-        transition={{ delay: 0.28, duration: 0.8, ease: "easeInOut" }}
-      />
+      <div className={styles.splashWordmark}>
+        <span>SUWAVE</span>
+        <i aria-hidden="true" />
+      </div>
     </motion.div>
   );
 }
@@ -155,7 +140,7 @@ export function AppShell({ children, showSplash = false }: AppShellProps) {
       return;
     }
 
-    const splashTimer = window.setTimeout(() => setIsSplashVisible(false), 1550);
+    const splashTimer = window.setTimeout(() => setIsSplashVisible(false), 1700);
 
     return () => window.clearTimeout(splashTimer);
   }, [showSplash]);
@@ -209,15 +194,15 @@ export function AppShell({ children, showSplash = false }: AppShellProps) {
 
   return (
     <main className={styles.stage}>
-      <AnimatePresence>{isSplashVisible ? <SplashScreen /> : null}</AnimatePresence>
       <motion.section
         animate={isSplashVisible ? "hidden" : "visible"}
         className={styles.phone}
         initial="hidden"
       >
-        <div className={styles.screen}>
+        <div className={`${styles.screen} ${isSplashVisible ? styles.splashActive : ""}`}>
           <DeviceStatusBar />
           {children}
+          <AnimatePresence>{isSplashVisible ? <SplashScreen /> : null}</AnimatePresence>
         </div>
       </motion.section>
       <AnimatePresence>

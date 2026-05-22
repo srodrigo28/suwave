@@ -6,6 +6,8 @@ export type ListingImageKind =
   | "pickup-black"
   | "pickup-white";
 
+export type ListingTag = "destaque";
+
 export type Listing = {
   badge?: string;
   category?: string;
@@ -19,6 +21,7 @@ export type Listing = {
   price: string;
   seller?: string;
   slug?: string;
+  tags?: ListingTag[];
   title: string;
   transmission?: string;
 };

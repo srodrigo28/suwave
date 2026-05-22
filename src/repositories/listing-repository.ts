@@ -6,6 +6,7 @@ const listings: Listing[] = [
     imageKind: "outfit",
     place: "Sinop - MT",
     price: "R$ 89,90",
+    tags: ["destaque"],
     title: "Conjunto Masculino Basico Premium",
   },
   {
@@ -13,6 +14,7 @@ const listings: Listing[] = [
     imageKind: "house",
     place: "Sinop - MT",
     price: "R$ 750.000,00",
+    tags: ["destaque"],
     title: "Casa a venda no Jardim das Oliveiras",
   },
   {
@@ -20,6 +22,7 @@ const listings: Listing[] = [
     imageKind: "phonePair",
     place: "Sinop - MT",
     price: "R$ 3.499,00",
+    tags: ["destaque"],
     title: "Smartphone preto 256 GB",
   },
   {

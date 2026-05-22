@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "motion/react";
 import type { IconType } from "react-icons";
 import {
@@ -37,7 +38,7 @@ const vacancyIcons: Record<JobVacancyIcon, IconType> = {
   "student": FaUserGraduate,
 };
 
-function VacancyRow({ vacancy }: { vacancy: JobVacancy }) {
+export function VacancyRow({ vacancy }: { vacancy: JobVacancy }) {
   const Icon = vacancyIcons[vacancy.icon];
 
   return (
@@ -96,12 +97,16 @@ export function CompanyDetailsScreen({
         </section>
 
         {company.brand === "bino" ? (
-          <button className={styles.binoVacancyBanner} type="button">
+          <Link
+            aria-label={`Ver mais vagas de ${company.name}`}
+            className={styles.binoVacancyBanner}
+            href={`/companies/${company.slug}/vacancies`}
+          >
             <FaShoppingCart aria-hidden="true" />
             <b>BINO</b>
             <strong>VAGAS ABERTAS</strong>
             <small>Clique aqui, saiba mais</small>
-          </button>
+          </Link>
         ) : null}
 
         <section className={styles.companyAbout}>
@@ -162,7 +167,7 @@ export function CompanyDetailsScreen({
           variants={containerMotion}
         >
           <h2>Vagas disponiveis</h2>
-          {vacancies.map((vacancy) => (
+          {vacancies.slice(0, 2).map((vacancy) => (
             <VacancyRow key={vacancy.title} vacancy={vacancy} />
           ))}
         </motion.section>

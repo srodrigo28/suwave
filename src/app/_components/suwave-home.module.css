@@ -169,6 +169,8 @@
   gap: 8px;
   grid-template-columns: minmax(102px, 1fr) auto minmax(36px, 1fr);
   min-height: 96px;
+  position: relative;
+  z-index: 4;
 }
 
 .balance {
@@ -235,6 +237,101 @@
 
 .place svg:last-child {
   font-size: 12px;
+}
+
+.cityPicker {
+  justify-self: center;
+  position: relative;
+}
+
+.cityFilter {
+  background: #fff;
+  border: 1px solid #e7e7ed;
+  border-radius: 16px;
+  box-shadow: 0 9px 24px rgb(28 30 38 / 0.18);
+  box-sizing: border-box;
+  color: #111318;
+  display: grid;
+  gap: 17px;
+  left: -92px;
+  max-height: min(520px, calc(100svh - 126px));
+  overflow: auto;
+  padding: 22px 0 14px;
+  position: absolute;
+  top: calc(100% + 16px);
+  transform-origin: top center;
+  width: min(350px, calc(100vw - 38px));
+  z-index: 7;
+}
+
+.cityFilter strong {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 1.2;
+  padding-inline: 22px;
+}
+
+.cityOptions {
+  display: grid;
+  gap: 4px;
+}
+
+.cityOption {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  color: #14161b;
+  cursor: default;
+  display: grid;
+  font-size: 15px;
+  gap: 13px;
+  grid-template-columns: 18px minmax(0, 1fr) 18px;
+  letter-spacing: 0;
+  line-height: 1.2;
+  min-height: 40px;
+  padding: 0 22px;
+  text-align: left;
+}
+
+.cityOption svg:first-child {
+  font-size: 17px;
+}
+
+.cityOption svg:last-child {
+  color: #087c1e;
+  font-size: 18px;
+}
+
+.cityOption span {
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.cityOptionActive {
+  color: #087c1e;
+  font-weight: 800;
+}
+
+.cityFilter p {
+  align-items: start;
+  background: #f3f0ff;
+  border-radius: 11px;
+  color: #403075;
+  display: grid;
+  font-size: 12px;
+  font-weight: 650;
+  gap: 9px;
+  grid-template-columns: 16px minmax(0, 1fr);
+  letter-spacing: 0;
+  line-height: 1.5;
+  margin: 0 12px;
+  padding: 14px 13px;
+}
+
+.cityFilter p svg {
+  font-size: 16px;
+  margin-top: 1px;
 }
 
 .alert {
@@ -364,40 +461,75 @@
 .bannerArt {
   inset: 0;
   position: absolute;
-  z-index: 1;
+  z-index: 3;
 }
 
-.heroPhone {
+.bannerProduct {
   align-items: center;
-  background:
-    radial-gradient(circle at 70% 18%, rgb(22 29 38), transparent 17%),
-    linear-gradient(160deg, #15181d, #020203 62%);
-  border: 2px solid #141414;
-  border-radius: 14px;
-  box-shadow: 0 14px 19px rgb(0 0 0 / 0.33);
-  color: #fff;
-  display: flex;
-  font-size: 14px;
-  font-weight: 800;
-  height: 173px;
-  justify-content: center;
-  letter-spacing: 0;
+  background: rgb(255 255 255 / 0.88);
+  border: 1px solid rgb(255 255 255 / 0.78);
+  border-radius: 18px;
+  box-shadow: 0 14px 25px rgb(65 44 0 / 0.22);
+  display: grid;
+  height: 164px;
+  overflow: hidden;
   position: absolute;
-  right: 82px;
-  top: 7px;
-  width: 84px;
+  right: 55px;
+  top: 14px;
+  width: 154px;
   z-index: 2;
 }
 
-.heroPhone::before {
-  background: #080808;
-  border-radius: 999px;
-  content: "";
-  height: 16px;
-  left: 24px;
+.bannerProduct img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.bannerProduct img.outfit {
+  object-position: center 44%;
+}
+
+.bannerProduct img.house {
+  object-position: center;
+}
+
+.bannerProduct img.phonePair {
+  object-position: center 42%;
+}
+
+.bannerProduct span {
+  background: linear-gradient(180deg, transparent, rgb(0 0 0 / 0.82));
+  bottom: 0;
+  box-sizing: border-box;
+  color: #fff;
+  display: grid;
+  font-size: 10px;
+  font-weight: 750;
+  gap: 3px;
+  inset-inline: 0;
+  letter-spacing: 0;
+  line-height: 1.14;
+  padding: 30px 9px 9px;
   position: absolute;
-  top: 7px;
-  width: 36px;
+  text-shadow: 0 1px 4px rgb(0 0 0 / 0.5);
+}
+
+.bannerProduct span b {
+  background: #ffb400;
+  border-radius: 999px;
+  color: #17130b;
+  font-size: 9px;
+  justify-self: start;
+  line-height: 1;
+  padding: 4px 6px;
+  text-shadow: none;
+  text-transform: uppercase;
+}
+
+.bannerProduct span strong {
+  font-size: 12px;
+  letter-spacing: 0;
 }
 
 .bannerChip {
@@ -469,16 +601,18 @@
   z-index: 5;
 }
 
-.dots b,
-.dots i {
+.dots button {
   background: #dddfe2;
+  border: 0;
   border-radius: 50%;
+  cursor: pointer;
   display: block;
   height: 10px;
+  padding: 0;
   width: 10px;
 }
 
-.dots b {
+.dots .dotActive {
   background: #ffb400;
 }
 
@@ -1038,6 +1172,7 @@
   margin-bottom: 20px;
   min-height: 246px;
   padding: 18px;
+  text-decoration: none;
   width: 100%;
 }
 
@@ -1138,6 +1273,16 @@
 
 .vacancySection h2 {
   margin-bottom: 2px;
+}
+
+.vacancyContinuation .vacancySection {
+  gap: 26px;
+  padding-top: 32px;
+}
+
+.vacancyContinuation .vacancySection h2 {
+  font-size: 17px;
+  margin-bottom: 0;
 }
 
 .vacancyRow {
@@ -1295,38 +1440,147 @@
 
 .splash {
   align-items: center;
-  background:
-    radial-gradient(circle at 50% 38%, #fff7dd, transparent 14rem),
-    linear-gradient(160deg, #ffbf18, #ff9400);
-  color: #101010;
+  background: #000;
+  color: #fff;
   display: flex;
-  flex-direction: column;
   inset: 0;
   justify-content: center;
   position: absolute;
   z-index: 20;
 }
 
-.splashLogo {
-  filter: drop-shadow(0 18px 38px rgb(0 0 0 / 0.2));
-  height: clamp(232px, 55vw, 312px);
-  margin-bottom: 14px;
-  transform-origin: center;
-  width: clamp(232px, 55vw, 312px);
+.splashWordmark {
+  display: grid;
+  isolation: isolate;
+  overflow: hidden;
+  place-items: center;
+  position: relative;
+  width: min(78%, 360px);
 }
 
-.splashLogo img {
-  height: 100%;
-  object-fit: contain;
-  width: 100%;
+.splashWordmark span {
+  animation: splashReveal 1.18s ease-out forwards;
+  color: #fff;
+  clip-path: inset(0 100% 0 0);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(40px, 11vw, 76px);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  opacity: 0;
+  padding-left: 0.08em;
+  text-shadow: 0 0 0 rgb(255 247 231 / 0);
 }
 
-.splash i {
-  background: #111;
+.splashWordmark i {
+  animation: splashLight 1.18s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(255 249 235 / 0.15),
+    rgb(255 249 235 / 1),
+    rgb(255 249 235 / 0.15),
+    transparent
+  );
   border-radius: 999px;
-  height: 5px;
-  transform-origin: left;
-  width: 132px;
+  box-shadow:
+    0 0 14px rgb(255 245 220 / 0.55),
+    0 0 34px rgb(255 245 220 / 0.36);
+  height: clamp(7px, 2vw, 14px);
+  left: -46%;
+  opacity: 0;
+  position: absolute;
+  width: 46%;
+  z-index: 2;
+}
+
+.splashActive .statusBar {
+  color: #fff;
+  z-index: 21;
+}
+
+.splashActive .signal {
+  background: linear-gradient(
+    90deg,
+    #fff 0 16%,
+    transparent 16% 23%,
+    #fff 23% 43%,
+    transparent 43% 50%,
+    #fff 50% 74%,
+    transparent 74% 81%,
+    #fff 81% 100%
+  );
+}
+
+.splashActive .wifi,
+.splashActive .wifi::before {
+  border-top-color: #fff;
+}
+
+.splashActive .wifi::after,
+.splashActive .battery::before,
+.splashActive .battery::after {
+  background: #fff;
+}
+
+.splashActive .battery {
+  border-color: #fff;
+}
+
+@keyframes splashLight {
+  0% {
+    left: -46%;
+    opacity: 0;
+  }
+
+  12% {
+    opacity: 1;
+  }
+
+  84% {
+    opacity: 1;
+  }
+
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes splashReveal {
+  0% {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0;
+    text-shadow: 0 0 0 rgb(255 247 231 / 0);
+  }
+
+  14% {
+    opacity: 0.22;
+  }
+
+  76% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+    text-shadow:
+      0 0 9px rgb(255 247 231 / 0.62),
+      0 0 24px rgb(255 247 231 / 0.32);
+  }
+
+  100% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+    text-shadow: 0 0 0 rgb(255 247 231 / 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .splashWordmark span {
+    animation-duration: 0.16s;
+  }
+
+  .splashWordmark i {
+    animation: none;
+  }
 }
 
 .installOverlay {
@@ -1548,6 +1802,15 @@
     justify-self: start;
   }
 
+  .cityPicker {
+    justify-self: start;
+  }
+
+  .cityFilter {
+    left: 0;
+    width: min(350px, calc(100vw - 32px));
+  }
+
   .alert {
     position: absolute;
     right: 18px;
@@ -1563,9 +1826,9 @@
     width: 60%;
   }
 
-  .heroPhone {
-    right: 51px;
-    width: 76px;
+  .bannerProduct {
+    right: 34px;
+    width: 142px;
   }
 
   .cartChip,

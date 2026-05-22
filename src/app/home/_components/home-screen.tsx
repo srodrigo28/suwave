@@ -1,18 +1,22 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
+import { useEffect, useState } from "react";
 import type { IconType } from "react-icons";
 import {
   FaBell,
   FaBriefcase,
   FaCamera,
   FaCar,
+  FaCheckCircle,
   FaChevronDown,
   FaChevronRight,
   FaCube,
   FaHamburger,
   FaHandshake,
+  FaInfoCircle,
   FaMapMarkerAlt,
   FaMedkit,
   FaPercent,
@@ -46,6 +50,15 @@ const categories = [
   href?: string;
 }[];
 
+const cityOptions = [
+  "Sinop - MT",
+  "Claudia - MT",
+  "Sorriso - MT",
+  "Lucas do Rio Verde - MT",
+  "Mutum - MT",
+  "Uniao do Sul - MT",
+] as const;
+
 function BannerChip({
   children,
   className,
@@ -65,6 +78,8 @@ function BannerChip({
 }
 
 function HomeHeader() {
+  const [showCityFilter, setShowCityFilter] = useState(false);
+
   return (
     <motion.header className={styles.header} variants={riseMotion}>
       <div className={styles.balance}>
@@ -75,11 +90,57 @@ function HomeHeader() {
           Cupom <b>2</b>
         </button>
       </div>
-      <button className={styles.place} type="button">
-        <FaMapMarkerAlt aria-hidden="true" />
-        Sinop - MT
-        <FaChevronDown aria-hidden="true" />
-      </button>
+      <div className={styles.cityPicker}>
+        <button
+          aria-expanded={showCityFilter}
+          aria-haspopup="dialog"
+          className={styles.place}
+          onClick={() => setShowCityFilter((isVisible) => !isVisible)}
+          type="button"
+        >
+          <FaMapMarkerAlt aria-hidden="true" />
+          Sinop - MT
+          <FaChevronDown aria-hidden="true" />
+        </button>
+
+        <AnimatePresence>
+          {showCityFilter ? (
+            <motion.aside
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              aria-label="Selecione sua cidade"
+              className={styles.cityFilter}
+              exit={{ opacity: 0, scale: 0.98, y: -8 }}
+              initial={{ opacity: 0, scale: 0.98, y: -10 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+            >
+              <strong>Selecione sua cidade</strong>
+              <div className={styles.cityOptions}>
+                {cityOptions.map((city, index) => (
+                  <button
+                    aria-current={index === 0 ? "true" : undefined}
+                    className={`${styles.cityOption} ${
+                      index === 0 ? styles.cityOptionActive : ""
+                    }`}
+                    key={city}
+                    type="button"
+                  >
+                    <FaMapMarkerAlt aria-hidden="true" />
+                    <span>{city}</span>
+                    {index === 0 ? <FaCheckCircle aria-hidden="true" /> : null}
+                  </button>
+                ))}
+              </div>
+              <p>
+                <FaInfoCircle aria-hidden="true" />
+                <span>
+                  Ao trocar de cidade, todo o conteudo sera atualizado de acordo
+                  com a disponibilidade local.
+                </span>
+              </p>
+            </motion.aside>
+          ) : null}
+        </AnimatePresence>
+      </div>
       <button className={styles.alert} type="button" aria-label="Notificacoes">
         <FaBell aria-hidden="true" />
         <b>2</b>
@@ -88,9 +149,28 @@ function HomeHeader() {
   );
 }
 
-function PromoBanner() {
+function PromoBanner({ listings }: { listings: Listing[] }) {
+  const featuredListings = listings.filter((listing) =>
+    listing.tags?.includes("destaque"),
+  );
+  const slides = featuredListings.length ? featuredListings : listings.slice(0, 1);
+  const [activeSlide, setActiveSlide] = useState(0);
+  const activeListing = slides[activeSlide];
+
+  useEffect(() => {
+    if (slides.length < 2) {
+      return;
+    }
+
+    const slideTimer = window.setInterval(() => {
+      setActiveSlide((slide) => (slide + 1) % slides.length);
+    }, 3600);
+
+    return () => window.clearInterval(slideTimer);
+  }, [slides.length]);
+
   return (
-    <section className={styles.banner} aria-label="Destaque do aplicativo">
+    <section className={styles.banner} aria-label="Produtos em destaque">
       <div className={styles.bannerCopy}>
         <h1>
           Tudo que voce precisa
@@ -103,13 +183,31 @@ function PromoBanner() {
         </button>
       </div>
       <div className={styles.bannerArt} aria-hidden="true">
-        <motion.div
-          animate={{ rotate: [-11, -8, -11], y: [0, -4, 0] }}
-          className={styles.heroPhone}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <span>SUWAVE</span>
-        </motion.div>
+        <AnimatePresence mode="wait">
+          {activeListing ? (
+            <motion.div
+              animate={{ opacity: 1, rotate: -4, scale: 1, x: 0 }}
+              className={styles.bannerProduct}
+              exit={{ opacity: 0, rotate: 3, scale: 0.94, x: 20 }}
+              initial={{ opacity: 0, rotate: -10, scale: 0.92, x: 30 }}
+              key={activeListing.title}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+            >
+              <Image
+                alt=""
+                className={styles[activeListing.imageKind]}
+                fill
+                sizes="(max-width: 430px) 44vw, 230px"
+                src={activeListing.image}
+              />
+              <span>
+                <b>Destaque</b>
+                {activeListing.title}
+                <strong>{activeListing.price}</strong>
+              </span>
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
         <BannerChip className={styles.cartChip}>
           <FaShoppingCart />
         </BannerChip>
@@ -129,10 +227,17 @@ function PromoBanner() {
           <FaPercent />
         </BannerChip>
       </div>
-      <div className={styles.dots} aria-hidden="true">
-        <b />
-        <i />
-        <i />
+      <div className={styles.dots} aria-label="Destaques">
+        {slides.map((slide, index) => (
+          <button
+            aria-label={`Ver destaque ${index + 1}: ${slide.title}`}
+            aria-pressed={index === activeSlide}
+            className={index === activeSlide ? styles.dotActive : ""}
+            key={slide.title}
+            onClick={() => setActiveSlide(index)}
+            type="button"
+          />
+        ))}
       </div>
     </section>
   );
@@ -195,7 +300,7 @@ export function HomeScreen({ listings }: { listings: Listing[] }) {
         </motion.label>
 
         <motion.div variants={riseMotion}>
-          <PromoBanner />
+          <PromoBanner listings={listings} />
         </motion.div>
 
         <CategoryGrid />
