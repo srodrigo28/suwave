@@ -16,7 +16,7 @@ type NavigationItem = {
 const navigationItems: NavigationItem[] = [
   { href: "/", icon: FaHome, name: "Inicio" },
   { href: "/", icon: FaWhatsapp, name: "Ajuda" },
-  { href: "/listings", icon: FaPlus, name: "Anunciar", floating: true },
+  { href: "/auth/announce", icon: FaPlus, name: "Anunciar", floating: true },
   { href: "/", icon: FaBox, name: "Pedidos" },
   { href: "/jobs", icon: FaBars, name: "Mais" },
 ];
@@ -35,7 +35,10 @@ export function BottomNavigation() {
   return (
     <nav className={styles.bottomNav} aria-label="Navegacao principal">
       {navigationItems.map(({ href, icon: Icon, name, floating }) => {
-        const active = isActivePath(pathname, href);
+        const active =
+          name === "Anunciar"
+            ? pathname.startsWith("/auth") || pathname === "/listings/new"
+            : isActivePath(pathname, href);
 
         return (
           <Link

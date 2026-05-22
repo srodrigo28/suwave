@@ -16,6 +16,8 @@ type AppShellProps = {
   showSplash?: boolean;
 };
 
+const splashSessionKey = "suwave-splash-seen";
+
 function isIOSDevice() {
   if (typeof navigator === "undefined") {
     return false;
@@ -133,16 +135,25 @@ export function AppShell({ children, showSplash = false }: AppShellProps) {
   );
   const [showInstallSheet, setShowInstallSheet] = useState(false);
   const [isIOS] = useState(isIOSDevice);
-  const [isSplashVisible, setIsSplashVisible] = useState(showSplash);
+  const [isSplashVisible, setIsSplashVisible] = useState(false);
 
   useEffect(() => {
     if (!showSplash) {
       return;
     }
 
+    if (window.sessionStorage.getItem(splashSessionKey)) {
+      return;
+    }
+
+    window.sessionStorage.setItem(splashSessionKey, "true");
+    const splashStartTimer = window.setTimeout(() => setIsSplashVisible(true), 0);
     const splashTimer = window.setTimeout(() => setIsSplashVisible(false), 1700);
 
-    return () => window.clearTimeout(splashTimer);
+    return () => {
+      window.clearTimeout(splashStartTimer);
+      window.clearTimeout(splashTimer);
+    };
   }, [showSplash]);
 
   useEffect(() => {
