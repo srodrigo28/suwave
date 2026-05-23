@@ -18,7 +18,7 @@ import {
 } from "react-icons/fa";
 import { AuthFrame } from "@/app/auth/_components/auth-frame";
 import { AuthHeader } from "@/app/auth/_components/auth-header";
-import { completeProfile } from "@/services/auth-client";
+import { completeProfile, uploadProfileImage } from "@/services/auth-client";
 import { dateDisplayToIso, dateIsoToDisplay, maskCpf, maskDate, maskWhatsapp } from "@/shared/forms/masks";
 import { useAuthStore } from "@/stores/auth-store";
 import styles from "@/app/auth/_components/auth-flow.module.css";
@@ -76,6 +76,7 @@ export function ProfileScreen() {
   const [formError, setFormError] = useState("");
   const [birthDateDisplay, setBirthDateDisplay] = useState(dateIsoToDisplay(initialBirthDate));
   const [imageName, setImageName] = useState("");
+  const [selectedImageFile, setSelectedImageFile] = useState<File | null>(null);
   const [form, setForm] = useState({
     avatarUrl: profileDraft.avatarUrl ?? "",
     birthDate: initialBirthDate,
@@ -139,7 +140,8 @@ export function ProfileScreen() {
 
     const reader = new FileReader();
     reader.onload = () => {
-      updateProfileField("avatarUrl", String(reader.result ?? ""));
+      setForm((state) => ({ ...state, avatarUrl: String(reader.result ?? "") }));
+      setSelectedImageFile(file);
       setImageName(file.name);
       setFormError("");
     };
@@ -152,15 +154,25 @@ export function ProfileScreen() {
     setFormError("");
 
     try {
-      const result = await completeProfile(form, accessToken);
+      let avatarUrl = form.avatarUrl;
+
+      if (selectedImageFile) {
+        const uploadResult = await uploadProfileImage(selectedImageFile, accessToken);
+        avatarUrl = uploadResult.data.url;
+      }
+
+      const result = await completeProfile({ ...form, avatarUrl }, accessToken);
       saveAccountDraft({
         ...accountDraft,
         email: form.email,
         fullName: form.fullName,
         whatsapp: form.whatsapp,
       });
-      saveProfileDraft(result.profile);
-      completeProfileLocal(result.profile);
+      const profile = { ...result.profile, avatarUrl: result.profile.avatarUrl || avatarUrl };
+      saveProfileDraft(profile);
+      completeProfileLocal(profile);
+      setForm((state) => ({ ...state, avatarUrl: profile.avatarUrl ?? "" }));
+      setSelectedImageFile(null);
       setIsWelcomeVisible(true);
       window.setTimeout(() => {
         router.push(isEditMode ? "/profile" : "/listings/new");

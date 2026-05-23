@@ -1,4 +1,8 @@
-const API_BASE_URL = (process.env.API_BASE_URL ?? "http://localhost:5000/api/v1").replace(/\/$/, "");
+const API_BASE_URL = (
+  process.env.API_BASE_URL ??
+  process.env.NEXT_PUBLIC_API_BASE_URL ??
+  "https://99dev.pro/suwave-api/api/v1"
+).replace(/\/$/, "");
 
 export type ApiUser = {
   accepted_terms?: boolean;

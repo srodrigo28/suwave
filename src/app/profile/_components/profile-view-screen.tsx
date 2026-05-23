@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -14,7 +14,9 @@ import {
   FaMapMarkerAlt,
   FaPen,
   FaShieldAlt,
+  FaSignOutAlt,
   FaStar,
+  FaTimes,
   FaWhatsapp,
 } from "react-icons/fa";
 import { ShareButton } from "@/shared/actions/share-button";
@@ -75,9 +77,11 @@ function ProfileInfo({
 export function ProfileViewScreen() {
   const router = useRouter();
   const accountDraft = useAuthStore((state) => state.accountDraft);
+  const clearLocalSession = useAuthStore((state) => state.clearLocalSession);
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   const profileCompleted = useAuthStore((state) => state.profileCompleted);
   const profileDraft = useAuthStore((state) => state.profileDraft);
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -91,6 +95,12 @@ export function ProfileViewScreen() {
   const city = fallback(profileDraft.city);
   const birthDate = fallback(dateIsoToDisplay(profileDraft.birthDate));
   const avatarUrl = profileDraft.avatarUrl;
+
+  const confirmLogout = () => {
+    clearLocalSession();
+    setIsLogoutModalOpen(false);
+    router.replace("/auth/announce");
+  };
 
   return (
     <motion.div
@@ -181,10 +191,10 @@ export function ProfileViewScreen() {
             <FaPen aria-hidden="true" />
             Editar Perfil
           </Link>
-          <a href={whatsapp !== "Nao informado" ? `https://wa.me/55${whatsapp.replace(/\D/g, "")}` : undefined}>
-            <FaWhatsapp aria-hidden="true" />
-            Enviar mensagem
-          </a>
+          <button onClick={() => setIsLogoutModalOpen(true)} type="button">
+            <FaSignOutAlt aria-hidden="true" />
+            Sair da conta
+          </button>
         </motion.div>
 
         <motion.aside className={styles.profileSecurityTip} variants={riseMotion}>
@@ -195,6 +205,45 @@ export function ProfileViewScreen() {
           </div>
         </motion.aside>
       </motion.section>
+      {isLogoutModalOpen ? (
+        <motion.div
+          animate={{ opacity: 1 }}
+          className={styles.logoutModalOverlay}
+          initial={{ opacity: 0 }}
+          transition={{ duration: 0.18 }}
+        >
+          <motion.section
+            animate={{ scale: 1, y: 0 }}
+            aria-modal="true"
+            className={styles.logoutModal}
+            initial={{ scale: 0.94, y: 18 }}
+            role="dialog"
+            transition={{ duration: 0.22, ease: "easeOut" }}
+          >
+            <button
+              aria-label="Fechar"
+              className={styles.logoutModalClose}
+              onClick={() => setIsLogoutModalOpen(false)}
+              type="button"
+            >
+              <FaTimes aria-hidden="true" />
+            </button>
+            <span className={styles.logoutModalIcon}>
+              <FaSignOutAlt aria-hidden="true" />
+            </span>
+            <h2>Sair da conta?</h2>
+            <p>Voce sera desconectado deste dispositivo.</p>
+            <div className={styles.logoutModalActions}>
+              <button onClick={() => setIsLogoutModalOpen(false)} type="button">
+                Cancelar
+              </button>
+              <button onClick={confirmLogout} type="button">
+                Sair
+              </button>
+            </div>
+          </motion.section>
+        </motion.div>
+      ) : null}
       <BottomNavigation />
     </motion.div>
   );

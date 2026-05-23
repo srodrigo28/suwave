@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 
-const API_BASE_URL = (process.env.API_BASE_URL ?? "http://localhost:5000/api/v1").replace(/\/$/, "");
+const API_BASE_URL = (process.env.API_BASE_URL ?? "https://99dev.pro/suwave-api/api/v1").replace(/\/$/, "");
 const timestamp = new Date().toISOString().replace(/[-:.TZ]/g, "");
 const suffix = `${timestamp}-${Math.random().toString(16).slice(2, 8)}`;
 

@@ -43,3 +43,30 @@ export function completeProfile(input: CompleteProfileInput, token?: string) {
     token,
   );
 }
+
+export async function uploadProfileImage(file: File, token?: string) {
+  const formData = new FormData();
+  formData.append("context", "profile");
+  formData.append("file", file);
+
+  const response = await fetch("/api/uploads/images", {
+    body: formData,
+    headers: {
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    },
+    method: "POST",
+  });
+  const body = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    throw new Error(body?.message ?? "Nao foi possivel enviar a foto agora.");
+  }
+
+  return body as {
+    data: {
+      storage_file_id?: string;
+      url: string;
+    };
+    message: string;
+  };
+}
