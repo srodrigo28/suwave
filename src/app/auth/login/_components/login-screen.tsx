@@ -17,6 +17,7 @@ export function LoginScreen() {
   const authenticateLocal = useAuthStore((state) => state.authenticateLocal);
   const completeProfileLocal = useAuthStore((state) => state.completeProfileLocal);
   const saveAccountDraft = useAuthStore((state) => state.saveAccountDraft);
+  const saveAuthSession = useAuthStore((state) => state.saveAuthSession);
   const saveProfileDraft = useAuthStore((state) => state.saveProfileDraft);
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -36,8 +37,14 @@ export function LoginScreen() {
       const result = await loginAccount(form);
       saveAccountDraft(result.account);
       saveProfileDraft(result.profile);
-      completeProfileLocal(result.profile);
-      authenticateLocal();
+      if (result.accessToken) {
+        saveAuthSession(result.accessToken);
+      } else {
+        authenticateLocal();
+      }
+      if (result.profileCompleted) {
+        completeProfileLocal(result.profile);
+      }
       setIsWelcomeVisible(true);
       window.setTimeout(() => {
         router.push("/");

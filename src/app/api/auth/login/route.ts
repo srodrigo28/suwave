@@ -1,57 +1,38 @@
-import type { LoginInput, LoginResult } from "@/models/auth";
+import { z } from "zod";
+import type { LoginResult } from "@/models/auth";
+import { apiRequest, userToAccount, userToProfile } from "../_lib";
 
-function displayNameFromEmail(email: string) {
-  const localPart = email.split("@")[0]?.replace(/\d+/g, "") ?? "";
-  const separated = localPart
-    .replace(/([a-z])([A-Z])/g, "$1 $2")
-    .replace(/[._-]+/g, " ")
-    .trim();
-
-  if (!separated) {
-    return "Usuario Suwave";
-  }
-
-  if (separated.toLowerCase() === "rodrigoexer") {
-    return "Rodrigo Exer";
-  }
-
-  return separated
-    .split(/\s+/)
-    .map((part) => `${part[0]?.toUpperCase() ?? ""}${part.slice(1).toLowerCase()}`)
-    .join(" ");
-}
+const loginSchema = z.object({
+  email: z.email("Informe um e-mail valido.").transform((value) => value.trim().toLowerCase()),
+  password: z.string().min(1, "Informe sua senha."),
+});
 
 export async function POST(request: Request) {
-  const input = (await request.json()) as Partial<LoginInput>;
+  const parsed = loginSchema.safeParse(await request.json());
 
-  if (!input.email?.trim() || !input.password?.trim()) {
+  if (!parsed.success) {
     return Response.json(
-      { message: "Informe e-mail e senha para entrar." },
+      { message: parsed.error.issues[0]?.message ?? "Informe e-mail e senha para entrar." },
       { status: 400 },
     );
   }
 
-  const email = input.email.trim();
-  const fullName = displayNameFromEmail(email);
-  const profile = {
-    avatarUrl: "",
-    birthDate: "1985-03-12",
-    city: "Sinop / MT",
-    cpf: "12345678900",
-    fullName,
-    gender: "masculino",
-    whatsapp: "66992223344",
-  };
+  const body = await apiRequest("/auth/login", {
+    body: JSON.stringify(parsed.data),
+    method: "POST",
+  });
+
+  if (body instanceof Response) {
+    return body;
+  }
+
+  const user = body?.data?.user ?? {};
   const result: LoginResult = {
-    account: {
-      acceptedTerms: true,
-      email,
-      fullName,
-      whatsapp: profile.whatsapp,
-    },
-    mode: "local",
-    profile,
-    profileCompleted: true,
+    accessToken: body?.data?.access_token ?? "",
+    account: userToAccount(user),
+    mode: "api",
+    profile: userToProfile(user),
+    profileCompleted: Boolean(user.profile_completed),
     status: "authenticated",
   };
 

@@ -35,7 +35,7 @@ export type LoginResult = {
     whatsapp: string;
   };
   accessToken?: string;
-  mode: "local";
+  mode: "api" | "local";
   profile: CompleteProfileInput;
   profileCompleted: boolean;
   status: "authenticated";
