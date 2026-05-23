@@ -20,21 +20,16 @@ import styles from "@/app/auth/_components/auth-flow.module.css";
 
 export function AnnounceAuthScreen() {
   const router = useRouter();
-  const authenticateLocal = useAuthStore((state) => state.authenticateLocal);
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   const profileCompleted = useAuthStore((state) => state.profileCompleted);
 
   useEffect(() => {
-    if (!profileCompleted) {
+    if (!isAuthenticated || !profileCompleted) {
       return;
     }
 
     router.replace("/listings/new");
-  }, [profileCompleted, router]);
-
-  const continueWithLocalSession = () => {
-    authenticateLocal();
-    router.push("/auth/profile");
-  };
+  }, [isAuthenticated, profileCompleted, router]);
 
   return (
     <AuthFrame>
@@ -65,14 +60,14 @@ export function AnnounceAuthScreen() {
         <p>Para criar anuncios, entre ou crie sua conta gratis.</p>
 
         <div className={styles.authActions}>
-          <button className={styles.primaryAction} onClick={continueWithLocalSession} type="button">
+          <Link className={styles.primaryAction} href="/auth/login">
             <FaWhatsapp aria-hidden="true" />
             Entrar com WhatsApp
-          </button>
-          <button className={styles.softAction} onClick={continueWithLocalSession} type="button">
+          </Link>
+          <Link className={styles.softAction} href="/auth/login">
             <FaEnvelope aria-hidden="true" />
             Entrar com e-mail
-          </button>
+          </Link>
           <Link className={styles.outlineAction} href="/auth/register">
             <FaPlus aria-hidden="true" />
             Criar conta gratis
@@ -81,9 +76,9 @@ export function AnnounceAuthScreen() {
 
         <p className={styles.signinLine}>
           Ja tem conta?
-          <button onClick={continueWithLocalSession} type="button">
+          <Link href="/auth/login">
             Entrar
-          </button>
+          </Link>
         </p>
       </div>
     </AuthFrame>

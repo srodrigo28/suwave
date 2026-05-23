@@ -13,6 +13,7 @@ import {
 import { AuthFrame } from "@/app/auth/_components/auth-frame";
 import { AuthHeader } from "@/app/auth/_components/auth-header";
 import { registerAccount } from "@/services/auth-client";
+import { maskWhatsapp } from "@/shared/forms/masks";
 import { useAuthStore } from "@/stores/auth-store";
 import styles from "@/app/auth/_components/auth-flow.module.css";
 
@@ -30,8 +31,16 @@ export function RegisterScreen() {
     email: accountDraft.email ?? "",
     fullName: accountDraft.fullName ?? "",
     password: "",
-    whatsapp: accountDraft.whatsapp ?? "",
+    whatsapp: maskWhatsapp(accountDraft.whatsapp ?? ""),
   });
+
+  const updateAccountField = (
+    field: "acceptedTerms" | "email" | "fullName" | "whatsapp",
+    value: boolean | string,
+  ) => {
+    setForm((state) => ({ ...state, [field]: value }));
+    saveAccountDraft({ [field]: value });
+  };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -64,7 +73,7 @@ export function RegisterScreen() {
         <label className={styles.field}>
           <FaUser aria-hidden="true" />
           <input
-            onChange={(event) => setForm((state) => ({ ...state, fullName: event.target.value }))}
+            onChange={(event) => updateAccountField("fullName", event.target.value)}
             placeholder="Nome completo"
             value={form.fullName}
           />
@@ -73,7 +82,7 @@ export function RegisterScreen() {
           <FaWhatsapp aria-hidden="true" />
           <input
             inputMode="tel"
-            onChange={(event) => setForm((state) => ({ ...state, whatsapp: event.target.value }))}
+            onChange={(event) => updateAccountField("whatsapp", maskWhatsapp(event.target.value))}
             placeholder="WhatsApp"
             value={form.whatsapp}
           />
@@ -82,7 +91,7 @@ export function RegisterScreen() {
           <FaEnvelope aria-hidden="true" />
           <input
             inputMode="email"
-            onChange={(event) => setForm((state) => ({ ...state, email: event.target.value }))}
+            onChange={(event) => updateAccountField("email", event.target.value)}
             placeholder="E-mail"
             value={form.email}
           />
@@ -125,9 +134,7 @@ export function RegisterScreen() {
         <label className={styles.terms}>
           <input
             checked={form.acceptedTerms}
-            onChange={(event) =>
-              setForm((state) => ({ ...state, acceptedTerms: event.target.checked }))
-            }
+            onChange={(event) => updateAccountField("acceptedTerms", event.target.checked)}
             type="checkbox"
           />
           <span>

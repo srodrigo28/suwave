@@ -18,7 +18,7 @@ const navigationItems: NavigationItem[] = [
   { href: "/", icon: FaWhatsapp, name: "Ajuda" },
   { href: "/auth/announce", icon: FaPlus, name: "Anunciar", floating: true },
   { href: "/", icon: FaBox, name: "Pedidos" },
-  { href: "/jobs", icon: FaBars, name: "Mais" },
+  { href: "/more", icon: FaBars, name: "Mais" },
 ];
 
 function isActivePath(pathname: string, href: string) {

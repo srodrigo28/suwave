@@ -1,6 +1,8 @@
 import type {
   CompleteProfileInput,
   CompleteProfileResult,
+  LoginInput,
+  LoginResult,
   RegisterAccountInput,
   RegisterAccountResult,
 } from "@/models/auth";
@@ -24,6 +26,10 @@ export function registerAccount(input: RegisterAccountInput) {
     "/api/auth/register",
     input,
   );
+}
+
+export function loginAccount(input: LoginInput) {
+  return postAuth<LoginInput, LoginResult>("/api/auth/login", input);
 }
 
 export function completeProfile(input: CompleteProfileInput) {

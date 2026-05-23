@@ -1,0 +1,618 @@
+
+> suave@0.1.0 dev
+> next dev --hostname 127.0.0.1 --port 3000
+
+Ôû▓ Next.js 16.2.6 (Turbopack)
+- Local:         http://127.0.0.1:3000
+- Network:       http://127.0.0.1:3000
+Ô£ô Ready in 415ms
+Creating turbopack project { dir: 'C:\\beta\\suwave\\web', testMode: true }
+
+Ôùï Compiling /profile ...
+
+<--- Last few GCs --->
+
+
+
+
+
+
+
+
+<--- Last few GCs --->
+<--- Last few GCs --->
+<--- Last few GCs --->
+<--- Last few GCs --->
+<--- Last few GCs --->
+<--- Last few GCs --->
+<--- Last few GCs --->
+
+
+
+
+
+
+
+
+
+
+FATAL ERROR: Committing semi space failed. Allocation failed - JavaScript heap out of memory
+FATAL ERROR: Committing semi space failed. Allocation failed - JavaScript heap out of memory
+
+
+
+#
+
+
+----- Native stack trace -----
+----- Native stack trace -----
+
+
+
+# Fatal JavaScript out of memory: MemoryChunk allocation failed during deserialization.
+
+#
+
+
+#
+#
+#
+#
+#
+# Fatal JavaScript out of memory: MemoryChunk allocation failed during deserialization.
+ 1: 00007FF7ED26C36F node::OnFatalError+1343
+ 1: 00007FF7ED26C36F node::OnFatalError+1343
+# Fatal JavaScript out of memory: MemoryChunk allocation failed during deserialization.
+# Fatal JavaScript out of memory: MemoryChunk allocation failed during deserialization.
+# Fatal JavaScript out of memory: MemoryChunk allocation failed during deserialization.
+----- Native stack trace -----
+# Fatal JavaScript out of memory: MemoryChunk allocation failed during deserialization.
+#
+ 2: 00007FF7EDEB4D77 v8::Function::NewInstance+423
+ 2: 00007FF7EDEB4D77 v8::Function::NewInstance+423
+#
+#
+#
+
+#
+----- Native stack trace -----
+ 3: 00007FF7EDCB5467 v8::base::AddressSpaceReservation::AddressSpaceReservation+322071
+ 3: 00007FF7EDCB5467 v8::base::AddressSpaceReservation::AddressSpaceReservation+322071
+----- Native stack trace -----
+----- Native stack trace -----
+----- Native stack trace -----
+ 1: 00007FF7ED1C0ECD node::MultiIsolatePlatform::DisposeIsolate+5341
+----- Native stack trace -----
+
+ 4: 00007FF7EDC4DE8B v8::platform::DefaultPlatform::CurrentClockTimeMillis+491051
+ 4: 00007FF7EDC4DE8B v8::platform::DefaultPlatform::CurrentClockTimeMillis+491051
+
+
+
+ 2: 00007FF7EE622576 v8::base::FatalOOM+54
+
+ 1: 00007FF7ED1C0ECD node::MultiIsolatePlatform::DisposeIsolate+5341
+ 5: 00007FF7EDC258DE v8::platform::DefaultPlatform::CurrentClockTimeMillis+325758
+ 5: 00007FF7EDC258DE v8::platform::DefaultPlatform::CurrentClockTimeMillis+325758
+ 1: 00007FF7ED1C0ECD node::MultiIsolatePlatform::DisposeIsolate+5341
+ 1: 00007FF7ED1C0ECD node::MultiIsolatePlatform::DisposeIsolate+5341
+ 3: 00007FF7EDEB4D56 v8::Function::NewInstance+390
+ 1: 00007FF7ED1C0ECD node::MultiIsolatePlatform::DisposeIsolate+5341
+ 2: 00007FF7EE622576 v8::base::FatalOOM+54
+ 2: 00007FF7EE622576 v8::base::FatalOOM+54
+ 4: 00007FF7EDCB5467 v8::base::AddressSpaceReservation::AddressSpaceReservation+322071
+ 1: 00007FF7ED1C0ECD node::MultiIsolatePlatform::DisposeIsolate+5341
+ 2: 00007FF7EE622576 v8::base::FatalOOM+54
+ 6: 00007FF7EDCB7F02 v8::base::AddressSpaceReservation::AddressSpaceReservation+332978
+ 6: 00007FF7EDCB7F02 v8::base::AddressSpaceReservation::AddressSpaceReservation+332978
+ 2: 00007FF7EE622576 v8::base::FatalOOM+54
+ 2: 00007FF7EE622576 v8::base::FatalOOM+54
+ 3: 00007FF7EDEB4D56 v8::Function::NewInstance+390
+ 7: 00007FF7EDCB6EB7 v8::base::AddressSpaceReservation::AddressSpaceReservation+328807
+ 7: 00007FF7EDCB6EB7 v8::base::AddressSpaceReservation::AddressSpaceReservation+328807
+ 3: 00007FF7EDEB4D56 v8::Function::NewInstance+390
+ 3: 00007FF7EDEB4D56 v8::Function::NewInstance+390
+ 5: 00007FF7EDC676BA v8::base::AddressSpaceReservation::AddressSpaceReservation+3178
+ 3: 00007FF7EDEB4D56 v8::Function::NewInstance+390
+ 3: 00007FF7EDEB4D56 v8::Function::NewInstance+390
+ 4: 00007FF7EDCB5467 v8::base::AddressSpaceReservation::AddressSpaceReservation+322071
+ 8: 00007FF7EDCC7E22 v8::internal::StrongRootAllocatorBase::deallocate_impl+15858
+ 8: 00007FF7EDCC7E22 v8::internal::StrongRootAllocatorBase::deallocate_impl+15858
+ 4: 00007FF7EDCB5467 v8::base::AddressSpaceReservation::AddressSpaceReservation+322071
+ 4: 00007FF7EDCB5467 v8::base::AddressSpaceReservation::AddressSpaceReservation+322071
+ 4: 00007FF7EDCB5467 v8::base::AddressSpaceReservation::AddressSpaceReservation+322071
+ 6: 00007FF7EDC6777C v8::base::AddressSpaceReservation::AddressSpaceReservation+3372
+ 4: 00007FF7EDCB5467 v8::base::AddressSpaceReservation::AddressSpaceReservation+322071
+ 5: 00007FF7EDC676BA v8::base::AddressSpaceReservation::AddressSpaceReservation+3178
+ 9: 00007FF7EDCC794B v8::internal::StrongRootAllocatorBase::deallocate_impl+14619
+ 9: 00007FF7EDCC794B v8::internal::StrongRootAllocatorBase::deallocate_impl+14619
+ 5: 00007FF7EDC676BA v8::base::AddressSpaceReservation::AddressSpaceReservation+3178
+ 5: 00007FF7EDC676BA v8::base::AddressSpaceReservation::AddressSpaceReservation+3178
+ 5: 00007FF7EDC676BA v8::base::AddressSpaceReservation::AddressSpaceReservation+3178
+ 5: 00007FF7EDC676BA v8::base::AddressSpaceReservation::AddressSpaceReservation+3178
+ 7: 00007FF7EDC6806B v8::base::AddressSpaceReservation::AddressSpaceReservation+5659
+10: 00007FF7EF14DAED v8::base::UnsignedDivisionByConstant<unsigned __int64>+2791421
+10: 00007FF7EF14DAED v8::base::UnsignedDivisionByConstant<unsigned __int64>+2791421
+ 6: 00007FF7EDC6777C v8::base::AddressSpaceReservation::AddressSpaceReservation+3372
+ 6: 00007FF7EDC6777C v8::base::AddressSpaceReservation::AddressSpaceReservation+3372
+ 6: 00007FF7EDC6777C v8::base::AddressSpaceReservation::AddressSpaceReservation+3372
+ 8: 00007FF7EDC3F2C1 v8::platform::DefaultPlatform::CurrentClockTimeMillis+430689
+ 6: 00007FF7EDC6777C v8::base::AddressSpaceReservation::AddressSpaceReservation+3372
+ 6: 00007FF7EDC6777C v8::base::AddressSpaceReservation::AddressSpaceReservation+3372
+11: 00007FF7EDCB2F30 v8::base::AddressSpaceReservation::AddressSpaceReservation+312544
+ 7: 00007FF7EDC6806B v8::base::AddressSpaceReservation::AddressSpaceReservation+5659
+11: 00007FF7EDCB2F30 v8::base::AddressSpaceReservation::AddressSpaceReservation+312544
+ 7: 00007FF7EDC6806B v8::base::AddressSpaceReservation::AddressSpaceReservation+5659
+ 7: 00007FF7EDC6806B v8::base::AddressSpaceReservation::AddressSpaceReservation+5659
+ 7: 00007FF7EDC6806B v8::base::AddressSpaceReservation::AddressSpaceReservation+5659
+ 9: 00007FF7EDCA5173 v8::base::AddressSpaceReservation::AddressSpaceReservation+255779
+ 7: 00007FF7EDC6806B v8::base::AddressSpaceReservation::AddressSpaceReservation+5659
+ 8: 00007FF7EDC3F2C1 v8::platform::DefaultPlatform::CurrentClockTimeMillis+430689
+12: 00007FF7EDCCD7BA X509_STORE_set_cleanup+5098
+12: 00007FF7EDCCD7BA X509_STORE_set_cleanup+5098
+13: 00007FF7EDCD9C56 uv_timer_set_repeat+20694
+ 8: 00007FF7EDC3F2C1 v8::platform::DefaultPlatform::CurrentClockTimeMillis+430689
+ 8: 00007FF7EDC3F2C1 v8::platform::DefaultPlatform::CurrentClockTimeMillis+430689
+ 8: 00007FF7EDC3F2C1 v8::platform::DefaultPlatform::CurrentClockTimeMillis+430689
+10: 00007FF7EDCA4EDE v8::base::AddressSpaceReservation::AddressSpaceReservation+255118
+ 8: 00007FF7EDC3F2C1 v8::platform::DefaultPlatform::CurrentClockTimeMillis+430689
+ 9: 00007FF7EDCA5173 v8::base::AddressSpaceReservation::AddressSpaceReservation+255779
+13: 00007FF7EDCD9C56 uv_timer_set_repeat+20694
+ 9: 00007FF7EDCA5173 v8::base::AddressSpaceReservation::AddressSpaceReservation+255779
+14: 00007FF7ED8ACD47 v8::String::Utf8Value::~Utf8Value+143495
+ 9: 00007FF7EDCA5173 v8::base::AddressSpaceReservation::AddressSpaceReservation+255779
+14: 00007FF7ED8ACD47 v8::String::Utf8Value::~Utf8Value+143495
+10: 00007FF7EDCA4EDE v8::base::AddressSpaceReservation::AddressSpaceReservation+255118
+11: 00007FF7EDCA3CC8 v8::base::AddressSpaceReservation::AddressSpaceReservation+250488
+ 9: 00007FF7EDCA5173 v8::base::AddressSpaceReservation::AddressSpaceReservation+255779
+10: 00007FF7EDCA4EDE v8::base::AddressSpaceReservation::AddressSpaceReservation+255118
+ 9: 00007FF7EDCA5173 v8::base::AddressSpaceReservation::AddressSpaceReservation+255779
+10: 00007FF7EDCA4EDE v8::base::AddressSpaceReservation::AddressSpaceReservation+255118
+10: 00007FF7EDCA4EDE v8::base::AddressSpaceReservation::AddressSpaceReservation+255118
+12: 00007FF7EDCA3C4A v8::base::AddressSpaceReservation::AddressSpaceReservation+250362
+10: 00007FF7EDCA4EDE v8::base::AddressSpaceReservation::AddressSpaceReservation+255118
+11: 00007FF7EDCA3CC8 v8::base::AddressSpaceReservation::AddressSpaceReservation+250488
+11: 00007FF7EDCA3CC8 v8::base::AddressSpaceReservation::AddressSpaceReservation+250488
+15: 000001439FE7733A 
+12: 00007FF7EDCA3C4A v8::base::AddressSpaceReservation::AddressSpaceReservation+250362
+11: 00007FF7EDCA3CC8 v8::base::AddressSpaceReservation::AddressSpaceReservation+250488
+11: 00007FF7EDCA3CC8 v8::base::AddressSpaceReservation::AddressSpaceReservation+250488
+12: 00007FF7EDCA3C4A v8::base::AddressSpaceReservation::AddressSpaceReservation+250362
+12: 00007FF7EDCA3C4A v8::base::AddressSpaceReservation::AddressSpaceReservation+250362
+11: 00007FF7EDCA3CC8 v8::base::AddressSpaceReservation::AddressSpaceReservation+250488
+12: 00007FF7EDCA3C4A v8::base::AddressSpaceReservation::AddressSpaceReservation+250362
+15: 000002B7DA7B733A 
+13: 00007FF7EDCCD6E5 X509_STORE_set_cleanup+4885
+14: 00007FF7ED86B498 v8::internal::Version::GetSONAME+242840
+13: 00007FF7EDCCD6E5 X509_STORE_set_cleanup+4885
+13: 00007FF7ED86B423 v8::internal::Version::GetSONAME+242723
+12: 00007FF7EDCA3C4A v8::base::AddressSpaceReservation::AddressSpaceReservation+250362
+13: 00007FF7EDCCD6E5 X509_STORE_set_cleanup+4885
+13: 00007FF7EDCCD6E5 X509_STORE_set_cleanup+4885
+13: 00007FF7EDCCD6E5 X509_STORE_set_cleanup+4885
+15: 00007FF7ED86926C v8::internal::Version::GetSONAME+234092
+14: 00007FF7ED86B498 v8::internal::Version::GetSONAME+242840
+16: 00007FF7ED86EF16 v8::internal::Version::GetSONAME+257814
+14: 00007FF7ED86B498 v8::internal::Version::GetSONAME+242840
+14: 00007FF7ED86B498 v8::internal::Version::GetSONAME+242840
+14: 00007FF7ED86926C v8::internal::Version::GetSONAME+234092
+14: 00007FF7ED86B498 v8::internal::Version::GetSONAME+242840
+15: 00007FF7ED86926C v8::internal::Version::GetSONAME+234092
+15: 00007FF7ED86926C v8::internal::Version::GetSONAME+234092
+15: 00007FF7ED86EF16 v8::internal::Version::GetSONAME+257814
+15: 00007FF7ED86926C v8::internal::Version::GetSONAME+234092
+17: 00007FF7ED869F58 v8::internal::Version::GetSONAME+237400
+15: 00007FF7ED86926C v8::internal::Version::GetSONAME+234092
+16: 00007FF7ED86EF16 v8::internal::Version::GetSONAME+257814
+16: 00007FF7ED869F58 v8::internal::Version::GetSONAME+237400
+16: 00007FF7ED8704EE v8::internal::Version::GetSONAME+263406
+16: 00007FF7ED86EF16 v8::internal::Version::GetSONAME+257814
+17: 00007FF7ED869C9D v8::internal::Version::GetSONAME+236701
+16: 00007FF7ED8704EE v8::internal::Version::GetSONAME+263406
+17: 00007FF7ED86944E v8::internal::Version::GetSONAME+234574
+18: 00007FF7ED86944E v8::internal::Version::GetSONAME+234574
+17: 00007FF7ED869C9D v8::internal::Version::GetSONAME+236701
+17: 00007FF7ED869F58 v8::internal::Version::GetSONAME+237400
+19: 00007FF7ED86EF16 v8::internal::Version::GetSONAME+257814
+17: 00007FF7ED869F58 v8::internal::Version::GetSONAME+237400
+18: 00007FF7ED86944E v8::internal::Version::GetSONAME+234574
+18: 00007FF7ED86EF16 v8::internal::Version::GetSONAME+257814
+18: 00007FF7ED86944E v8::internal::Version::GetSONAME+234574
+18: 00007FF7ED8476D4 v8::internal::Version::GetSONAME+95956
+18: 00007FF7ED8476D4 v8::internal::Version::GetSONAME+95956
+19: 00007FF7ED86EF16 v8::internal::Version::GetSONAME+257814
+19: 00007FF7EDCBD76E v8::base::AddressSpaceReservation::AddressSpaceReservation+355614
+20: 00007FF7ED869F58 v8::internal::Version::GetSONAME+237400
+19: 00007FF7EDCBD76E v8::base::AddressSpaceReservation::AddressSpaceReservation+355614
+21: 00007FF7ED86944E v8::internal::Version::GetSONAME+234574
+19: 00007FF7ED869F58 v8::internal::Version::GetSONAME+237400
+20: 00007FF7EDCBD4C1 v8::base::AddressSpaceReservation::AddressSpaceReservation+354929
+19: 00007FF7ED86EF16 v8::internal::Version::GetSONAME+257814
+20: 00007FF7ED869F58 v8::internal::Version::GetSONAME+237400
+22: 00007FF7ED86EF16 v8::internal::Version::GetSONAME+257814
+20: 00007FF7ED869F58 v8::internal::Version::GetSONAME+237400
+20: 00007FF7ED86944E v8::internal::Version::GetSONAME+234574
+21: 00007FF7ED86944E v8::internal::Version::GetSONAME+234574
+21: 00007FF7ED848183 v8::internal::Version::GetSONAME+98691
+21: 00007FF7ED86EF16 v8::internal::Version::GetSONAME+257814
+20: 00007FF7EDCBD4C1 v8::base::AddressSpaceReservation::AddressSpaceReservation+354929
+21: 00007FF7ED848183 v8::internal::Version::GetSONAME+98691
+23: 00007FF7ED869F58 v8::internal::Version::GetSONAME+237400
+22: 00007FF7ED86EF16 v8::internal::Version::GetSONAME+257814
+22: 00007FF7ED869F58 v8::internal::Version::GetSONAME+237400
+22: 00007FF7EDD5037C SSL_CTX_set_default_read_buffer_len+45500
+24: 00007FF7ED86944E v8::internal::Version::GetSONAME+234574
+21: 00007FF7ED86944E v8::internal::Version::GetSONAME+234574
+22: 00007FF7EDD5037C SSL_CTX_set_default_read_buffer_len+45500
+22: 00007FF7ED86EF16 v8::internal::Version::GetSONAME+257814
+23: 00007FF7ED869F58 v8::internal::Version::GetSONAME+237400
+23: 00007FF7EDD50772 SSL_CTX_set_default_read_buffer_len+46514
+25: 00007FF7ED86EF16 v8::internal::Version::GetSONAME+257814
+23: 00007FF7ED869F58 v8::internal::Version::GetSONAME+237400
+24: 00007FF7ED86944E v8::internal::Version::GetSONAME+234574
+24: 00007FF7ED84DDC3 v8::internal::Version::GetSONAME+122307
+23: 00007FF7EDD50772 SSL_CTX_set_default_read_buffer_len+46514
+23: 00007FF7ED86944E v8::internal::Version::GetSONAME+234574
+24: 00007FF7ED86EF16 v8::internal::Version::GetSONAME+257814
+24: 00007FF7ED84DDC3 v8::internal::Version::GetSONAME+122307
+26: 00007FF7ED869F58 v8::internal::Version::GetSONAME+237400
+25: 00007FF7ED86EF16 v8::internal::Version::GetSONAME+257814
+24: 00007FF7ED86944E v8::internal::Version::GetSONAME+234574
+25: 00007FF7EDEDFEE6 v8::Isolate::Initialize+662
+25: 00007FF7ED869F58 v8::internal::Version::GetSONAME+237400
+25: 00007FF7EDEDFEE6 v8::Isolate::Initialize+662
+27: 00007FF7ED86944E v8::internal::Version::GetSONAME+234574
+25: 00007FF7ED86EF16 v8::internal::Version::GetSONAME+257814
+26: 00007FF7ED869F58 v8::internal::Version::GetSONAME+237400
+26: 00007FF7ED37A14D node::SetIsolateUpForNode+749
+26: 00007FF7ED86944E v8::internal::Version::GetSONAME+234574
+28: 00007FF7ED8704EE v8::internal::Version::GetSONAME+263406
+26: 00007FF7ED37A14D node::SetIsolateUpForNode+749
+27: 00007FF7ED86944E v8::internal::Version::GetSONAME+234574
+26: 00007FF7ED869F58 v8::internal::Version::GetSONAME+237400
+27: 00007FF7ED0D5B73 RSA_meth_get_flags+222691
+27: 00007FF7ED8704EE v8::internal::Version::GetSONAME+263406
+27: 00007FF7ED0D5B73 RSA_meth_get_flags+222691
+29: 00007FF7ED869C9D v8::internal::Version::GetSONAME+236701
+27: 00007FF7ED86944E v8::internal::Version::GetSONAME+234574
+28: 00007FF7ED8704EE v8::internal::Version::GetSONAME+263406
+28: 00007FF7ED0D4F09 RSA_meth_get_flags+219513
+28: 00007FF7ED869C9D v8::internal::Version::GetSONAME+236701
+28: 00007FF7ED0D4F09 RSA_meth_get_flags+219513
+30: 00007FF7EDCBD428 v8::base::AddressSpaceReservation::AddressSpaceReservation+354776
+28: 00007FF7ED8704EE v8::internal::Version::GetSONAME+263406
+29: 00007FF7ED0DEA90 RSA_meth_get_flags+259328
+29: 00007FF7ED869C9D v8::internal::Version::GetSONAME+236701
+29: 00007FF7ED0DEA90 RSA_meth_get_flags+259328
+29: 00007FF7EDCBD428 v8::base::AddressSpaceReservation::AddressSpaceReservation+354776
+31: 00007FF7ED848183 v8::internal::Version::GetSONAME+98691
+29: 00007FF7ED869C9D v8::internal::Version::GetSONAME+236701
+30: 00007FF7EDCBD428 v8::base::AddressSpaceReservation::AddressSpaceReservation+354776
+30: 00007FF7ED848183 v8::internal::Version::GetSONAME+98691
+30: 00007FF7EDF0A096 uv_thread_detach+150
+31: 00007FF7ED848183 v8::internal::Version::GetSONAME+98691
+31: 00007FF7EDD5037C SSL_CTX_set_default_read_buffer_len+45500
+30: 00007FF7EDCBD428 v8::base::AddressSpaceReservation::AddressSpaceReservation+354776
+30: 00007FF7EDF0A096 uv_thread_detach+150
+31: 00007FF7EF1692B3 v8::base::UnsignedDivisionByConstant<unsigned __int64>+2904003
+32: 00007FF7EDD5037C SSL_CTX_set_default_read_buffer_len+45500
+31: 00007FF7EF1692B3 v8::base::UnsignedDivisionByConstant<unsigned __int64>+2904003
+33: 00007FF7EDD50772 SSL_CTX_set_default_read_buffer_len+46514
+31: 00007FF7ED848183 v8::internal::Version::GetSONAME+98691
+32: 00007FF7EDD5037C SSL_CTX_set_default_read_buffer_len+45500
+32: 00007FF93E4DE957 BaseThreadInitThunk+23
+32: 00007FF7EDD50772 SSL_CTX_set_default_read_buffer_len+46514
+32: 00007FF93E4DE957 BaseThreadInitThunk+23
+32: 00007FF7EDD5037C SSL_CTX_set_default_read_buffer_len+45500
+33: 00007FF7EDD50772 SSL_CTX_set_default_read_buffer_len+46514
+33: 00007FF7ED84DDC3 v8::internal::Version::GetSONAME+122307
+34: 00007FF7ED84DDC3 v8::internal::Version::GetSONAME+122307
+33: 00007FF93EB8427C RtlUserThreadStart+44
+33: 00007FF93EB8427C RtlUserThreadStart+44
+35: 00007FF7EDEDFEE6 v8::Isolate::Initialize+662
+33: 00007FF7EDD50772 SSL_CTX_set_default_read_buffer_len+46514
+36: 00007FF7ED37A14D node::SetIsolateUpForNode+749
+34: 00007FF7ED84DDC3 v8::internal::Version::GetSONAME+122307
+34: 00007FF7ED84DDC3 v8::internal::Version::GetSONAME+122307
+35: 00007FF7EDEDFEE6 v8::Isolate::Initialize+662
+34: 00007FF7EDEDFEE6 v8::Isolate::Initialize+662
+35: 00007FF7ED37A14D node::SetIsolateUpForNode+749
+37: 00007FF7ED0D5B73 RSA_meth_get_flags+222691
+35: 00007FF7EDEDFEE6 v8::Isolate::Initialize+662
+36: 00007FF7ED0D5B73 RSA_meth_get_flags+222691
+36: 00007FF7ED37A14D node::SetIsolateUpForNode+749
+36: 00007FF7ED37A14D node::SetIsolateUpForNode+749
+37: 00007FF7ED0D5B73 RSA_meth_get_flags+222691
+38: 00007FF7ED0D4F09 RSA_meth_get_flags+219513
+37: 00007FF7ED0D4F09 RSA_meth_get_flags+219513
+39: 00007FF7ED0DEA90 RSA_meth_get_flags+259328
+37: 00007FF7ED0D5B73 RSA_meth_get_flags+222691
+38: 00007FF7ED0D4F09 RSA_meth_get_flags+219513
+38: 00007FF7ED0DEA90 RSA_meth_get_flags+259328
+40: 00007FF7EDF0A096 uv_thread_detach+150
+38: 00007FF7ED0D4F09 RSA_meth_get_flags+219513
+39: 00007FF7ED0DEA90 RSA_meth_get_flags+259328
+39: 00007FF7EDF0A096 uv_thread_detach+150
+40: 00007FF7EDF0A096 uv_thread_detach+150
+41: 00007FF7EF1692B3 v8::base::UnsignedDivisionByConstant<unsigned __int64>+2904003
+39: 00007FF7ED0DEA90 RSA_meth_get_flags+259328
+40: 00007FF7EF1692B3 v8::base::UnsignedDivisionByConstant<unsigned __int64>+2904003
+42: 00007FF93E4DE957 BaseThreadInitThunk+23
+40: 00007FF7EDF0A096 uv_thread_detach+150
+41: 00007FF7EF1692B3 v8::base::UnsignedDivisionByConstant<unsigned __int64>+2904003
+41: 00007FF93E4DE957 BaseThreadInitThunk+23
+43: 00007FF93EB8427C RtlUserThreadStart+44
+41: 00007FF7EF1692B3 v8::base::UnsignedDivisionByConstant<unsigned __int64>+2904003
+42: 00007FF93E4DE957 BaseThreadInitThunk+23
+42: 00007FF93E4DE957 BaseThreadInitThunk+23
+43: 00007FF93EB8427C RtlUserThreadStart+44
+42: 00007FF93EB8427C RtlUserThreadStart+44
+43: 00007FF93EB8427C RtlUserThreadStart+44
+Ô£ô Finished writing to filesystem cache in 24.8s
+
+
+#
+# Fatal error in , line 0
+# Out of memory: HashMap::Initialize
+#
+#
+#
+#FailureMessage Object: 00000035649FA5A0
+----- Native stack trace -----
+
+ 1: 00007FF7ED1C0ECD node::MultiIsolatePlatform::DisposeIsolate+5341
+ 2: 00007FF7EE622B0F V8_Fatal+287
+ 3: 00007FF7EDEB2E16 X509_STORE_set_get_issuer+766934
+ 4: 00007FF7EDEB2502 X509_STORE_set_get_issuer+764610
+ 5: 00007FF7EDEB2330 X509_STORE_set_get_issuer+764144
+ 6: 00007FF7ED93AA9F EC_KEY_METHOD_set_verify+79647
+ 7: 00007FF7ED95B6C6 EC_KEY_METHOD_set_verify+213830
+ 8: 00007FF7ED971DBB EC_KEY_METHOD_set_verify+305723
+ 9: 00007FF7ED970F8E EC_KEY_METHOD_set_verify+302094
+10: 00007FF7ED9777F2 EC_KEY_METHOD_set_verify+328818
+11: 00007FF7ED974213 EC_KEY_METHOD_set_verify+315027
+12: 00007FF7ED971E08 EC_KEY_METHOD_set_verify+305800
+13: 00007FF7ED970F8E EC_KEY_METHOD_set_verify+302094
+14: 00007FF7ED970C49 EC_KEY_METHOD_set_verify+301257
+15: 00007FF7ED97A1F9 EC_KEY_METHOD_set_verify+339577
+16: 00007FF7ED9790C6 EC_KEY_METHOD_set_verify+335174
+17: 00007FF7ED9706B6 EC_KEY_METHOD_set_verify+299830
+18: 00007FF7ED971DBB EC_KEY_METHOD_set_verify+305723
+19: 00007FF7ED970F8E EC_KEY_METHOD_set_verify+302094
+20: 00007FF7ED976954 EC_KEY_METHOD_set_verify+325076
+21: 00007FF7ED974DDE EC_KEY_METHOD_set_verify+318046
+22: 00007FF7ED971DBB EC_KEY_METHOD_set_verify+305723
+23: 00007FF7ED970F8E EC_KEY_METHOD_set_verify+302094
+24: 00007FF7ED96B372 EC_KEY_METHOD_set_verify+278514
+25: 00007FF7ED960F05 EC_KEY_METHOD_set_verify+236421
+26: 00007FF7ED971CB0 EC_KEY_METHOD_set_verify+305456
+27: 00007FF7ED970FD4 EC_KEY_METHOD_set_verify+302164
+28: 00007FF7ED970C49 EC_KEY_METHOD_set_verify+301257
+29: 00007FF7ED979410 EC_KEY_METHOD_set_verify+336016
+30: 00007FF7ED9706B6 EC_KEY_METHOD_set_verify+299830
+31: 00007FF7ED971DBB EC_KEY_METHOD_set_verify+305723
+32: 00007FF7ED970F8E EC_KEY_METHOD_set_verify+302094
+33: 00007FF7ED982E62 EC_KEY_METHOD_set_verify+375522
+34: 00007FF7ED962935 EC_KEY_METHOD_set_verify+243125
+35: 00007FF7ED96B53B EC_KEY_METHOD_set_verify+278971
+36: 00007FF7ED96AA3A EC_KEY_METHOD_set_verify+276154
+37: 00007FF7ED95E137 EC_KEY_METHOD_set_verify+224695
+38: 00007FF7ED95D304 EC_KEY_METHOD_set_verify+221060
+39: 00007FF7ED95C5F2 EC_KEY_METHOD_set_verify+217714
+40: 00007FF7ED95C29A EC_KEY_METHOD_set_verify+216858
+41: 00007FF7ED9578C9 EC_KEY_METHOD_set_verify+197961
+42: 00007FF7EDE3271F X509_STORE_set_get_issuer+240863
+43: 00007FF7EDE35521 X509_STORE_set_get_issuer+252641
+44: 00007FF7EDEBE233 v8::ScriptCompiler::CompileFunction+1011
+45: 00007FF7ED288F83 node::GetCurrentEnvironment+20883
+46: 00007FF7ED28772E node::GetCurrentEnvironment+14654
+47: 0000018BCA98F64D 
+
+<--- Last few GCs --->
+
+
+
+#
+# Fatal JavaScript out of memory: MemoryChunk allocation failed during deserialization.
+#
+----- Native stack trace -----
+
+ 1: 00007FF7ED1C0ECD 
+ 2: 00007FF7EE622576 
+ 3: 00007FF7EDEB4D56 
+ 4: 00007FF7EDCB5467 
+ 5: 00007FF7EDC676BA 
+ 6: 00007FF7EDC6777C 
+ 7: 00007FF7EDC6806B 
+ 8: 00007FF7EDC3F2C1 
+ 9: 00007FF7EDCA5173 
+10: 00007FF7EDCA4EDE 
+11: 00007FF7EDCA3CC8 
+12: 00007FF7EDCA3C4A 
+13: 00007FF7EDCCD6E5 
+14: 00007FF7ED86B498 
+15: 00007FF7ED86926C 
+16: 00007FF7ED86EF16 
+17: 00007FF7ED869F58 
+18: 00007FF7ED86944E 
+19: 00007FF7ED86EF16 
+20: 00007FF7ED869F58 
+21: 00007FF7ED86944E 
+22: 00007FF7ED86EF16 
+23: 00007FF7ED869F58 
+24: 00007FF7ED86944E 
+25: 00007FF7ED86EF16 
+26: 00007FF7ED869F58 
+27: 00007FF7ED86944E 
+28: 00007FF7ED8704EE 
+29: 00007FF7ED869C9D 
+30: 00007FF7EDCBD428 
+31: 00007FF7ED848183 
+32: 00007FF7EDD5037C 
+33: 00007FF7EDD50772 
+34: 00007FF7ED84DDC3 
+35: 00007FF7EDEDFEE6 
+36: 00007FF7ED37A14D 
+37: 00007FF7ED0D5B73 
+38: 00007FF7ED0D4F09 
+39: 00007FF7ED0DEA90 
+40: 00007FF7EDF0A096 
+41: 00007FF7EF1692B3 
+42: 00007FF93E4DE957 BaseThreadInitThunk+23
+43: 00007FF93EB8427C RtlUserThreadStart+44
+
+<--- Last few GCs --->
+
+
+
+#
+# Fatal JavaScript out of memory: MemoryChunk allocation failed during deserialization.
+#
+----- Native stack trace -----
+
+ 1: 00007FF7ED1C0ECD 
+ 2: 00007FF7EE622576 
+ 3: 00007FF7EDEB4D56 
+ 4: 00007FF7EDCB5467 
+
+ 5: 00007FF7EDC676BA 
+<--- Last few GCs --->
+ 6: 00007FF7EDC6777C 
+
+ 7: 00007FF7EDC6806B 
+
+ 8: 00007FF7EDC3F2C1 
+
+ 9: 00007FF7EDCA5173 
+#
+10: 00007FF7EDCA4EDE 
+# Fatal JavaScript out of memory: MemoryChunk allocation failed during deserialization.
+11: 00007FF7EDCA3CC8 
+#
+12: 00007FF7EDCA3C4A 
+----- Native stack trace -----
+13: 00007FF7EDCCD6E5 
+
+14: 00007FF7ED86B498 
+15: 00007FF7ED86926C 
+16: 00007FF7ED8704EE 
+17: 00007FF7ED869C9D 
+18: 00007FF7ED8476D4 
+19: 00007FF7EDCBD76E 
+20: 00007FF7EDCBD4C1 
+21: 00007FF7ED848183 
+22: 00007FF7EDD5037C 
+23: 00007FF7EDD50772 
+24: 00007FF7ED84DDC3 
+25: 00007FF7EDEDFEE6 
+26: 00007FF7ED37A14D 
+27: 00007FF7ED0D5B73 
+28: 00007FF7ED0D4F09 
+29: 00007FF7ED0DEA90 
+30: 00007FF7EDF0A096 
+31: 00007FF7EF1692B3 
+32: 00007FF93E4DE957 
+33: 00007FF93EB8427C 
+
+<--- Last few GCs --->
+
+
+<--- Last few GCs --->
+[12828:0000022D38C7E000]     2040 ms: Scavenge 3.9 (6.1) -> 3.6 (6.1) MB, pooled: 0 MB, 0.56 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+
+
+[24220:0000026D4B16B000]     2030 ms: Scavenge 3.9 (6.1) -> 3.6 (6.3) MB, pooled: 0 MB, 1005.43 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+FATAL ERROR: NewSpace::EnsureCurrentCapacity Allocation failed - JavaScript heap out of memory
+[24220:0000026D4B16B000]    13124 ms: Scavenge 5.1 (7.1) -> 4.8 (7.8) MB, pooled: 0 MB, 11088.45 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+----- Native stack trace -----
+
+
+
+thread 'tokio-runtime-worker' (23488) panicked at C:\Users\runneradmin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tokio-1.43.0\src\io\blocking.rs:124:46:
+OS can't spawn worker thread: N├úo existem recursos de sistema suficientes para concluir o servi├ºo solicitado. (os error 1450)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+FATAL ERROR: Committing semi space failed. Allocation failed - JavaScript heap out of memory
+----- Native stack trace -----
+
+Ô£ô Finished writing to filesystem cache in 19.8s
+ 1: 00007FF7ED1C0ECD 
+ 2: 00007FF7EE622576 
+ 3: 00007FF7EDEB4D56 
+ 4: 00007FF7EDCB5467 
+ 5: 00007FF7EDC676BA 
+ 6: 00007FF7EDC6777C 
+ 7: 00007FF7EDC6806B 
+ 8: 00007FF7EDC3F2C1 
+ 9: 00007FF7EDCA5173 
+10: 00007FF7EDCA4EDE 
+11: 00007FF7EDCA3CC8 
+12: 00007FF7EDCA3C4A 
+13: 00007FF7EDCCD6E5 
+14: 00007FF7ED86B498 
+15: 00007FF7ED86926C 
+16: 00007FF7ED8704EE 
+17: 00007FF7ED869C9D 
+18: 00007FF7ED8476D4 
+19: 00007FF7EDCBD76E 
+20: 00007FF7EDCBD4C1 
+21: 00007FF7ED848183 
+22: 00007FF7EDD5037C 
+23: 00007FF7EDD50772 
+24: 00007FF7ED84DDC3 
+25: 00007FF7EDEDFEE6 
+26: 00007FF7ED37A14D 
+27: 00007FF7ED0D5B73 
+28: 00007FF7ED0D4F09 
+29: 00007FF7ED0DEA90 
+30: 00007FF7EDF0A096 
+31: 00007FF7EF1692B3 
+32: 00007FF93E4DE957 
+33: 00007FF93EB8427C 
+ 1: 00007FF7ED26C36F node::OnFatalError+1343
+ 2: 00007FF7EDEB4D77 v8::Function::NewInstance+423
+ 3: 00007FF7EDCB5467 v8::base::AddressSpaceReservation::AddressSpaceReservation+322071
+ 4: 00007FF7EDC4DE8B v8::platform::DefaultPlatform::CurrentClockTimeMillis+491051
+ 5: 00007FF7EDC761FA v8::base::AddressSpaceReservation::AddressSpaceReservation+63402
+ 6: 00007FF7EDCB7846 v8::base::AddressSpaceReservation::AddressSpaceReservation+331254
+ 7: 00007FF7EDCB6E96 v8::base::AddressSpaceReservation::AddressSpaceReservation+328774
+ 8: 00007FF7EDCC7E22 v8::internal::StrongRootAllocatorBase::deallocate_impl+15858
+ 9: 00007FF7EDCC794B v8::internal::StrongRootAllocatorBase::deallocate_impl+14619
+10: 00007FF7EF14DAED v8::base::UnsignedDivisionByConstant<unsigned __int64>+2791421
+11: 00007FF7EDCB2F30 v8::base::AddressSpaceReservation::AddressSpaceReservation+312544
+12: 00007FF7EDCCD7BA X509_STORE_set_cleanup+5098
+13: 00007FF7ED86B498 v8::internal::Version::GetSONAME+242840
+14: 00007FF7ED86926C v8::internal::Version::GetSONAME+234092
+15: 00007FF7ED86EF16 v8::internal::Version::GetSONAME+257814
+16: 00007FF7ED869F58 v8::internal::Version::GetSONAME+237400
+17: 00007FF7ED86944E v8::internal::Version::GetSONAME+234574
+18: 00007FF7ED86EF16 v8::internal::Version::GetSONAME+257814
+19: 00007FF7ED869F58 v8::internal::Version::GetSONAME+237400
+20: 00007FF7ED86944E v8::internal::Version::GetSONAME+234574
+21: 00007FF7ED86EF16 v8::internal::Version::GetSONAME+257814
+22: 00007FF7ED869F58 v8::internal::Version::GetSONAME+237400
+23: 00007FF7ED86944E v8::internal::Version::GetSONAME+234574
+24: 00007FF7ED86EF16 v8::internal::Version::GetSONAME+257814
+25: 00007FF7ED869F58 v8::internal::Version::GetSONAME+237400
+26: 00007FF7ED86944E v8::internal::Version::GetSONAME+234574
+27: 00007FF7ED86EF16 v8::internal::Version::GetSONAME+257814
+28: 00007FF7ED869F58 v8::internal::Version::GetSONAME+237400
+29: 00007FF7ED86944E v8::internal::Version::GetSONAME+234574
+30: 00007FF7ED86EF16 v8::internal::Version::GetSONAME+257814
+31: 00007FF7ED869F58 v8::internal::Version::GetSONAME+237400
+32: 00007FF7ED86944E v8::internal::Version::GetSONAME+234574
+33: 00007FF7ED86EF16 v8::internal::Version::GetSONAME+257814
+34: 00007FF7ED869F58 v8::internal::Version::GetSONAME+237400
+35: 00007FF7ED86944E v8::internal::Version::GetSONAME+234574
+36: 00007FF7ED86DBF4 v8::internal::Version::GetSONAME+252916
+37: 00007FF7ED869947 v8::internal::Version::GetSONAME+235847
+38: 00007FF7ED8697FA v8::internal::Version::GetSONAME+235514
+39: 00007FF7ED866B57 v8::internal::Version::GetSONAME+224087
+40: 00007FF7ED866AD4 v8::internal::Version::GetSONAME+223956
+41: 00007FF7ED877725 v8::internal::Version::GetSONAME+292645
+42: 00007FF7EDE3521E X509_STORE_set_get_issuer+251870
+43: 00007FF7EDEBE233 v8::ScriptCompiler::CompileFunction+1011
+44: 00007FF7ED29C440 node::GetCurrentEnvironment+99920
+45: 00007FF7ED29CFF2 node::GetCurrentEnvironment+102914
+46: 00007FF7ED29F066 node::GetCurrentEnvironment+111222
+47: 0000026D6B54F64D 
+[?25h

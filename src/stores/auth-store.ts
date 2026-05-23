@@ -11,6 +11,7 @@ export type AccountDraft = {
 };
 
 export type ProfileDraft = {
+  avatarUrl?: string;
   birthDate?: string;
   city?: string;
   cpf?: string;

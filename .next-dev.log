@@ -1,0 +1,14 @@
+
+> suave@0.1.0 dev
+> next dev --port 3000
+
+▲ Next.js 16.2.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.12:3000
+✓ Ready in 320ms
+Creating turbopack project { dir: 'c:\\beta\\suwave\\web', testMode: true }
+
+○ Compiling /auth/profile ...
+ GET /auth/profile 200 in 4.3s (next.js: 4.0s, application-code: 238ms)
+ GET /more 200 in 728ms (next.js: 612ms, application-code: 117ms)
+[?25h

@@ -6,6 +6,7 @@ export async function POST(request: Request) {
   const result: CompleteProfileResult = {
     mode: "local",
     profile: {
+      avatarUrl: input.avatarUrl ?? "",
       birthDate: input.birthDate ?? "",
       city: input.city ?? "",
       cpf: input.cpf ?? "",
