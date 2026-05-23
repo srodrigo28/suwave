@@ -5,6 +5,7 @@ import { persist } from "zustand/middleware";
 
 export type AccountDraft = {
   acceptedTerms?: boolean;
+  cpf?: string;
   email?: string;
   fullName?: string;
   whatsapp?: string;
@@ -21,6 +22,7 @@ export type ProfileDraft = {
 };
 
 type AuthState = {
+  accessToken?: string;
   accountDraft: AccountDraft;
   authenticateLocal: () => void;
   clearLocalSession: () => void;
@@ -29,10 +31,12 @@ type AuthState = {
   profileCompleted: boolean;
   profileDraft: ProfileDraft;
   saveAccountDraft: (draft: AccountDraft) => void;
+  saveAuthSession: (token: string) => void;
   saveProfileDraft: (draft: ProfileDraft) => void;
 };
 
 const initialState = {
+  accessToken: undefined,
   accountDraft: {},
   isAuthenticated: false,
   profileCompleted: false,
@@ -55,6 +59,7 @@ export const useAuthStore = create<AuthState>()(
         set((state) => ({
           accountDraft: { ...state.accountDraft, ...draft },
         })),
+      saveAuthSession: (token) => set({ accessToken: token, isAuthenticated: true }),
       saveProfileDraft: (draft) =>
         set((state) => ({
           profileDraft: { ...state.profileDraft, ...draft },
@@ -63,6 +68,7 @@ export const useAuthStore = create<AuthState>()(
     {
       name: "suwave-auth-local",
       partialize: (state) => ({
+        accessToken: state.accessToken,
         accountDraft: state.accountDraft,
         isAuthenticated: state.isAuthenticated,
         profileCompleted: state.profileCompleted,

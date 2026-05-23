@@ -13,7 +13,6 @@ import {
   FaChevronRight,
   FaCheck,
   FaEnvelope,
-  FaIdCard,
   FaMapMarkerAlt,
   FaUser,
 } from "react-icons/fa";
@@ -63,6 +62,7 @@ function formatCalendarDate(date: Date) {
 export function ProfileScreen() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const accessToken = useAuthStore((state) => state.accessToken);
   const accountDraft = useAuthStore((state) => state.accountDraft);
   const profileDraft = useAuthStore((state) => state.profileDraft);
   const completeProfileLocal = useAuthStore((state) => state.completeProfileLocal);
@@ -80,7 +80,7 @@ export function ProfileScreen() {
     avatarUrl: profileDraft.avatarUrl ?? "",
     birthDate: initialBirthDate,
     city: profileDraft.city ?? "",
-    cpf: maskCpf(profileDraft.cpf ?? ""),
+    cpf: maskCpf(profileDraft.cpf ?? accountDraft.cpf ?? ""),
     email: accountDraft.email ?? "",
     fullName: profileDraft.fullName ?? accountDraft.fullName ?? "",
     gender: profileDraft.gender ?? "",
@@ -152,7 +152,7 @@ export function ProfileScreen() {
     setFormError("");
 
     try {
-      const result = await completeProfile(form);
+      const result = await completeProfile(form, accessToken);
       saveAccountDraft({
         ...accountDraft,
         email: form.email,
@@ -165,8 +165,8 @@ export function ProfileScreen() {
       window.setTimeout(() => {
         router.push(isEditMode ? "/profile" : "/listings/new");
       }, 1450);
-    } catch {
-      setFormError("Nao foi possivel salvar o perfil agora.");
+    } catch (error) {
+      setFormError(error instanceof Error ? error.message : "Nao foi possivel salvar o perfil agora.");
       setIsSubmitting(false);
     }
   };
@@ -212,15 +212,6 @@ export function ProfileScreen() {
             onChange={(event) => updateAccountField("email", event.target.value)}
             placeholder="E-mail"
             value={form.email}
-          />
-        </label>
-        <label className={styles.field}>
-          <FaIdCard aria-hidden="true" />
-          <input
-            inputMode="numeric"
-            onChange={(event) => updateProfileField("cpf", maskCpf(event.target.value))}
-            placeholder="CPF"
-            value={form.cpf}
           />
         </label>
         <div className={`${styles.field} ${styles.passwordField} ${styles.dateField}`}>

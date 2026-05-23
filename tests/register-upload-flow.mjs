@@ -6,18 +6,20 @@ const suffix = `${timestamp}-${Math.random().toString(16).slice(2, 8)}`;
 
 const account = {
   accepted_terms: true,
+  cpf: randomCpf(),
   email: `teste.web.bucket.${suffix}@example.com`,
   full_name: `Teste Web Bucket ${suffix}`,
   password: `Teste@${suffix}Aa1`,
+  whatsapp: `6699${Math.floor(1000000 + Math.random() * 8999999)}`,
 };
 
 const profile = {
   birth_date: "1995-05-17",
   city: "Sinop",
-  cpf: randomCpf(),
+  cpf: account.cpf,
   gender: "nao_informado",
   state: "MT",
-  whatsapp: `6699${Math.floor(1000000 + Math.random() * 8999999)}`,
+  whatsapp: account.whatsapp,
 };
 
 async function request(path, options = {}) {

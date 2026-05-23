@@ -7,18 +7,22 @@ import type {
   RegisterAccountResult,
 } from "@/models/auth";
 
-async function postAuth<TInput, TResult>(path: string, input: TInput) {
+async function postAuth<TInput, TResult>(path: string, input: TInput, token?: string) {
   const response = await fetch(path, {
     body: JSON.stringify(input),
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    },
     method: "POST",
   });
+  const body = await response.json().catch(() => ({}));
 
   if (!response.ok) {
-    throw new Error("Nao foi possivel continuar o cadastro.");
+    throw new Error(body?.message ?? "Nao foi possivel continuar o cadastro.");
   }
 
-  return (await response.json()) as TResult;
+  return body as TResult;
 }
 
 export function registerAccount(input: RegisterAccountInput) {
@@ -32,9 +36,10 @@ export function loginAccount(input: LoginInput) {
   return postAuth<LoginInput, LoginResult>("/api/auth/login", input);
 }
 
-export function completeProfile(input: CompleteProfileInput) {
+export function completeProfile(input: CompleteProfileInput, token?: string) {
   return postAuth<CompleteProfileInput, CompleteProfileResult>(
     "/api/auth/profile",
     input,
+    token,
   );
 }

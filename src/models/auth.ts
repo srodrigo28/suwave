@@ -1,5 +1,6 @@
 export type RegisterAccountInput = {
   acceptedTerms: boolean;
+  cpf: string;
   email: string;
   fullName: string;
   password: string;
@@ -10,12 +11,14 @@ export type RegisterAccountInput = {
 export type RegisterAccountResult = {
   account: {
     acceptedTerms: boolean;
+    cpf: string;
     email: string;
     fullName: string;
     whatsapp: string;
   };
-  mode: "local";
-  status: "draft-created";
+  accessToken: string;
+  mode: "api";
+  status: "registered";
 };
 
 export type LoginInput = {
@@ -26,10 +29,12 @@ export type LoginInput = {
 export type LoginResult = {
   account: {
     acceptedTerms: boolean;
+    cpf?: string;
     email: string;
     fullName: string;
     whatsapp: string;
   };
+  accessToken?: string;
   mode: "local";
   profile: CompleteProfileInput;
   profileCompleted: boolean;
@@ -40,7 +45,7 @@ export type CompleteProfileInput = {
   avatarUrl?: string;
   birthDate: string;
   city: string;
-  cpf: string;
+  cpf?: string;
   fullName: string;
   gender: string;
   whatsapp: string;

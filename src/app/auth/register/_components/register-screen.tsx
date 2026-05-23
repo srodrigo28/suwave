@@ -6,6 +6,7 @@ import {
   FaEnvelope,
   FaEye,
   FaEyeSlash,
+  FaIdCard,
   FaLock,
   FaUser,
   FaWhatsapp,
@@ -13,7 +14,7 @@ import {
 import { AuthFrame } from "@/app/auth/_components/auth-frame";
 import { AuthHeader } from "@/app/auth/_components/auth-header";
 import { registerAccount } from "@/services/auth-client";
-import { maskWhatsapp } from "@/shared/forms/masks";
+import { maskCpf, maskWhatsapp } from "@/shared/forms/masks";
 import { useAuthStore } from "@/stores/auth-store";
 import styles from "@/app/auth/_components/auth-flow.module.css";
 
@@ -21,6 +22,8 @@ export function RegisterScreen() {
   const router = useRouter();
   const accountDraft = useAuthStore((state) => state.accountDraft);
   const saveAccountDraft = useAuthStore((state) => state.saveAccountDraft);
+  const saveAuthSession = useAuthStore((state) => state.saveAuthSession);
+  const saveProfileDraft = useAuthStore((state) => state.saveProfileDraft);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -28,6 +31,7 @@ export function RegisterScreen() {
   const [form, setForm] = useState({
     acceptedTerms: accountDraft.acceptedTerms ?? true,
     confirmation: "",
+    cpf: accountDraft.cpf ?? "",
     email: accountDraft.email ?? "",
     fullName: accountDraft.fullName ?? "",
     password: "",
@@ -35,7 +39,7 @@ export function RegisterScreen() {
   });
 
   const updateAccountField = (
-    field: "acceptedTerms" | "email" | "fullName" | "whatsapp",
+    field: "acceptedTerms" | "cpf" | "email" | "fullName" | "whatsapp",
     value: boolean | string,
   ) => {
     setForm((state) => ({ ...state, [field]: value }));
@@ -50,6 +54,7 @@ export function RegisterScreen() {
     try {
       const result = await registerAccount({
         acceptedTerms: form.acceptedTerms,
+        cpf: form.cpf,
         email: form.email,
         fullName: form.fullName,
         password: form.password,
@@ -59,9 +64,15 @@ export function RegisterScreen() {
       saveAccountDraft({
         ...result.account,
       });
+      saveProfileDraft({
+        cpf: result.account.cpf,
+        fullName: result.account.fullName,
+        whatsapp: result.account.whatsapp,
+      });
+      saveAuthSession(result.accessToken);
       router.push("/auth/profile");
-    } catch {
-      setFormError("Nao foi possivel continuar agora.");
+    } catch (error) {
+      setFormError(error instanceof Error ? error.message : "Nao foi possivel continuar agora.");
       setIsSubmitting(false);
     }
   };
@@ -85,6 +96,15 @@ export function RegisterScreen() {
             onChange={(event) => updateAccountField("whatsapp", maskWhatsapp(event.target.value))}
             placeholder="WhatsApp"
             value={form.whatsapp}
+          />
+        </label>
+        <label className={styles.field}>
+          <FaIdCard aria-hidden="true" />
+          <input
+            inputMode="numeric"
+            onChange={(event) => updateAccountField("cpf", maskCpf(event.target.value))}
+            placeholder="CPF"
+            value={form.cpf}
           />
         </label>
         <label className={styles.field}>
