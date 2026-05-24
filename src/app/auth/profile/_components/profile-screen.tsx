@@ -194,7 +194,7 @@ export function ProfileScreen() {
           <input accept="image/*" onChange={handleImageChange} type="file" />
           <span>
             {form.avatarUrl ? (
-              <Image alt="" height={140} src={form.avatarUrl} unoptimized width={140} />
+              <Image alt="" fill sizes="140px" src={form.avatarUrl} unoptimized />
             ) : (
               <FaUser aria-hidden="true" />
             )}

@@ -11,6 +11,7 @@ const profileSchema = z.object({
     .optional()
     .transform((value) => onlyDigits(value ?? ""))
     .refine((value) => !value || value.length === 11, "Informe um CPF valido."),
+  email: z.email("Informe um e-mail valido.").optional().transform((value) => value?.trim().toLowerCase()),
   fullName: z.string().trim().min(2, "Informe seu nome completo.").max(160),
   gender: z.string().trim().min(1, "Selecione o genero."),
   whatsapp: z
@@ -44,8 +45,10 @@ export async function POST(request: Request) {
       birth_date: input.birthDate,
       city: input.city,
       cpf: input.cpf || undefined,
+      email: input.email,
       full_name: input.fullName,
       gender: input.gender,
+      avatar_url: input.avatarUrl,
       whatsapp: input.whatsapp,
     }),
     headers: { Authorization: token },
@@ -56,9 +59,10 @@ export async function POST(request: Request) {
     return body;
   }
 
+  const user = body?.data?.user ?? body?.data ?? {};
   const result: CompleteProfileResult = {
     mode: "local",
-    profile: userToProfile(body?.data?.user ?? {}),
+    profile: userToProfile(user),
     status: "profile-completed",
   };
 

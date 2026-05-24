@@ -6,13 +6,30 @@ import type {
   RegisterAccountInput,
   RegisterAccountResult,
 } from "@/models/auth";
+import { useAuthStore } from "@/stores/auth-store";
+
+function getSavedAccessToken() {
+  const token = useAuthStore.getState().accessToken;
+
+  if (token || typeof window === "undefined") {
+    return token;
+  }
+
+  try {
+    const savedState = JSON.parse(localStorage.getItem("suwave-auth-local") ?? "{}");
+    return savedState?.state?.accessToken;
+  } catch {
+    return undefined;
+  }
+}
 
 async function postAuth<TInput, TResult>(path: string, input: TInput, token?: string) {
+  const accessToken = token || getSavedAccessToken();
   const response = await fetch(path, {
     body: JSON.stringify(input),
     headers: {
       "Content-Type": "application/json",
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}),
     },
     method: "POST",
   });
@@ -45,6 +62,7 @@ export function completeProfile(input: CompleteProfileInput, token?: string) {
 }
 
 export async function uploadProfileImage(file: File, token?: string) {
+  const accessToken = token || getSavedAccessToken();
   const formData = new FormData();
   formData.append("context", "profile");
   formData.append("file", file);
@@ -52,7 +70,7 @@ export async function uploadProfileImage(file: File, token?: string) {
   const response = await fetch("/api/uploads/images", {
     body: formData,
     headers: {
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}),
     },
     method: "POST",
   });

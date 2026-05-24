@@ -2290,17 +2290,61 @@
   }
 
   .header {
-    grid-template-columns: 1fr;
-    gap: 10px;
-    padding-bottom: 14px;
+    align-items: center;
+    gap: 8px;
+    grid-template-columns: minmax(86px, auto) minmax(0, 1fr) 40px;
+    min-height: 44px;
+    padding-bottom: 12px;
+  }
+
+  .balance {
+    align-self: center;
+    min-width: 0;
+  }
+
+  .balance small,
+  .balance strong {
+    display: none;
+  }
+
+  .balance button {
+    font-size: 13px;
+    gap: 6px;
+    margin-top: 0;
+    max-width: 100%;
+    white-space: nowrap;
+  }
+
+  .balance button svg {
+    flex: 0 0 auto;
+    font-size: 20px;
   }
 
   .place {
-    justify-self: start;
+    font-size: 14px;
+    gap: 7px;
+    justify-content: center;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .place svg:first-child {
+    flex: 0 0 auto;
+    font-size: 20px;
+  }
+
+  .place svg:last-child {
+    flex: 0 0 auto;
+  }
+
+  .place {
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .cityPicker {
-    justify-self: start;
+    justify-self: stretch;
+    min-width: 0;
   }
 
   .cityFilter {
@@ -2309,9 +2353,11 @@
   }
 
   .alert {
-    position: absolute;
-    right: 18px;
-    top: 71px;
+    font-size: 23px;
+    justify-self: end;
+    position: relative;
+    right: auto;
+    top: auto;
   }
 
   .banner {

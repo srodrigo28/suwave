@@ -313,6 +313,7 @@
   display: grid;
   font-size: 62px;
   height: 140px;
+  overflow: hidden;
   place-items: center;
   position: relative;
   width: 140px;
@@ -322,6 +323,7 @@
   border-radius: 50%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   width: 100%;
 }
 
@@ -337,6 +339,7 @@
   position: absolute;
   right: 6px;
   width: 34px;
+  z-index: 2;
 }
 
 .photoPicker small,
@@ -344,6 +347,14 @@
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 0;
+}
+
+.photoPicker small {
+  max-width: min(280px, 78vw);
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .profileHint {

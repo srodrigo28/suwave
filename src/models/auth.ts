@@ -46,6 +46,7 @@ export type CompleteProfileInput = {
   birthDate: string;
   city: string;
   cpf?: string;
+  email?: string;
   fullName: string;
   gender: string;
   whatsapp: string;
