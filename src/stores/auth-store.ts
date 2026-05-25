@@ -5,8 +5,11 @@ import { persist } from "zustand/middleware";
 
 export type AccountDraft = {
   acceptedTerms?: boolean;
+  accountVerified?: boolean;
   cpf?: string;
   email?: string;
+  emailVerified?: boolean;
+  emailVerifiedAt?: string;
   fullName?: string;
   whatsapp?: string;
 };

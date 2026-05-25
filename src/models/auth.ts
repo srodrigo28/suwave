@@ -11,8 +11,11 @@ export type RegisterAccountInput = {
 export type RegisterAccountResult = {
   account: {
     acceptedTerms: boolean;
+    accountVerified: boolean;
     cpf: string;
     email: string;
+    emailVerified: boolean;
+    emailVerifiedAt: string;
     fullName: string;
     whatsapp: string;
   };
@@ -29,8 +32,11 @@ export type LoginInput = {
 export type LoginResult = {
   account: {
     acceptedTerms: boolean;
+    accountVerified: boolean;
     cpf?: string;
     email: string;
+    emailVerified: boolean;
+    emailVerifiedAt: string;
     fullName: string;
     whatsapp: string;
   };
@@ -53,6 +59,16 @@ export type CompleteProfileInput = {
 };
 
 export type CompleteProfileResult = {
+  account?: {
+    acceptedTerms: boolean;
+    accountVerified: boolean;
+    cpf: string;
+    email: string;
+    emailVerified: boolean;
+    emailVerifiedAt: string;
+    fullName: string;
+    whatsapp: string;
+  };
   mode: "local";
   profile: CompleteProfileInput;
   status: "profile-completed";

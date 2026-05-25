@@ -61,6 +61,20 @@ export function completeProfile(input: CompleteProfileInput, token?: string) {
   );
 }
 
+export function confirmEmailVerification(token: string) {
+  return postAuth<{ token: string }, { data: { account_verified: boolean; email_verified: boolean }; message: string }>(
+    "/api/auth/email/verification/confirm",
+    { token },
+  );
+}
+
+export function sendEmailVerification() {
+  return postAuth<Record<string, never>, { data: { email: string }; message: string }>(
+    "/api/auth/email/verification/send",
+    {},
+  );
+}
+
 export async function uploadProfileImage(file: File, token?: string) {
   const accessToken = token || getSavedAccessToken();
   const formData = new FormData();

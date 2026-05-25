@@ -1,10 +1,28 @@
 import { z } from "zod";
 import type { CompleteProfileResult } from "@/models/auth";
-import { apiRequest, onlyDigits, userToProfile } from "../_lib";
+import { apiRequest, onlyDigits, userToAccount, userToProfile } from "../_lib";
+
+function isValidIsoDate(value: string) {
+  const match = value.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+
+  if (!match) {
+    return false;
+  }
+
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  const day = Number(match[3]);
+  const date = new Date(year, month - 1, day);
+
+  return date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day;
+}
 
 const profileSchema = z.object({
   avatarUrl: z.string().optional(),
-  birthDate: z.string().min(1, "Informe sua data de nascimento."),
+  birthDate: z
+    .string()
+    .min(1, "Informe sua data de nascimento.")
+    .refine(isValidIsoDate, "Informe uma data de nascimento valida."),
   city: z.string().trim().min(2, "Informe sua cidade."),
   cpf: z
     .string()
@@ -61,6 +79,7 @@ export async function POST(request: Request) {
 
   const user = body?.data?.user ?? body?.data ?? {};
   const result: CompleteProfileResult = {
+    account: userToAccount(user),
     mode: "local",
     profile: userToProfile(user),
     status: "profile-completed",

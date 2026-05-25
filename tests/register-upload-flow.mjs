@@ -37,6 +37,10 @@ async function request(path, options = {}) {
   return body;
 }
 
+function responseUser(body) {
+  return body?.data?.user ?? body?.data;
+}
+
 function authHeaders(token, extra = {}) {
   return {
     Authorization: `Bearer ${token}`,
@@ -99,7 +103,7 @@ const profileResult = await request("/users/me/profile", {
   method: "PUT",
 });
 
-const profileUser = profileResult?.data?.user;
+const profileUser = responseUser(profileResult);
 assert.equal(profileUser.email, account.email);
 assert.equal(profileUser.whatsapp, profile.whatsapp);
 assert.equal(profileUser.cpf, profile.cpf);
@@ -130,7 +134,7 @@ const meResult = await request("/auth/me", {
   headers: authHeaders(token),
 });
 
-const me = meResult?.data?.user;
+const me = responseUser(meResult);
 assert.equal(me.email, account.email);
 assert.equal(me.full_name, account.full_name);
 assert.equal(me.whatsapp, profile.whatsapp);

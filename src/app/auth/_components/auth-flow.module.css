@@ -501,37 +501,44 @@
   border-radius: 8px;
   box-shadow: 0 20px 42px rgb(14 24 18 / 0.16);
   display: grid;
-  gap: 9px;
+  gap: 12px;
   justify-items: center;
   margin: auto;
-  max-width: 280px;
-  padding: 28px 22px;
+  max-width: 310px;
+  padding: 32px 24px;
   text-align: center;
   width: 100%;
 }
 
-.welcomeCard span {
+.welcomeAvatar {
   background: #08751d;
+  border: 3px solid #08751d;
   border-radius: 50%;
   color: #fff;
   display: grid;
-  font-size: 28px;
-  height: 66px;
+  font-size: 36px;
+  height: 104px;
+  overflow: hidden;
   place-items: center;
-  width: 66px;
+  position: relative;
+  width: 104px;
+}
+
+.welcomeAvatar img {
+  object-fit: cover;
 }
 
 .welcomeCard h2 {
-  font-size: 23px;
+  font-size: 28px;
   font-weight: 950;
   letter-spacing: 0;
   line-height: 1.05;
-  margin: 4px 0 0;
+  margin: 6px 0 0;
 }
 
 .welcomeCard p {
   color: #4a5159;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 750;
   margin: 0;
 }

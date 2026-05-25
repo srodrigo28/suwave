@@ -6,8 +6,11 @@ const API_BASE_URL = (
 
 export type ApiUser = {
   accepted_terms?: boolean;
+  account_verified?: boolean;
   cpf?: string | null;
   email?: string;
+  email_verified?: boolean;
+  email_verified_at?: string | null;
   full_name?: string;
   profile_completed?: boolean;
   whatsapp?: string | null;
@@ -20,8 +23,11 @@ export function onlyDigits(value: string) {
 export function userToAccount(user: ApiUser) {
   return {
     acceptedTerms: Boolean(user.accepted_terms),
+    accountVerified: Boolean(user.account_verified),
     cpf: user.cpf ?? "",
     email: user.email ?? "",
+    emailVerified: Boolean(user.email_verified),
+    emailVerifiedAt: user.email_verified_at ?? "",
     fullName: user.full_name ?? "",
     whatsapp: user.whatsapp ?? "",
   };

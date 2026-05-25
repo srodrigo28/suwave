@@ -11,7 +11,6 @@ import {
   FaChevronDown,
   FaChevronLeft,
   FaChevronRight,
-  FaCheck,
   FaEnvelope,
   FaMapMarkerAlt,
   FaUser,
@@ -112,6 +111,7 @@ export function ProfileScreen() {
 
     setBirthDateDisplay(masked);
     updateProfileField("birthDate", isoDate);
+    setFormError("");
 
     if (isoDate) {
       setCalendarMonth(new Date(`${isoDate}T00:00:00`));
@@ -153,6 +153,20 @@ export function ProfileScreen() {
     setIsSubmitting(true);
     setFormError("");
 
+    const birthDateForSubmit = dateDisplayToIso(birthDateDisplay);
+
+    if (!birthDateDisplay.trim()) {
+      setFormError("Informe sua data de nascimento.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (!birthDateForSubmit) {
+      setFormError("Informe uma data de nascimento valida.");
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
       let avatarUrl = form.avatarUrl;
 
@@ -161,12 +175,9 @@ export function ProfileScreen() {
         avatarUrl = uploadResult.data.url;
       }
 
-      const result = await completeProfile({ ...form, avatarUrl }, accessToken);
+      const result = await completeProfile({ ...form, avatarUrl, birthDate: birthDateForSubmit }, accessToken);
       saveAccountDraft({
-        ...accountDraft,
-        email: form.email,
-        fullName: form.fullName,
-        whatsapp: form.whatsapp,
+        ...(result.account ?? accountDraft),
       });
       const profile = { ...result.profile, avatarUrl: result.profile.avatarUrl || avatarUrl };
       saveProfileDraft(profile);
@@ -335,12 +346,17 @@ export function ProfileScreen() {
               initial={{ scale: 0.92, y: 14 }}
               transition={{ duration: 0.28, ease: "easeOut" }}
             >
-              <motion.span
+              <motion.div
                 animate={{ rotate: [0, -6, 6, 0], scale: [1, 1.08, 1] }}
+                className={styles.welcomeAvatar}
                 transition={{ delay: 0.12, duration: 0.55 }}
               >
-                <FaCheck aria-hidden="true" />
-              </motion.span>
+                {form.avatarUrl ? (
+                  <Image alt="" fill sizes="74px" src={form.avatarUrl} unoptimized />
+                ) : (
+                  <FaUser aria-hidden="true" />
+                )}
+              </motion.div>
               <h2>{isEditMode ? "Perfil atualizado" : "Seja bem-vindo"}</h2>
               <p>{isEditMode ? "Suas informacoes foram salvas." : "Seu perfil foi concluido."}</p>
             </motion.div>

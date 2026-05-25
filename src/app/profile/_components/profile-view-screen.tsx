@@ -91,6 +91,8 @@ export function ProfileViewScreen() {
 
   const fullName = fallback(profileDraft.fullName ?? accountDraft.fullName);
   const email = fallback(accountDraft.email);
+  const emailStatus = accountDraft.emailVerified ? "Verificado" : "Pendente";
+  const accountStatus = accountDraft.accountVerified ? "Ativa (Verificado)" : "Ativa (Pendente)";
   const whatsapp = fallback(maskWhatsapp(profileDraft.whatsapp ?? accountDraft.whatsapp ?? ""));
   const city = fallback(profileDraft.city);
   const birthDate = fallback(dateIsoToDisplay(profileDraft.birthDate));
@@ -170,11 +172,11 @@ export function ProfileViewScreen() {
 
           <motion.section className={styles.profilePanel} variants={riseMotion}>
             <h2>Seguranca</h2>
-            <ProfileInfo icon={<FaEnvelope aria-hidden="true" />} label="Email" value={`${email} (Verificado)`} />
+            <ProfileInfo icon={<FaEnvelope aria-hidden="true" />} label="Email" value={`${email} (${emailStatus})`} />
             <ProfileInfo
               icon={<FaCheckCircle aria-hidden="true" />}
               label="Status da Conta"
-              value={profileCompleted ? "Ativa (Verificado)" : "Pendente"}
+              value={accountStatus}
             />
           </motion.section>
         </motion.div>
