@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import { useRouter } from "next/navigation";
 import {
   FaChevronRight,
   FaRegHandPaper,
@@ -34,9 +35,25 @@ function HelpRow({ label }: { label: string }) {
 }
 
 export function HelpScreen() {
+  const router = useRouter();
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   const profileName = useAuthStore((state) => state.profileDraft.fullName);
   const accountName = useAuthStore((state) => state.accountDraft.fullName);
-  const firstName = firstNameFrom(profileName || accountName);
+  const supportName = (profileName || accountName || "").trim();
+  const firstName = firstNameFrom(supportName);
+  const hasValidLogin = isAuthenticated && supportName.length > 0;
+  const supportMessage = encodeURIComponent(
+    `Olá, sou ${supportName} e preciso de suporte no Suwave.`,
+  );
+  const supportHref = hasValidLogin
+    ? `https://wa.me/5566992772107?text=${supportMessage}`
+    : "/auth/login";
+
+  const handleSupportClick = () => {
+    if (!hasValidLogin) {
+      router.push("/auth/login");
+    }
+  };
 
   return (
     <motion.div
@@ -95,9 +112,10 @@ export function HelpScreen() {
           <h2>Você precisa de mais ajuda?</h2>
           <a
             aria-label="Falar com suporte pelo WhatsApp"
-            href="https://wa.me/5566992772107"
-            rel="noreferrer"
-            target="_blank"
+            href={supportHref}
+            onClick={handleSupportClick}
+            rel={hasValidLogin ? "noreferrer" : undefined}
+            target={hasValidLogin ? "_blank" : undefined}
           >
             <FaWhatsapp aria-hidden="true" />
             Fale conosco
