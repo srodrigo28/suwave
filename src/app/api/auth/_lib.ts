@@ -63,7 +63,7 @@ export async function apiRequest(path: string, init: RequestInit) {
     });
   } catch {
     return Response.json(
-      { message: "Nao foi possivel conectar ao servico de cadastro agora." },
+      { message: "Não foi possível conectar ao serviço de cadastro agora." },
       { status: 503 },
     );
   }
@@ -71,7 +71,7 @@ export async function apiRequest(path: string, init: RequestInit) {
   const body = await response.json().catch(() => ({}));
 
   if (!response.ok) {
-    const message = body?.error?.message ?? body?.message ?? "Nao foi possivel concluir a operacao.";
+    const message = body?.error?.message ?? body?.message ?? "Não foi possível concluir a operação.";
     return Response.json(
       { message, fields: body?.error?.fields ?? {} },
       { status: response.status },

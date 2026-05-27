@@ -36,14 +36,14 @@ export function ListingNewScreen() {
         </span>
         <h1>{fullName ? `${fullName}, anuncie agora` : "Pronto para anunciar"}</h1>
         <p>
-          Seu cadastro local esta completo. Esta tela segura o lugar do criador
-          de anuncios que sera ligado a API na proxima etapa.
+          Seu cadastro local está completo. Esta tela segura o lugar do criador
+          de anúncios que será ligado à API na próxima etapa.
         </p>
         <Link className={styles.primaryAction} href="/listings">
           Escolher categoria
         </Link>
         <button className={styles.outlineAction} onClick={clearLocalSession} type="button">
-          Limpar sessao local
+          Limpar sessão local
         </button>
       </div>
     </AuthFrame>

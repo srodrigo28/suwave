@@ -28,14 +28,14 @@ const profileSchema = z.object({
     .string()
     .optional()
     .transform((value) => onlyDigits(value ?? ""))
-    .refine((value) => !value || value.length === 11, "Informe um CPF valido."),
-  email: z.email("Informe um e-mail valido.").optional().transform((value) => value?.trim().toLowerCase()),
+    .refine((value) => !value || value.length === 11, "Informe um CPF válido."),
+  email: z.email("Informe um e-mail válido.").optional().transform((value) => value?.trim().toLowerCase()),
   fullName: z.string().trim().min(2, "Informe seu nome completo.").max(160),
-  gender: z.string().trim().min(1, "Selecione o genero."),
+  gender: z.string().trim().min(1, "Selecione o gênero."),
   whatsapp: z
     .string()
     .transform(onlyDigits)
-    .refine((value) => value.length >= 10 && value.length <= 11, "Informe um WhatsApp valido."),
+    .refine((value) => value.length >= 10 && value.length <= 11, "Informe um WhatsApp válido."),
 });
 
 export async function POST(request: Request) {
@@ -43,7 +43,7 @@ export async function POST(request: Request) {
 
   if (!token) {
     return Response.json(
-      { message: "Sua sessao expirou. Volte ao cadastro para continuar." },
+      { message: "Sua sessão expirou. Volte ao cadastro para continuar." },
       { status: 401 },
     );
   }

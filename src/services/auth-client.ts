@@ -36,7 +36,7 @@ async function postAuth<TInput, TResult>(path: string, input: TInput, token?: st
   const body = await response.json().catch(() => ({}));
 
   if (!response.ok) {
-    throw new Error(body?.message ?? "Nao foi possivel continuar o cadastro.");
+    throw new Error(body?.message ?? "Não foi possível continuar o cadastro.");
   }
 
   return body as TResult;
@@ -91,7 +91,7 @@ export async function uploadProfileImage(file: File, token?: string) {
   const body = await response.json().catch(() => ({}));
 
   if (!response.ok) {
-    throw new Error(body?.message ?? "Nao foi possivel enviar a foto agora.");
+    throw new Error(body?.message ?? "Não foi possível enviar a foto agora.");
   }
 
   return body as {

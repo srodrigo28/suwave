@@ -27,7 +27,7 @@ import { useAuthStore } from "@/stores/auth-store";
 import styles from "@/app/_components/suwave-home.module.css";
 
 function fallback(value?: string) {
-  return value?.trim() ? value : "Nao informado";
+  return value?.trim() ? value : "Não informado";
 }
 
 function initials(name?: string) {
@@ -48,7 +48,7 @@ function maskDocument(value?: string) {
   const masked = maskCpf(value ?? "");
 
   if (!masked) {
-    return "Nao informado";
+    return "Não informado";
   }
 
   return "***.***.***-**";
@@ -148,7 +148,7 @@ export function ProfileViewScreen() {
         {!profileCompleted ? (
           <motion.div className={styles.profileIncomplete} variants={riseMotion}>
             <FaShieldAlt aria-hidden="true" />
-            <span>Complete seu perfil para aumentar a confianca nos seus anuncios.</span>
+            <span>Complete seu perfil para aumentar a confiança nos seus anúncios.</span>
             <Link href="/auth/profile">Completar</Link>
           </motion.div>
         ) : null}
@@ -234,7 +234,7 @@ export function ProfileViewScreen() {
               <FaSignOutAlt aria-hidden="true" />
             </span>
             <h2>Sair da conta?</h2>
-            <p>Voce sera desconectado deste dispositivo.</p>
+            <p>Você será desconectado deste dispositivo.</p>
             <div className={styles.logoutModalActions}>
               <button onClick={() => setIsLogoutModalOpen(false)} type="button">
                 Cancelar

@@ -12,7 +12,7 @@ import styles from "@/app/_components/suwave-home.module.css";
 export function MarketplaceFeed({ listings }: { listings: Listing[] }) {
   return (
     <motion.section className={styles.feed} variants={riseMotion}>
-      <h2>Confira o que temos para voce</h2>
+      <h2>Confira o que temos para você</h2>
       <motion.div className={styles.listings} variants={containerMotion}>
         {listings.map((listing) => (
           <ListingCard key={listing.title} listing={listing} />

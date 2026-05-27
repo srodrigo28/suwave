@@ -10,15 +10,15 @@ const registerSchema = z
     cpf: z
       .string()
       .transform(onlyDigits)
-      .refine((value) => value.length === 11, "Informe um CPF valido."),
-    email: z.email("Informe um e-mail valido.").transform((value) => value.trim().toLowerCase()),
+      .refine((value) => value.length === 11, "Informe um CPF válido."),
+    email: z.email("Informe um e-mail válido.").transform((value) => value.trim().toLowerCase()),
     fullName: z.string().trim().min(2, "Informe seu nome completo.").max(160),
     password: z.string().min(8, "Use uma senha com pelo menos 8 caracteres."),
     passwordConfirmation: z.string(),
     whatsapp: z
       .string()
       .transform(onlyDigits)
-      .refine((value) => value.length >= 10 && value.length <= 11, "Informe um WhatsApp valido."),
+      .refine((value) => value.length >= 10 && value.length <= 11, "Informe um WhatsApp válido."),
   })
   .refine((value) => value.password === value.passwordConfirmation, {
     message: "As senhas precisam ser iguais.",

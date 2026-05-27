@@ -82,7 +82,7 @@ function InstallSheet({
         transition={{ duration: 0.28, ease: "easeOut" }}
       >
         <button
-          aria-label="Fechar convite de instalacao"
+          aria-label="Fechar convite de instalação"
           className={styles.installClose}
           onClick={onClose}
           type="button"
@@ -111,13 +111,13 @@ function InstallSheet({
           </p>
         ) : !canInstall ? (
           <p className={styles.installHint}>
-            Se o navegador nao abrir a instalacao, use o menu e toque em Instalar app.
+            Se o navegador não abrir a instalação, use o menu e toque em Instalar app.
           </p>
         ) : null}
 
         <div className={styles.installActions}>
           <button onClick={onClose} type="button">
-            Agora nao
+            Agora não
           </button>
           <button onClick={onInstall} type="button">
             <FaDownload aria-hidden="true" />

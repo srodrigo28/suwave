@@ -13,7 +13,7 @@ const companies: Company[] = [
     site: "www.supermercadobino.com.br",
     slug: "supermercado-bino",
     summary:
-      "O Supermercado Bino esta ha mais de 5 anos atendendo Sinop e regiao com qualidade, preco justo e atendimento de excelencia.",
+      "O Supermercado Bino está há mais de 5 anos atendendo Sinop e região com qualidade, preço justo e atendimento de excelência.",
   },
   {
     brand: "shell",

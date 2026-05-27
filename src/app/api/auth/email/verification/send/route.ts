@@ -5,7 +5,7 @@ export async function POST(request: Request) {
 
   if (!token) {
     return Response.json(
-      { message: "Sua sessao expirou. Entre novamente para reenviar a verificacao." },
+      { message: "Sua sessão expirou. Entre novamente para reenviar a verificação." },
       { status: 401 },
     );
   }

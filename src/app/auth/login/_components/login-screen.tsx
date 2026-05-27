@@ -50,7 +50,7 @@ export function LoginScreen() {
         router.push("/");
       }, 1450);
     } catch {
-      setFormError("Informe um e-mail e senha validos para entrar.");
+      setFormError("Informe um e-mail e senha válidos para entrar.");
       setIsSubmitting(false);
     }
   };
@@ -94,8 +94,8 @@ export function LoginScreen() {
       </form>
 
       <p className={styles.signinLine}>
-        Ainda nao tem conta?
-        <Link href="/auth/register">Criar conta gratis</Link>
+        Ainda não tem conta?
+        <Link href="/auth/register">Criar conta grátis</Link>
       </p>
       <AnimatePresence>
         {isWelcomeVisible ? (
@@ -118,7 +118,7 @@ export function LoginScreen() {
                 <FaCheck aria-hidden="true" />
               </motion.span>
               <h2>Seja bem-vindo</h2>
-              <p>Voce entrou na sua conta.</p>
+              <p>Você entrou na sua conta.</p>
             </motion.div>
           </motion.div>
         ) : null}

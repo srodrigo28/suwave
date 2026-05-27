@@ -9,7 +9,7 @@ export async function POST(request: Request) {
 
   if (!token) {
     return Response.json(
-      { message: "Sua sessao expirou. Entre novamente para enviar a foto." },
+      { message: "Sua sessão expirou. Entre novamente para enviar a foto." },
       { status: 401 },
     );
   }
@@ -24,7 +24,7 @@ export async function POST(request: Request) {
     });
   } catch {
     return Response.json(
-      { message: "Nao foi possivel conectar ao servico de upload agora." },
+      { message: "Não foi possível conectar ao serviço de upload agora." },
       { status: 503 },
     );
   }
@@ -33,7 +33,7 @@ export async function POST(request: Request) {
 
   if (!response.ok) {
     return Response.json(
-      { message: body?.error?.message ?? body?.message ?? "Nao foi possivel enviar a foto." },
+      { message: body?.error?.message ?? body?.message ?? "Não foi possível enviar a foto." },
       { status: response.status },
     );
   }

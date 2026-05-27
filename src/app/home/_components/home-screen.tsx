@@ -40,7 +40,7 @@ const categories = [
   { name: "Carona", icon: FaCar, tone: "green" },
   { name: "Envios", icon: FaCube, tone: "blue" },
   { name: "Farmacia", icon: FaMedkit, tone: "mint" },
-  { name: "Prestadores de servico", icon: FaHandshake, tone: "gray" },
+  { name: "Prestadores de serviço", icon: FaHandshake, tone: "gray" },
   { name: "Empregos", icon: FaBriefcase, tone: "violet", href: "/jobs" },
   { name: "Mais categorias", icon: FaPlus, tone: "soft", href: "/listings" },
 ] satisfies {
@@ -133,7 +133,7 @@ function HomeHeader() {
               <p>
                 <FaInfoCircle aria-hidden="true" />
                 <span>
-                  Ao trocar de cidade, todo o conteudo sera atualizado de acordo
+                  Ao trocar de cidade, todo o conteúdo será atualizado de acordo
                   com a disponibilidade local.
                 </span>
               </p>
@@ -173,7 +173,7 @@ function PromoBanner({ listings }: { listings: Listing[] }) {
     <section className={styles.banner} aria-label="Produtos em destaque">
       <div className={styles.bannerCopy}>
         <h1>
-          Tudo que voce precisa
+          Tudo que você precisa
           <em> em um so app!</em>
         </h1>
         <p>Pratico, rapido e seguro.</p>
@@ -293,7 +293,7 @@ export function HomeScreen({ listings }: { listings: Listing[] }) {
 
         <motion.label className={styles.search} variants={riseMotion}>
           <FaSearch aria-hidden="true" />
-          <span>O que voce procura?</span>
+          <span>O que você procura?</span>
           <button type="button" aria-label="Buscar por foto">
             <FaCamera aria-hidden="true" />
           </button>

@@ -3,7 +3,7 @@ import type { LoginResult } from "@/models/auth";
 import { apiRequest, userToAccount, userToProfile } from "../_lib";
 
 const loginSchema = z.object({
-  email: z.email("Informe um e-mail valido.").transform((value) => value.trim().toLowerCase()),
+  email: z.email("Informe um e-mail válido.").transform((value) => value.trim().toLowerCase()),
   password: z.string().min(1, "Informe sua senha."),
 });
 

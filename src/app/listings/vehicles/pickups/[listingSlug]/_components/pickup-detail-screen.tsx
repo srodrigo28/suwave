@@ -91,7 +91,7 @@ export function PickupDetailScreen({
           <h1 className={styles.detailTitle}>{listing.title}</h1>
           <strong className={styles.detailPrice}>{listing.price}</strong>
 
-          <div className={styles.specGrid} aria-label="Informacoes do veiculo">
+          <div className={styles.specGrid} aria-label="Informações do veículo">
             <span>
               <FaCalendarAlt aria-hidden="true" />
               <b>Ano</b>
@@ -135,10 +135,10 @@ export function PickupDetailScreen({
           </div>
 
           <section className={styles.description}>
-            <h2>Descricao do veiculo</h2>
+            <h2>Descrição do veículo</h2>
             <p>
-              Caminhonete automatica, unica dona, revisoes em dia, pneus novos e
-              excelente estado de conservacao. Pronta para rodar.
+              Caminhonete automática, única dona, revisões em dia, pneus novos e
+              excelente estado de conservação. Pronta para rodar.
             </p>
           </section>
 
@@ -171,7 +171,7 @@ export function PickupDetailScreen({
           />
           <RelatedListings
             listings={relatedListings.slice().reverse()}
-            title="Voce tambem pode gostar"
+            title="Você também pode gostar"
           />
           <RelatedListings
             listings={relatedListings}

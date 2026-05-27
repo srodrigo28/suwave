@@ -189,7 +189,7 @@ export function ProfileScreen() {
         router.push(isEditMode ? "/profile" : "/listings/new");
       }, 1450);
     } catch (error) {
-      setFormError(error instanceof Error ? error.message : "Nao foi possivel salvar o perfil agora.");
+      setFormError(error instanceof Error ? error.message : "Não foi possível salvar o perfil agora.");
       setIsSubmitting(false);
     }
   };
@@ -313,7 +313,7 @@ export function ProfileScreen() {
             <option value="">Genero</option>
             <option value="feminino">Feminino</option>
             <option value="masculino">Masculino</option>
-            <option value="nao-informar">Prefiro nao informar</option>
+            <option value="nao-informar">Prefiro não informar</option>
           </select>
           <FaChevronDown aria-hidden="true" />
         </label>
@@ -358,7 +358,7 @@ export function ProfileScreen() {
                 )}
               </motion.div>
               <h2>{isEditMode ? "Perfil atualizado" : "Seja bem-vindo"}</h2>
-              <p>{isEditMode ? "Suas informacoes foram salvas." : "Seu perfil foi concluido."}</p>
+              <p>{isEditMode ? "Suas informações foram salvas." : "Seu perfil foi concluído."}</p>
             </motion.div>
           </motion.div>
         ) : null}

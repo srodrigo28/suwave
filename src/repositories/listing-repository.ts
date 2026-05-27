@@ -7,7 +7,7 @@ const listings: Listing[] = [
     place: "Sinop - MT",
     price: "R$ 89,90",
     tags: ["destaque"],
-    title: "Conjunto Masculino Basico Premium",
+    title: "Conjunto Masculino Básico Premium",
   },
   {
     image: "/marketplace/modern-house.png",
@@ -15,7 +15,7 @@ const listings: Listing[] = [
     place: "Sinop - MT",
     price: "R$ 750.000,00",
     tags: ["destaque"],
-    title: "Casa a venda no Jardim das Oliveiras",
+    title: "Casa à venda no Jardim das Oliveiras",
   },
   {
     image: "/marketplace/phone-pair.png",

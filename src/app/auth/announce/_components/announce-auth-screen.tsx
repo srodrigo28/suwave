@@ -57,7 +57,7 @@ export function AnnounceAuthScreen() {
         </div>
 
         <h1>Entre para anunciar</h1>
-        <p>Para criar anuncios, entre ou crie sua conta gratis.</p>
+        <p>Para criar anúncios, entre ou crie sua conta grátis.</p>
 
         <div className={styles.authActions}>
           <Link className={styles.primaryAction} href="/auth/login">
@@ -70,7 +70,7 @@ export function AnnounceAuthScreen() {
           </Link>
           <Link className={styles.outlineAction} href="/auth/register">
             <FaPlus aria-hidden="true" />
-            Criar conta gratis
+            Criar conta grátis
           </Link>
         </div>
 

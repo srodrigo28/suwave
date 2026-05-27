@@ -72,7 +72,7 @@ export function RegisterScreen() {
       saveAuthSession(result.accessToken);
       router.push("/auth/profile");
     } catch (error) {
-      setFormError(error instanceof Error ? error.message : "Nao foi possivel continuar agora.");
+      setFormError(error instanceof Error ? error.message : "Não foi possível continuar agora.");
       setIsSubmitting(false);
     }
   };

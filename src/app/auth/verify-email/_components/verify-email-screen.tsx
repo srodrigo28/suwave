@@ -22,7 +22,7 @@ export function VerifyEmailScreen() {
 
     if (!token) {
       setStatus("error");
-      setMessage("Link de verificacao invalido.");
+      setMessage("Link de verificação inválido.");
       return;
     }
 
@@ -37,7 +37,7 @@ export function VerifyEmailScreen() {
       })
       .catch((error) => {
         setStatus("error");
-        setMessage(error instanceof Error ? error.message : "Nao foi possivel verificar seu e-mail.");
+        setMessage(error instanceof Error ? error.message : "Não foi possível verificar seu e-mail.");
       });
   }, [saveAccountDraft, searchParams]);
 
