@@ -10,6 +10,7 @@ import {
   FaGraduationCap,
   FaIdBadge,
   FaInfoCircle,
+  FaMapMarkerAlt,
   FaShoppingBag,
   FaShieldAlt,
   FaTag,
@@ -29,6 +30,7 @@ type MoreItem = {
 const menuItems: MoreItem[] = [
   { href: "/profile", icon: FaUser, label: "Meu Perfil" },
   { href: "/orders", icon: FaShoppingBag, label: "Minhas Compras" },
+  { href: "/location", icon: FaMapMarkerAlt, label: "Cidade e Regiao" },
   { icon: FaTicketAlt, label: "Codigo de Entrega" },
   { href: "/notifications", icon: FaBell, label: "Notificacoes" },
   { icon: FaIdBadge, label: "Conta Afiliado" },

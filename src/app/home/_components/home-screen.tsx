@@ -10,13 +10,11 @@ import {
   FaBriefcase,
   FaCamera,
   FaCar,
-  FaCheckCircle,
   FaChevronDown,
   FaChevronRight,
   FaCube,
   FaHamburger,
   FaHandshake,
-  FaInfoCircle,
   FaMapMarkerAlt,
   FaMedkit,
   FaPercent,
@@ -50,14 +48,15 @@ const categories = [
   href?: string;
 }[];
 
-const cityOptions = [
-  "Sinop - MT",
-  "Claudia - MT",
-  "Sorriso - MT",
-  "Lucas do Rio Verde - MT",
-  "Mutum - MT",
-  "Uniao do Sul - MT",
-] as const;
+const cityStorageKey = "suwave-selected-city";
+const cityLabels: Record<string, string> = {
+  "claudia-mt": "Claudia - MT",
+  "lucas-rio-verde-mt": "Lucas do Rio Verde - MT",
+  "mutum-mt": "Mutum - MT",
+  "sinop-mt": "Sinop - MT",
+  "sorriso-mt": "Sorriso - MT",
+  "uniao-sul-mt": "Uniao do Sul - MT",
+};
 
 function BannerChip({
   children,
@@ -78,7 +77,23 @@ function BannerChip({
 }
 
 function HomeHeader() {
-  const [showCityFilter, setShowCityFilter] = useState(false);
+  const [selectedCity, setSelectedCity] = useState(cityLabels["sinop-mt"]);
+
+  useEffect(() => {
+    const syncSelectedCity = () => {
+      const storedCity = window.localStorage.getItem(cityStorageKey);
+      setSelectedCity(cityLabels[storedCity ?? "sinop-mt"] ?? cityLabels["sinop-mt"]);
+    };
+
+    syncSelectedCity();
+    window.addEventListener("storage", syncSelectedCity);
+    window.addEventListener("suwave-city-change", syncSelectedCity);
+
+    return () => {
+      window.removeEventListener("storage", syncSelectedCity);
+      window.removeEventListener("suwave-city-change", syncSelectedCity);
+    };
+  }, []);
 
   return (
     <motion.header className={styles.header} variants={riseMotion}>
@@ -91,55 +106,14 @@ function HomeHeader() {
         </button>
       </div>
       <div className={styles.cityPicker}>
-        <button
-          aria-expanded={showCityFilter}
-          aria-haspopup="dialog"
+        <Link
           className={styles.place}
-          onClick={() => setShowCityFilter((isVisible) => !isVisible)}
-          type="button"
+          href="/location"
         >
           <FaMapMarkerAlt aria-hidden="true" />
-          Sinop - MT
+          {selectedCity}
           <FaChevronDown aria-hidden="true" />
-        </button>
-
-        <AnimatePresence>
-          {showCityFilter ? (
-            <motion.aside
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              aria-label="Selecione sua cidade"
-              className={styles.cityFilter}
-              exit={{ opacity: 0, scale: 0.98, y: -8 }}
-              initial={{ opacity: 0, scale: 0.98, y: -10 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
-            >
-              <strong>Selecione sua cidade</strong>
-              <div className={styles.cityOptions}>
-                {cityOptions.map((city, index) => (
-                  <button
-                    aria-current={index === 0 ? "true" : undefined}
-                    className={`${styles.cityOption} ${
-                      index === 0 ? styles.cityOptionActive : ""
-                    }`}
-                    key={city}
-                    type="button"
-                  >
-                    <FaMapMarkerAlt aria-hidden="true" />
-                    <span>{city}</span>
-                    {index === 0 ? <FaCheckCircle aria-hidden="true" /> : null}
-                  </button>
-                ))}
-              </div>
-              <p>
-                <FaInfoCircle aria-hidden="true" />
-                <span>
-                  Ao trocar de cidade, todo o conteúdo será atualizado de acordo
-                  com a disponibilidade local.
-                </span>
-              </p>
-            </motion.aside>
-          ) : null}
-        </AnimatePresence>
+        </Link>
       </div>
       <Link className={styles.alert} href="/notifications" aria-label="Notificacoes">
         <FaBell aria-hidden="true" />
