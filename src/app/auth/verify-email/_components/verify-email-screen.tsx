@@ -13,16 +13,13 @@ type VerifyStatus = "loading" | "success" | "error";
 
 export function VerifyEmailScreen() {
   const searchParams = useSearchParams();
+  const token = searchParams.get("token") ?? "";
   const saveAccountDraft = useAuthStore((state) => state.saveAccountDraft);
   const [status, setStatus] = useState<VerifyStatus>("loading");
   const [message, setMessage] = useState("Confirmando seu e-mail...");
 
   useEffect(() => {
-    const token = searchParams.get("token") ?? "";
-
     if (!token) {
-      setStatus("error");
-      setMessage("Link de verificação inválido.");
       return;
     }
 
@@ -37,26 +34,42 @@ export function VerifyEmailScreen() {
       })
       .catch((error) => {
         setStatus("error");
-        setMessage(error instanceof Error ? error.message : "Não foi possível verificar seu e-mail.");
+        setMessage(
+          error instanceof Error
+            ? error.message
+            : "Não foi possível verificar seu e-mail.",
+        );
       });
-  }, [saveAccountDraft, searchParams]);
+  }, [saveAccountDraft, token]);
+
+  const visibleStatus: VerifyStatus = token ? status : "error";
+  const visibleMessage = token ? message : "Link de verificação inválido.";
 
   return (
     <AuthFrame>
       <section className={styles.readyPanel}>
         <span>
-          {status === "success" ? (
+          {visibleStatus === "success" ? (
             <FaCheckCircle aria-hidden="true" />
-          ) : status === "error" ? (
+          ) : visibleStatus === "error" ? (
             <FaExclamationTriangle aria-hidden="true" />
           ) : (
             <FaEnvelope aria-hidden="true" />
           )}
         </span>
-        <h1>{status === "success" ? "Conta verificada" : status === "error" ? "Verificacao pendente" : "Verificando conta"}</h1>
-        <p>{message}</p>
-        <Link className={styles.primaryAction} href={status === "success" ? "/profile" : "/auth/login"}>
-          {status === "success" ? "Ver meu perfil" : "Entrar na conta"}
+        <h1>
+          {visibleStatus === "success"
+            ? "Conta verificada"
+            : visibleStatus === "error"
+              ? "Verificacao pendente"
+              : "Verificando conta"}
+        </h1>
+        <p>{visibleMessage}</p>
+        <Link
+          className={styles.primaryAction}
+          href={visibleStatus === "success" ? "/profile" : "/auth/login"}
+        >
+          {visibleStatus === "success" ? "Ver meu perfil" : "Entrar na conta"}
         </Link>
       </section>
     </AuthFrame>

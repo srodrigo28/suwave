@@ -17,7 +17,7 @@ const navigationItems: NavigationItem[] = [
   { href: "/", icon: FaHome, name: "Inicio" },
   { href: "/help", icon: FaWhatsapp, name: "Ajuda" },
   { href: "/auth/announce", icon: FaPlus, name: "Anunciar", floating: true },
-  { href: "/", icon: FaBox, name: "Pedidos" },
+  { href: "/orders", icon: FaBox, name: "Pedidos" },
   { href: "/more", icon: FaBars, name: "Mais" },
 ];
 

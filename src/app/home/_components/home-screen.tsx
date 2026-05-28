@@ -141,10 +141,10 @@ function HomeHeader() {
           ) : null}
         </AnimatePresence>
       </div>
-      <button className={styles.alert} type="button" aria-label="Notificacoes">
+      <Link className={styles.alert} href="/notifications" aria-label="Notificacoes">
         <FaBell aria-hidden="true" />
         <b>2</b>
-      </button>
+      </Link>
     </motion.header>
   );
 }

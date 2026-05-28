@@ -28,9 +28,9 @@ type MoreItem = {
 
 const menuItems: MoreItem[] = [
   { href: "/profile", icon: FaUser, label: "Meu Perfil" },
-  { icon: FaShoppingBag, label: "Minhas Compras" },
+  { href: "/orders", icon: FaShoppingBag, label: "Minhas Compras" },
   { icon: FaTicketAlt, label: "Codigo de Entrega" },
-  { icon: FaBell, label: "Notificacoes" },
+  { href: "/notifications", icon: FaBell, label: "Notificacoes" },
   { icon: FaIdBadge, label: "Conta Afiliado" },
   { href: "/listings/new", icon: FaTag, label: "Meus Anuncios" },
   { icon: FaBuilding, label: "Perfil Empresarial" },

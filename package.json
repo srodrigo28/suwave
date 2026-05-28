@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test:api-register-upload": "node tests/register-upload-flow.mjs"
+    "test:api-register-upload": "node tests/register-upload-flow.mjs",
+    "test:ui-flow": "python tests/ui_flow_smoke.py"
   },
   "dependencies": {
     "motion": "^12.40.0",
