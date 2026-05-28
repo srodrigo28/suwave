@@ -22,7 +22,7 @@
   display: grid;
   grid-template-columns: 42px minmax(0, 1fr) auto;
   min-height: 52px;
-  margin-bottom: 10px;
+  padding: 0 16px;
 }
 
 .topBar h1 {
@@ -58,7 +58,8 @@
 .categoryLayout {
   display: grid;
   grid-template-columns: 112px minmax(0, 1fr);
-  height: calc(100% - 70px);
+  height: calc(100% - 122px);
+  min-height: 0;
 }
 
 .categoryRail {
@@ -104,12 +105,41 @@
   display: grid;
   gap: 14px 8px;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  overflow: auto;
-  padding: 18px 10px 96px;
+  overflow: visible;
+  padding: 0;
 }
 
 .emptyCategoryPanel {
   min-height: 0;
+}
+
+.categoryContent {
+  min-height: 0;
+  overflow: auto;
+  padding: 12px 10px 96px;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.categoryContent::-webkit-scrollbar {
+  display: none;
+}
+
+.categorySection {
+  display: grid;
+  gap: 9px;
+  margin-bottom: 18px;
+  scroll-margin-top: 8px;
+}
+
+.categorySection h2 {
+  color: #101317;
+  font-size: 12px;
+  font-weight: 950;
+  letter-spacing: 0;
+  line-height: 1.15;
+  margin: 0;
+  padding-inline: 2px;
 }
 
 .subcategory {
@@ -138,7 +168,7 @@
   box-shadow: 0 2px 12px rgb(18 25 38 / 0.06);
   color: #111820;
   display: grid;
-  font-size: 26px;
+  font-size: 24px;
   height: 60px;
   overflow: hidden;
   place-items: center;
