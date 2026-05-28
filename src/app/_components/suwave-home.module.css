@@ -193,7 +193,7 @@
 .balance button,
 .place,
 .alert,
-.search button {
+.search a:last-child {
   border: 0;
   cursor: pointer;
 }
@@ -383,7 +383,13 @@
   font-size: 22px;
 }
 
-.search button {
+.search a {
+  color: inherit;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.search a:last-child {
   background: transparent;
   color: #17181b;
   display: grid;

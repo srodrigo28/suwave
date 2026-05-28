@@ -265,13 +265,13 @@ export function HomeScreen({ listings }: { listings: Listing[] }) {
       >
         <HomeHeader />
 
-        <motion.label className={styles.search} variants={riseMotion}>
+        <motion.div className={styles.search} variants={riseMotion}>
           <FaSearch aria-hidden="true" />
-          <span>O que você procura?</span>
-          <button type="button" aria-label="Buscar por foto">
+          <Link href="/search">O que você procura?</Link>
+          <Link href="/search?mode=image" aria-label="Buscar por foto">
             <FaCamera aria-hidden="true" />
-          </button>
-        </motion.label>
+          </Link>
+        </motion.div>
 
         <motion.div variants={riseMotion}>
           <PromoBanner listings={listings} />
