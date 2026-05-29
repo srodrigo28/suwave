@@ -1,11 +1,11 @@
-import { getPublicContentEvents } from "@/repositories/event-repository";
+import { getPublicContentEventsFromApi } from "@/repositories/event-repository";
 import { EventsScreen } from "../_components/events-screen";
 
-export default function PublicEventsPage() {
+export default async function PublicEventsPage() {
   return (
     <EventsScreen
       activeTab="public"
-      events={getPublicContentEvents()}
+      events={await getPublicContentEventsFromApi()}
       title="Eventos publicos"
     />
   );

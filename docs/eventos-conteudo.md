@@ -1,6 +1,6 @@
 # Eventos e conteudo
 
-Fatia web concluida para mapear o fluxo de eventos e noticias antes da API.
+Fatia web concluida para mapear o fluxo de eventos e noticias com API conectada e fallback local.
 
 ## Pronto
 
@@ -10,7 +10,8 @@ Fatia web concluida para mapear o fluxo de eventos e noticias antes da API.
 - Detalhe compartilhavel: `/events/[eventSlug]`.
 - Entrada pelo menu `Mais categorias > Evento e noticia`.
 - Seeds locais cobrindo eventos publicos, privados e noticia local.
+- Consumo do contrato `/api/v1/events` com revalidacao curta e fallback para os seeds locais.
 
 ## Proximo passo natural
 
-- Abrir contrato API para publicar evento, listar agenda por cidade e registrar interesse/reserva.
+- Criar publicacao/gestao de evento e registrar interesse/reserva.

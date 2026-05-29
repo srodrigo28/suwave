@@ -1,5 +1,35 @@
 import type { EventVisibility, LocalEvent } from "@/models/event";
 
+type ApiEnvelope<T> = {
+  data?: T;
+  message?: string;
+};
+
+type ApiEvent = {
+  category: string;
+  city: string;
+  cta_label: string;
+  date_label: string;
+  description: string;
+  host: string;
+  id: string;
+  location: string;
+  slug: string;
+  state: string;
+  status: string;
+  summary: string;
+  tags: string[];
+  time_label: string;
+  title: string;
+  visibility: EventVisibility;
+};
+
+const API_BASE_URL = (
+  process.env.API_BASE_URL ??
+  process.env.NEXT_PUBLIC_API_BASE_URL ??
+  "https://99dev.pro/suwave-api/api/v1"
+).replace(/\/$/, "");
+
 const localEvents: LocalEvent[] = [
   {
     category: "Show e gastronomia",
@@ -107,4 +137,86 @@ export function getPublicContentEvents() {
 
 export function getLocalEventBySlug(eventSlug: string) {
   return localEvents.find((event) => event.slug === eventSlug);
+}
+
+function toLocalEvent(event: ApiEvent): LocalEvent {
+  return {
+    category: event.category,
+    city: `${event.city}, ${event.state}`,
+    ctaLabel: event.cta_label,
+    dateLabel: event.date_label,
+    description: event.description,
+    host: event.host,
+    id: event.id,
+    location: event.location,
+    slug: event.slug,
+    status: event.status === "published" ? "Publicado" : event.status,
+    summary: event.summary,
+    tags: event.tags,
+    timeLabel: event.time_label,
+    title: event.title,
+    visibility: event.visibility,
+  };
+}
+
+async function fetchEventsFromApi(path: string) {
+  const response = await fetch(`${API_BASE_URL}${path}`, {
+    next: { revalidate: 60 },
+  });
+  const body = (await response.json().catch(() => ({}))) as ApiEnvelope<ApiEvent[]>;
+
+  if (!response.ok || !body.data) {
+    throw new Error(body.message ?? "Nao foi possivel carregar eventos.");
+  }
+
+  return body.data.map(toLocalEvent);
+}
+
+async function fetchEventFromApi(eventSlug: string) {
+  const response = await fetch(`${API_BASE_URL}/events/${eventSlug}`, {
+    next: { revalidate: 60 },
+  });
+  const body = (await response.json().catch(() => ({}))) as ApiEnvelope<ApiEvent>;
+
+  if (!response.ok || !body.data) {
+    throw new Error(body.message ?? "Nao foi possivel carregar evento.");
+  }
+
+  return toLocalEvent(body.data);
+}
+
+export async function getEvents() {
+  try {
+    return await fetchEventsFromApi("/events");
+  } catch {
+    return getLocalEvents();
+  }
+}
+
+export async function getRemoteEventsByVisibility(visibility: EventVisibility) {
+  try {
+    return await fetchEventsFromApi(`/events?visibility=${visibility}`);
+  } catch {
+    return getEventsByVisibility(visibility);
+  }
+}
+
+export async function getPublicContentEventsFromApi() {
+  try {
+    const [publicEvents, newsEvents] = await Promise.all([
+      fetchEventsFromApi("/events?visibility=public"),
+      fetchEventsFromApi("/events?visibility=news"),
+    ]);
+    return [...publicEvents, ...newsEvents];
+  } catch {
+    return getPublicContentEvents();
+  }
+}
+
+export async function getEventBySlug(eventSlug: string) {
+  try {
+    return await fetchEventFromApi(eventSlug);
+  } catch {
+    return getLocalEventBySlug(eventSlug);
+  }
 }
