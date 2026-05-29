@@ -11,7 +11,6 @@ import {
   FaLayerGroup,
   FaPen,
   FaSearch,
-  FaStar,
 } from "react-icons/fa";
 import { AppShell } from "@/app/_components/app-shell";
 import type { AdminCategory, AdminCategoryStatus } from "@/models/admin";
