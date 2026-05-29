@@ -90,6 +90,22 @@ export type AdminOrder = {
   total: string;
 };
 
+export type AdminCategoryStatus = "active" | "review" | "hidden";
+
+export type AdminCategory = {
+  childrenCount: number;
+  featured: boolean;
+  icon: string;
+  id: string;
+  listingsCount: number;
+  name: string;
+  parent: string;
+  sortOrder: number;
+  status: AdminCategoryStatus;
+  statusLabel: string;
+  updatedAt: string;
+};
+
 export type AdminDashboard = {
   metrics: AdminMetric[];
   queue: AdminQueueItem[];

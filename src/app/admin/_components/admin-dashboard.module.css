@@ -524,6 +524,11 @@
   color: #b51e1e;
 }
 
+.userStatus.hidden {
+  background: #f3f4f6;
+  color: #4b5563;
+}
+
 .userStatus.published {
   background: #eef8f0;
   color: #08751d;

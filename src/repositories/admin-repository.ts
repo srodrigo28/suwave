@@ -1,4 +1,10 @@
-import type { AdminDashboard, AdminListing, AdminOrder, AdminUser } from "@/models/admin";
+import type {
+  AdminCategory,
+  AdminDashboard,
+  AdminListing,
+  AdminOrder,
+  AdminUser,
+} from "@/models/admin";
 
 const dashboard: AdminDashboard = {
   metrics: [
@@ -85,7 +91,7 @@ const dashboard: AdminDashboard = {
       summary: "Cadastro, perfil, documentos e bloqueios",
     },
     {
-      href: "/admin?view=categories",
+      href: "/admin/categories",
       id: "categories",
       label: "Categorias",
       pending: 3,
@@ -395,6 +401,87 @@ const orders: AdminOrder[] = [
   },
 ];
 
+const categories: AdminCategory[] = [
+  {
+    childrenCount: 6,
+    featured: true,
+    icon: "FO",
+    id: "admin-category-food",
+    listingsCount: 128,
+    name: "Comidas e mercados",
+    parent: "Raiz",
+    sortOrder: 1,
+    status: "active",
+    statusLabel: "Ativa",
+    updatedAt: "Hoje, 08:25",
+  },
+  {
+    childrenCount: 8,
+    featured: true,
+    icon: "VE",
+    id: "admin-category-vehicles",
+    listingsCount: 72,
+    name: "Veiculos",
+    parent: "Raiz",
+    sortOrder: 2,
+    status: "active",
+    statusLabel: "Ativa",
+    updatedAt: "Hoje, 07:58",
+  },
+  {
+    childrenCount: 5,
+    featured: true,
+    icon: "IM",
+    id: "admin-category-properties",
+    listingsCount: 44,
+    name: "Imoveis",
+    parent: "Raiz",
+    sortOrder: 3,
+    status: "active",
+    statusLabel: "Ativa",
+    updatedAt: "Ontem, 18:12",
+  },
+  {
+    childrenCount: 4,
+    featured: false,
+    icon: "SV",
+    id: "admin-category-services",
+    listingsCount: 63,
+    name: "Servicos locais",
+    parent: "Raiz",
+    sortOrder: 4,
+    status: "review",
+    statusLabel: "Revisar icone",
+    updatedAt: "Ontem, 16:40",
+  },
+  {
+    childrenCount: 3,
+    featured: false,
+    icon: "EV",
+    id: "admin-category-events",
+    listingsCount: 19,
+    name: "Eventos",
+    parent: "Raiz",
+    sortOrder: 5,
+    status: "active",
+    statusLabel: "Ativa",
+    updatedAt: "27/05/2026",
+  },
+  {
+    childrenCount: 2,
+    featured: false,
+    icon: "CL",
+    id: "admin-category-legacy",
+    listingsCount: 0,
+    name: "Classificados antigos",
+    parent: "Raiz",
+    sortOrder: 99,
+    status: "hidden",
+    statusLabel: "Oculta",
+    updatedAt: "26/05/2026",
+  },
+];
+
 export function getAdminDashboard() {
   return dashboard;
 }
@@ -409,4 +496,8 @@ export function getAdminListings() {
 
 export function getAdminOrders() {
   return orders;
+}
+
+export function getAdminCategories() {
+  return categories;
 }
