@@ -1,0 +1,403 @@
+.financeScreen {
+  background: #f6f8fb;
+  color: #111317;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.financeScroll {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+  overflow-y: auto;
+  padding: 14px 14px 138px;
+}
+
+.financeScroll::-webkit-scrollbar {
+  display: none;
+}
+
+.financeHeader {
+  align-items: center;
+  display: grid;
+  grid-template-columns: 40px 1fr 40px;
+  min-height: 42px;
+}
+
+.financeHeader a {
+  align-items: center;
+  background: #fff;
+  border: 1px solid #edf0f4;
+  border-radius: 50%;
+  color: #111317;
+  display: inline-flex;
+  height: 38px;
+  justify-content: center;
+  text-decoration: none;
+  width: 38px;
+}
+
+.financeHeader h1 {
+  font-size: 16px;
+  font-weight: 950;
+  margin: 0;
+  text-align: center;
+}
+
+.balanceHero {
+  background: linear-gradient(135deg, #0b7f3a, #12a65a);
+  border-radius: 8px;
+  color: #fff;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr 72px;
+  min-height: 160px;
+  overflow: hidden;
+  padding: 18px;
+  position: relative;
+}
+
+.balanceHero small,
+.affiliateHero small {
+  display: block;
+  font-size: 12px;
+  font-weight: 850;
+  opacity: 0.84;
+}
+
+.balanceHero strong {
+  display: block;
+  font-size: 34px;
+  font-weight: 950;
+  line-height: 1;
+  margin: 10px 0;
+}
+
+.balanceHero p,
+.affiliateHero p,
+.ruleCard p,
+.couponCard p,
+.withdrawalCard p,
+.financeNote p {
+  font-size: 13px;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.walletMark {
+  align-items: center;
+  align-self: center;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  border-radius: 50%;
+  display: inline-flex;
+  height: 72px;
+  justify-content: center;
+  width: 72px;
+}
+
+.walletMark svg {
+  font-size: 30px;
+}
+
+.quickActions {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.quickActions a,
+.withdrawalCard,
+.filterButton {
+  align-items: center;
+  background: #fff;
+  border: 1px solid #e7ebef;
+  border-radius: 8px;
+  color: #111317;
+  display: flex;
+  font-size: 13px;
+  font-weight: 950;
+  gap: 8px;
+  justify-content: center;
+  min-height: 48px;
+  text-decoration: none;
+}
+
+.metricGrid {
+  display: grid;
+  gap: 9px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.metricCard,
+.couponPanel,
+.rulePanel,
+.movementPanel,
+.financeNote,
+.withdrawPanel,
+.affiliateHero {
+  background: #fff;
+  border: 1px solid #eceef2;
+  border-radius: 8px;
+  padding: 14px;
+}
+
+.metricCard small,
+.movementCard small,
+.couponCard small,
+.ruleCard small,
+.withdrawalCard small {
+  color: #6b7280;
+  display: block;
+  font-size: 11px;
+  font-weight: 850;
+  margin-bottom: 5px;
+}
+
+.metricCard strong {
+  color: #087c1e;
+  display: block;
+  font-size: 15px;
+  font-weight: 950;
+  overflow-wrap: anywhere;
+}
+
+.sectionTitle {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.sectionTitle h2 {
+  font-size: 15px;
+  margin: 0;
+}
+
+.sectionTitle a {
+  color: #087c1e;
+  font-size: 12px;
+  font-weight: 950;
+  text-decoration: none;
+}
+
+.couponList,
+.movementList,
+.ruleList,
+.withdrawalList {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.couponCard,
+.ruleCard,
+.movementCard {
+  border-top: 1px solid #eef0f4;
+  padding-top: 10px;
+}
+
+.couponCard:first-child,
+.ruleCard:first-child,
+.movementCard:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.couponCard strong,
+.ruleCard strong,
+.movementCard strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 950;
+}
+
+.couponCard p,
+.ruleCard p,
+.financeNote p {
+  color: #4b5563;
+}
+
+.financeNote {
+  align-items: flex-start;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 28px 1fr;
+}
+
+.financeNote svg {
+  color: #087c1e;
+  font-size: 20px;
+  margin-top: 2px;
+}
+
+.filterRow {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.filterButton {
+  cursor: pointer;
+}
+
+.filterButtonActive {
+  background: #087c1e;
+  border-color: #087c1e;
+  color: #fff;
+}
+
+.movementCard {
+  align-items: center;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 34px 1fr auto;
+}
+
+.movementIcon {
+  align-items: center;
+  background: #eefaf1;
+  border-radius: 50%;
+  color: #087c1e;
+  display: inline-flex;
+  height: 34px;
+  justify-content: center;
+  width: 34px;
+}
+
+.movementIconOut {
+  background: #fff0f0;
+  color: #c73737;
+}
+
+.movementValueIn {
+  color: #087c1e;
+  font-size: 13px;
+  font-weight: 950;
+  white-space: nowrap;
+}
+
+.movementValueOut {
+  color: #c73737;
+  font-size: 13px;
+  font-weight: 950;
+  white-space: nowrap;
+}
+
+.statementFooter {
+  color: #4b5563;
+  font-size: 12px;
+  font-weight: 850;
+  text-align: center;
+}
+
+.affiliateHero {
+  background: #10231a;
+  color: #fff;
+}
+
+.affiliateHero h2 {
+  font-size: 26px;
+  line-height: 1.05;
+  margin: 8px 0;
+}
+
+.affiliateCode {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  display: flex;
+  font-size: 13px;
+  font-weight: 950;
+  gap: 8px;
+  justify-content: space-between;
+  margin-top: 14px;
+  padding: 11px 12px;
+}
+
+.withdrawPanel h2 {
+  font-size: 15px;
+  margin: 0 0 10px;
+}
+
+.withdrawalCard {
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 12px;
+}
+
+.withdrawalCard svg {
+  color: #087c1e;
+  flex: 0 0 auto;
+  margin-top: 2px;
+}
+
+.withdrawalCard strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 950;
+}
+
+.withdrawalCard p {
+  color: #4b5563;
+  font-weight: 650;
+  margin-top: 3px;
+}
+
+.amountBox {
+  background: #f6f8fb;
+  border: 1px dashed #d9e0e8;
+  border-radius: 8px;
+  margin-top: 10px;
+  padding: 12px;
+}
+
+.amountBox label {
+  color: #6b7280;
+  display: block;
+  font-size: 11px;
+  font-weight: 850;
+  margin-bottom: 6px;
+}
+
+.amountBox input {
+  background: #fff;
+  border: 1px solid #dfe5ec;
+  border-radius: 8px;
+  color: #111317;
+  font-size: 20px;
+  font-weight: 950;
+  height: 46px;
+  padding: 0 12px;
+  width: 100%;
+}
+
+.amountBox button {
+  background: #087c1e;
+  border: 0;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 950;
+  height: 44px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+@media (max-width: 380px) {
+  .balanceHero {
+    grid-template-columns: 1fr;
+  }
+
+  .walletMark {
+    display: none;
+  }
+
+  .metricGrid {
+    grid-template-columns: 1fr;
+  }
+}

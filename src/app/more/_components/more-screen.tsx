@@ -16,6 +16,7 @@ import {
   FaTag,
   FaTicketAlt,
   FaUser,
+  FaWallet,
 } from "react-icons/fa";
 import { containerMotion, riseMotion } from "@/shared/motion/motion-variants";
 import { BottomNavigation } from "@/shared/navigation/bottom-navigation";
@@ -30,10 +31,11 @@ type MoreItem = {
 const menuItems: MoreItem[] = [
   { href: "/profile", icon: FaUser, label: "Meu Perfil" },
   { href: "/orders", icon: FaShoppingBag, label: "Minhas Compras" },
+  { href: "/wallet", icon: FaWallet, label: "Carteira SUWAVE" },
   { href: "/location", icon: FaMapMarkerAlt, label: "Cidade e Regiao" },
   { icon: FaTicketAlt, label: "Codigo de Entrega" },
   { href: "/notifications", icon: FaBell, label: "Notificacoes" },
-  { icon: FaIdBadge, label: "Conta Afiliado" },
+  { href: "/affiliate", icon: FaIdBadge, label: "Conta Afiliado" },
   { href: "/listings/new", icon: FaTag, label: "Meus Anuncios" },
   { icon: FaBuilding, label: "Perfil Empresarial" },
   { icon: FaGraduationCap, label: "Como Usar a Suwave" },
