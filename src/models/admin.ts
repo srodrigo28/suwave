@@ -32,6 +32,23 @@ export type AdminRole = {
   scope: string;
 };
 
+export type AdminUserStatus = "active" | "review" | "blocked";
+
+export type AdminUser = {
+  city: string;
+  createdAt: string;
+  email: string;
+  id: string;
+  lastAccess: string;
+  name: string;
+  orders: number;
+  phone: string;
+  role: string;
+  status: AdminUserStatus;
+  statusLabel: string;
+  verified: boolean;
+};
+
 export type AdminDashboard = {
   metrics: AdminMetric[];
   queue: AdminQueueItem[];

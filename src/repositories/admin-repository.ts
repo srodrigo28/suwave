@@ -1,4 +1,4 @@
-import type { AdminDashboard } from "@/models/admin";
+import type { AdminDashboard, AdminUser } from "@/models/admin";
 
 const dashboard: AdminDashboard = {
   metrics: [
@@ -78,7 +78,7 @@ const dashboard: AdminDashboard = {
   ],
   sections: [
     {
-      href: "/admin?view=users",
+      href: "/admin/users",
       id: "users",
       label: "Usuarios",
       pending: 8,
@@ -136,6 +136,83 @@ const dashboard: AdminDashboard = {
   ],
 };
 
+const users: AdminUser[] = [
+  {
+    city: "Sinop - MT",
+    createdAt: "29/05/2026",
+    email: "maria.oliveira@suwave.local",
+    id: "user-maria-oliveira",
+    lastAccess: "Hoje, 08:42",
+    name: "Maria Oliveira",
+    orders: 8,
+    phone: "(66) 99912-3488",
+    role: "Afiliada",
+    status: "review",
+    statusLabel: "Revisar saque",
+    verified: true,
+  },
+  {
+    city: "Sinop - MT",
+    createdAt: "28/05/2026",
+    email: "joao.silva@suwave.local",
+    id: "user-joao-silva",
+    lastAccess: "Hoje, 07:15",
+    name: "Joao Silva",
+    orders: 3,
+    phone: "(66) 99845-1122",
+    role: "Vendedor",
+    status: "active",
+    statusLabel: "Ativo",
+    verified: true,
+  },
+  {
+    city: "Sorriso - MT",
+    createdAt: "27/05/2026",
+    email: "studio.thais@suwave.local",
+    id: "user-studio-thais",
+    lastAccess: "Ontem, 18:09",
+    name: "Studio Thais Lemos",
+    orders: 14,
+    phone: "(66) 99622-9090",
+    role: "Empresa",
+    status: "active",
+    statusLabel: "Ativo",
+    verified: true,
+  },
+  {
+    city: "Sinop - MT",
+    createdAt: "26/05/2026",
+    email: "conta.pendente@suwave.local",
+    id: "user-conta-pendente",
+    lastAccess: "26/05/2026",
+    name: "Conta Pendente",
+    orders: 0,
+    phone: "(66) 99000-1100",
+    role: "Comprador",
+    status: "review",
+    statusLabel: "Perfil incompleto",
+    verified: false,
+  },
+  {
+    city: "Lucas do Rio Verde - MT",
+    createdAt: "24/05/2026",
+    email: "bloqueio.teste@suwave.local",
+    id: "user-bloqueio-teste",
+    lastAccess: "25/05/2026",
+    name: "Bloqueio Teste",
+    orders: 1,
+    phone: "(66) 99123-0000",
+    role: "Vendedor",
+    status: "blocked",
+    statusLabel: "Bloqueado",
+    verified: false,
+  },
+];
+
 export function getAdminDashboard() {
   return dashboard;
+}
+
+export function getAdminUsers() {
+  return users;
 }
