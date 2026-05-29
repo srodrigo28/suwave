@@ -49,6 +49,7 @@ export function ProductDetailScreen({
 }) {
   const cover = product.media.find((media) => media.isCover) ?? product.media[0];
   const attributes = productAttributes(product);
+  const checkoutHref = product.checkoutHref ?? `/orders?checkout=${product.id}`;
 
   return (
     <AppShell>
@@ -131,7 +132,7 @@ export function ProductDetailScreen({
         </div>
 
         <div className={styles.stickyActions}>
-          <Link href={`/orders?checkout=${product.id}`}>
+          <Link href={checkoutHref}>
             <FaShoppingBag aria-hidden="true" />
             Comprar
           </Link>

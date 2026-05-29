@@ -34,6 +34,7 @@ export type Product = {
   city: string;
   createdAt: string;
   currency: "BRL";
+  checkoutHref?: string;
   description: string;
   id: string;
   media: ProductMedia[];
