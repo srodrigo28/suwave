@@ -65,6 +65,31 @@ export type AdminListing = {
   updatedAt: string;
 };
 
+export type AdminOrderStatus =
+  | "created"
+  | "paid"
+  | "preparing"
+  | "on_route"
+  | "delivered"
+  | "cancelled"
+  | "refunded";
+
+export type AdminOrder = {
+  buyer: string;
+  city: string;
+  deliveryWindow: string;
+  id: string;
+  itemCount: number;
+  paymentMethod: string;
+  placedAt: string;
+  seller: string;
+  shortId: string;
+  status: AdminOrderStatus;
+  statusLabel: string;
+  supportReason?: string;
+  total: string;
+};
+
 export type AdminDashboard = {
   metrics: AdminMetric[];
   queue: AdminQueueItem[];

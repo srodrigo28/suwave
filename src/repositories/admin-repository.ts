@@ -1,4 +1,4 @@
-import type { AdminDashboard, AdminListing, AdminUser } from "@/models/admin";
+import type { AdminDashboard, AdminListing, AdminOrder, AdminUser } from "@/models/admin";
 
 const dashboard: AdminDashboard = {
   metrics: [
@@ -99,7 +99,7 @@ const dashboard: AdminDashboard = {
       summary: "Aprovacao, midias, preco e vendedor",
     },
     {
-      href: "/admin?view=orders",
+      href: "/admin/orders",
       id: "orders",
       label: "Pedidos",
       pending: 11,
@@ -290,6 +290,111 @@ const listings: AdminListing[] = [
   },
 ];
 
+const orders: AdminOrder[] = [
+  {
+    buyer: "Joao Silva",
+    city: "Sinop - MT",
+    deliveryWindow: "Hoje, 12:20 - 12:50",
+    id: "admin-order-8391",
+    itemCount: 3,
+    paymentMethod: "Pix",
+    placedAt: "Hoje, 08:41",
+    seller: "Hamburgueria Salamanca Ca'dore",
+    shortId: "#8391",
+    status: "on_route",
+    statusLabel: "Em rota",
+    supportReason: "Entrega em rota atrasada",
+    total: "R$ 96,70",
+  },
+  {
+    buyer: "Maria Oliveira",
+    city: "Sinop - MT",
+    deliveryWindow: "Hoje, 10:40 - 11:10",
+    id: "admin-order-8388",
+    itemCount: 1,
+    paymentMethod: "Carteira SUWAVE",
+    placedAt: "Hoje, 08:18",
+    seller: "Tech Center Sinop",
+    shortId: "#8388",
+    status: "paid",
+    statusLabel: "Pago",
+    total: "R$ 3.499,00",
+  },
+  {
+    buyer: "Lucas Andrade",
+    city: "Sorriso - MT",
+    deliveryWindow: "Hoje, 15:00 - 16:00",
+    id: "admin-order-8379",
+    itemCount: 2,
+    paymentMethod: "Cartao",
+    placedAt: "Hoje, 07:52",
+    seller: "Studio Thais Lemos",
+    shortId: "#8379",
+    status: "preparing",
+    statusLabel: "Preparando",
+    total: "R$ 180,00",
+  },
+  {
+    buyer: "Ana Costa",
+    city: "Sinop - MT",
+    deliveryWindow: "Aguardando pagamento",
+    id: "admin-order-8371",
+    itemCount: 1,
+    paymentMethod: "Pix",
+    placedAt: "Ontem, 19:46",
+    seller: "Oliveira Imoveis",
+    shortId: "#8371",
+    status: "created",
+    statusLabel: "Criado",
+    supportReason: "Pix expirando",
+    total: "R$ 120,00",
+  },
+  {
+    buyer: "Paulo Mendes",
+    city: "Lucas do Rio Verde - MT",
+    deliveryWindow: "Entregue ontem, 18:32",
+    id: "admin-order-8364",
+    itemCount: 4,
+    paymentMethod: "Cartao",
+    placedAt: "Ontem, 17:10",
+    seller: "Mercado Norte",
+    shortId: "#8364",
+    status: "delivered",
+    statusLabel: "Entregue",
+    total: "R$ 214,35",
+  },
+  {
+    buyer: "Conta Pendente",
+    city: "Sinop - MT",
+    deliveryWindow: "Cancelado em 28/05/2026",
+    id: "admin-order-8349",
+    itemCount: 1,
+    paymentMethod: "Pix",
+    placedAt: "28/05/2026",
+    seller: "Auto Center Silva",
+    shortId: "#8349",
+    status: "cancelled",
+    statusLabel: "Cancelado",
+    supportReason: "Solicitacao do comprador",
+    total: "R$ 450,00",
+  },
+  {
+    buyer: "Bruna Lima",
+    city: "Sinop - MT",
+    deliveryWindow: "Reembolso em analise",
+    id: "admin-order-8337",
+    itemCount: 2,
+    paymentMethod: "Carteira SUWAVE",
+    placedAt: "27/05/2026",
+    seller: "Casa Bella Decor",
+    shortId: "#8337",
+    status: "refunded",
+    statusLabel: "Reembolso",
+    supportReason: "Produto indisponivel",
+    total: "R$ 389,80",
+  },
+];
+
 export function getAdminDashboard() {
   return dashboard;
 }
@@ -300,4 +405,8 @@ export function getAdminUsers() {
 
 export function getAdminListings() {
   return listings;
+}
+
+export function getAdminOrders() {
+  return orders;
 }
