@@ -105,7 +105,12 @@ const categoryGroups: CategoryGroup[] = [
     id: "shipping",
     name: "Envios",
     subcategories: [
-      { icon: FaShippingFast, id: "local-delivery", name: "Envios dentro da cidade" },
+      {
+        href: "/shipping/local",
+        icon: FaShippingFast,
+        id: "local-delivery",
+        name: "Envios dentro da cidade",
+      },
       { icon: FaTruck, id: "regional-delivery", name: "Envios fora da cidade" },
     ],
   },
@@ -114,7 +119,12 @@ const categoryGroups: CategoryGroup[] = [
     name: "Carona",
     subcategories: [
       { icon: FaCar, id: "city-rides", name: "Carona dentro da cidade" },
-      { icon: FaCar, id: "regional-rides", name: "Carona fora da cidade" },
+      {
+        href: "/rides/regional",
+        icon: FaCar,
+        id: "regional-rides",
+        name: "Carona fora da cidade",
+      },
     ],
   },
   {
