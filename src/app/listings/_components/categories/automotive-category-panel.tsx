@@ -4,6 +4,7 @@ import styles from "../listing-flow.module.css";
 
 const automotiveCategories = [
   {
+    href: "/listings/vehicles/bicycles",
     id: "bicycle",
     image: "/listings/categories/bicycle-v2.png",
     name: "Bicicleta",

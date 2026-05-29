@@ -9,7 +9,12 @@ type PickupMediaProps = {
   sizes?: string;
 };
 
-const pickupSources = {
+const listingSources: Record<ListingImageKind, string> = {
+  bicycle: "/listings/categories/bicycle-v2.png",
+  house: "/marketplace/modern-house.png",
+  outfit: "/marketplace/beige-set.png",
+  phonePair: "/marketplace/phone-pair.png",
+  pizza: "/marketplace/pizza-promo.png",
   "pickup-black": "/listings/pickup-black.png",
   "pickup-white": "/listings/pickup-white.png",
 };
@@ -20,10 +25,7 @@ export function PickupMedia({
   imageKind,
   sizes = "(max-width: 560px) 44vw, 220px",
 }: PickupMediaProps) {
-  const src =
-    imageKind === "pickup-white"
-      ? pickupSources["pickup-white"]
-      : pickupSources["pickup-black"];
+  const src = listingSources[imageKind] ?? listingSources["pickup-black"];
 
   return (
     <span aria-hidden="true" className={`${styles.pickupMedia} ${className ?? ""}`}>

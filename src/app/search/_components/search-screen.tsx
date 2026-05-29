@@ -22,6 +22,7 @@ import { BottomNavigation } from "@/shared/navigation/bottom-navigation";
 import styles from "./search.module.css";
 
 const listingImageClasses: Record<SearchResult["imageKind"], string> = {
+  bicycle: styles.phonePair,
   house: styles.house,
   outfit: styles.outfit,
   phonePair: styles.phonePair,

@@ -160,7 +160,7 @@ const categoryGroups: CategoryGroup[] = [
     id: "properties",
     name: "Venda e locacao de imoveis",
     subcategories: [
-      { icon: FaHome, id: "houses", name: "Casas" },
+      { href: "/listings/properties/houses", icon: FaHome, id: "houses", name: "Casas" },
       { icon: FaBuilding, id: "apartments", name: "Apartamentos" },
       { icon: FaSeedling, id: "farms", name: "Chacaras" },
       { icon: FaStore, id: "commercial", name: "Comercial" },
@@ -170,7 +170,7 @@ const categoryGroups: CategoryGroup[] = [
     id: "automotive",
     name: "Automoveis",
     subcategories: [
-      { icon: FaBicycle, id: "bicycle", name: "Bicicleta" },
+      { href: "/listings/vehicles/bicycles", icon: FaBicycle, id: "bicycle", name: "Bicicleta" },
       { icon: FaMotorcycle, id: "motorcycles", name: "Motos" },
       { icon: FaCar, id: "cars", name: "Carros" },
       {

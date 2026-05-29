@@ -9,6 +9,7 @@ import { riseMotion } from "@/shared/motion/motion-variants";
 import styles from "@/app/_components/suwave-home.module.css";
 
 const listingImageClasses = {
+  bicycle: styles.phonePair,
   house: styles.house,
   outfit: styles.outfit,
   phonePair: styles.phonePair,
