@@ -19,10 +19,10 @@
 - Sistema de afiliados: codigo, regra AF, comissao e privacidade do comprador.
 - Sistema de saque: opcoes carteira/banco, valor minimo e validacao futura.
 - Sistema de checkout/produtos: base pronta para registrar comissao por produto afiliado.
+- API financeira: web consome `/api/v1/finance/wallet`, `/wallet/movements`, `/affiliate` e `/affiliate/withdrawals` via proxy Next quando houver token.
 
 ## Proxima fatia
 
-- Espelhar contratos na API.
-- Persistir solicitacao de saque.
+- Persistir solicitacao de saque em banco.
 - Registrar eventos financeiros para admin.
 - Conectar com checkout real e produtos com afiliado aberto, por aprovacao ou fechado.

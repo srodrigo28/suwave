@@ -184,6 +184,33 @@
   text-decoration: none;
 }
 
+.syncPill {
+  align-items: center;
+  background: #eefaf1;
+  border: 1px solid #d6f1dd;
+  border-radius: 999px;
+  color: #087c1e;
+  display: inline-flex;
+  font-size: 11px;
+  font-weight: 900;
+  gap: 6px;
+  justify-self: center;
+  margin: -4px auto 0;
+  padding: 7px 10px;
+}
+
+.syncPillMuted {
+  background: #f5f6f8;
+  border-color: #e7ebef;
+  color: #6b7280;
+}
+
+.syncPillError {
+  background: #fff0f0;
+  border-color: #ffd6d6;
+  color: #c73737;
+}
+
 .couponList,
 .movementList,
 .ruleList,
@@ -386,6 +413,23 @@
   height: 44px;
   margin-top: 10px;
   width: 100%;
+}
+
+.amountBox button:disabled {
+  background: #8da395;
+  cursor: not-allowed;
+}
+
+.formMessage {
+  color: #4b5563;
+  display: block;
+  font-size: 12px;
+  font-weight: 850;
+  margin-top: 8px;
+}
+
+.formMessageError {
+  color: #c73737;
 }
 
 @media (max-width: 380px) {

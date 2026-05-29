@@ -4,10 +4,12 @@ const walletSummary: WalletSummary = {
   affiliate: {
     activeDays: 42,
     availableCommission: "R$ 84,70",
+    availableCommissionCents: 8470,
     code: "SUWAVE-MARIA10",
     conversionRate: "12%",
     invitedCount: 18,
     minWithdrawal: "R$ 20,00",
+    minWithdrawalCents: 2000,
     pendingCommission: "R$ 36,40",
     status: "active",
     statusLabel: "Ativo",

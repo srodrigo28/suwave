@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { motion } from "motion/react";
 import {
@@ -13,11 +14,60 @@ import {
 } from "react-icons/fa";
 import { AppShell } from "@/app/_components/app-shell";
 import type { AffiliateAccount } from "@/models/finance";
+import { fetchAffiliateAccount, requestAffiliateWithdrawal } from "@/services/finance-client";
 import { containerMotion, riseMotion } from "@/shared/motion/motion-variants";
 import { BottomNavigation } from "@/shared/navigation/bottom-navigation";
 import styles from "@/app/wallet/_components/wallet.module.css";
 
 export function AffiliateScreen({ affiliate }: { affiliate: AffiliateAccount }) {
+  const [activeAffiliate, setActiveAffiliate] = useState(affiliate);
+  const [amount, setAmount] = useState(affiliate.minWithdrawal);
+  const [destination, setDestination] = useState<"wallet" | "bank">("bank");
+  const [formState, setFormState] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [message, setMessage] = useState("");
+  const [syncState, setSyncState] = useState<"api" | "fallback" | "loading">("loading");
+  const amountCents = useMemo(() => {
+    const numeric = Number(amount.replace(/\D/g, ""));
+    return Number.isFinite(numeric) ? numeric : 0;
+  }, [amount]);
+
+  useEffect(() => {
+    let mounted = true;
+
+    fetchAffiliateAccount()
+      .then((apiAffiliate) => {
+        if (!mounted) {
+          return;
+        }
+        setActiveAffiliate(apiAffiliate);
+        setAmount(apiAffiliate.minWithdrawal);
+        setSyncState("api");
+      })
+      .catch(() => {
+        if (mounted) {
+          setSyncState("fallback");
+        }
+      });
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  async function handleWithdrawalSubmit() {
+    setFormState("loading");
+    setMessage("");
+
+    try {
+      const withdrawal = await requestAffiliateWithdrawal({ amountCents, destination });
+      setFormState("success");
+      setMessage(`Solicitacao ${withdrawal.id} criada para conferencia.`);
+    } catch (error) {
+      setFormState("error");
+      setMessage(error instanceof Error ? error.message : "Nao foi possivel solicitar o saque.");
+    }
+  }
+
   return (
     <AppShell>
       <motion.section
@@ -42,12 +92,16 @@ export function AffiliateScreen({ affiliate }: { affiliate: AffiliateAccount }) 
             </Link>
           </motion.header>
 
+          <span className={`${styles.syncPill} ${syncState === "fallback" ? styles.syncPillMuted : ""}`}>
+            {syncState === "loading" ? "Sincronizando" : syncState === "api" ? "API conectada" : "Dados demonstrativos"}
+          </span>
+
           <motion.section className={styles.affiliateHero} variants={riseMotion}>
-            <small>{affiliate.statusLabel} ha {affiliate.activeDays} dias</small>
-            <h2>{affiliate.availableCommission}</h2>
+            <small>{activeAffiliate.statusLabel} ha {activeAffiliate.activeDays} dias</small>
+            <h2>{activeAffiliate.availableCommission}</h2>
             <p>Comissao disponivel para sacar, carregar na carteira ou acompanhar no financeiro.</p>
             <div className={styles.affiliateCode}>
-              <span>{affiliate.code}</span>
+              <span>{activeAffiliate.code}</span>
               <FaCopy aria-hidden="true" />
             </div>
           </motion.section>
@@ -55,22 +109,22 @@ export function AffiliateScreen({ affiliate }: { affiliate: AffiliateAccount }) 
           <motion.div className={styles.metricGrid} variants={containerMotion}>
             <motion.article className={styles.metricCard} variants={riseMotion}>
               <small>Total ganho</small>
-              <strong>{affiliate.totalCommission}</strong>
+              <strong>{activeAffiliate.totalCommission}</strong>
             </motion.article>
             <motion.article className={styles.metricCard} variants={riseMotion}>
               <small>Pendente</small>
-              <strong>{affiliate.pendingCommission}</strong>
+              <strong>{activeAffiliate.pendingCommission}</strong>
             </motion.article>
             <motion.article className={styles.metricCard} variants={riseMotion}>
               <small>Conversao</small>
-              <strong>{affiliate.conversionRate}</strong>
+              <strong>{activeAffiliate.conversionRate}</strong>
             </motion.article>
           </motion.div>
 
           <motion.section className={styles.withdrawPanel} variants={riseMotion}>
             <h2>Escolher forma de saque</h2>
             <div className={styles.withdrawalList}>
-              {affiliate.withdrawalOptions.map((option) => (
+              {activeAffiliate.withdrawalOptions.map((option) => (
                 <article className={styles.withdrawalCard} key={option.id}>
                   {option.id === "wallet" ? (
                     <FaPiggyBank aria-hidden="true" />
@@ -80,25 +134,45 @@ export function AffiliateScreen({ affiliate }: { affiliate: AffiliateAccount }) 
                   <div>
                     <strong>{option.label}</strong>
                     <p>{option.description}</p>
+                    <label>
+                      <input
+                        checked={destination === option.id}
+                        onChange={() => setDestination(option.id)}
+                        type="radio"
+                      />
+                      Selecionar
+                    </label>
                   </div>
                 </article>
               ))}
             </div>
             <div className={styles.amountBox}>
               <label htmlFor="withdrawal-amount">Valor para saque</label>
-              <input defaultValue={affiliate.minWithdrawal} id="withdrawal-amount" inputMode="decimal" />
-              <button type="button">Confirmar saque</button>
+              <input
+                id="withdrawal-amount"
+                inputMode="decimal"
+                onChange={(event) => setAmount(event.target.value)}
+                value={amount}
+              />
+              <button disabled={formState === "loading"} onClick={handleWithdrawalSubmit} type="button">
+                {formState === "loading" ? "Enviando" : "Confirmar saque"}
+              </button>
+              {message ? (
+                <span className={`${styles.formMessage} ${formState === "error" ? styles.formMessageError : ""}`}>
+                  {message}
+                </span>
+              ) : null}
             </div>
           </motion.section>
 
           <motion.div className={styles.metricGrid} variants={containerMotion}>
             <motion.article className={styles.metricCard} variants={riseMotion}>
               <small>Indicados</small>
-              <strong>{affiliate.invitedCount}</strong>
+              <strong>{activeAffiliate.invitedCount}</strong>
             </motion.article>
             <motion.article className={styles.metricCard} variants={riseMotion}>
               <small>Minimo</small>
-              <strong>{affiliate.minWithdrawal}</strong>
+              <strong>{activeAffiliate.minWithdrawal}</strong>
             </motion.article>
             <motion.article className={styles.metricCard} variants={riseMotion}>
               <small>Historico</small>
@@ -112,7 +186,7 @@ export function AffiliateScreen({ affiliate }: { affiliate: AffiliateAccount }) 
               <Link href="/wallet/statement">Extrato</Link>
             </div>
             <div className={styles.ruleList}>
-              {affiliate.rules.map((rule) => (
+              {activeAffiliate.rules.map((rule) => (
                 <article className={styles.ruleCard} key={rule.id}>
                   <small>{rule.title}</small>
                   <p>{rule.description}</p>

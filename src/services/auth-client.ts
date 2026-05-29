@@ -8,7 +8,7 @@ import type {
 } from "@/models/auth";
 import { useAuthStore } from "@/stores/auth-store";
 
-function getSavedAccessToken() {
+export function getSavedAccessToken() {
   const token = useAuthStore.getState().accessToken;
 
   if (token || typeof window === "undefined") {

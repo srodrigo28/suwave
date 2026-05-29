@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "motion/react";
 import {
@@ -13,11 +14,37 @@ import {
 } from "react-icons/fa";
 import { AppShell } from "@/app/_components/app-shell";
 import type { WalletSummary } from "@/models/finance";
+import { fetchWalletSummary } from "@/services/finance-client";
 import { containerMotion, riseMotion } from "@/shared/motion/motion-variants";
 import { BottomNavigation } from "@/shared/navigation/bottom-navigation";
 import styles from "./wallet.module.css";
 
 export function WalletScreen({ wallet }: { wallet: WalletSummary }) {
+  const [activeWallet, setActiveWallet] = useState(wallet);
+  const [syncState, setSyncState] = useState<"api" | "fallback" | "loading">("loading");
+
+  useEffect(() => {
+    let mounted = true;
+
+    fetchWalletSummary()
+      .then((apiWallet) => {
+        if (!mounted) {
+          return;
+        }
+        setActiveWallet(apiWallet);
+        setSyncState("api");
+      })
+      .catch(() => {
+        if (mounted) {
+          setSyncState("fallback");
+        }
+      });
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
   return (
     <AppShell>
       <motion.section
@@ -42,10 +69,18 @@ export function WalletScreen({ wallet }: { wallet: WalletSummary }) {
             </Link>
           </motion.header>
 
+          <span
+            className={`${styles.syncPill} ${
+              syncState === "fallback" ? styles.syncPillMuted : ""
+            }`}
+          >
+            {syncState === "loading" ? "Sincronizando" : syncState === "api" ? "API conectada" : "Dados demonstrativos"}
+          </span>
+
           <motion.section className={styles.balanceHero} variants={riseMotion}>
             <div>
               <small>Saldo disponivel</small>
-              <strong>{wallet.availableBalance}</strong>
+              <strong>{activeWallet.availableBalance}</strong>
               <p>Use o saldo dentro do app para compras, cashback e recompensas aprovadas.</p>
             </div>
             <span className={styles.walletMark}>
@@ -67,15 +102,15 @@ export function WalletScreen({ wallet }: { wallet: WalletSummary }) {
           <motion.div className={styles.metricGrid} variants={containerMotion}>
             <motion.article className={styles.metricCard} variants={riseMotion}>
               <small>Cashback</small>
-              <strong>{wallet.cashbackBalance}</strong>
+              <strong>{activeWallet.cashbackBalance}</strong>
             </motion.article>
             <motion.article className={styles.metricCard} variants={riseMotion}>
               <small>Comissao</small>
-              <strong>{wallet.commissionBalance}</strong>
+              <strong>{activeWallet.commissionBalance}</strong>
             </motion.article>
             <motion.article className={styles.metricCard} variants={riseMotion}>
               <small>Status</small>
-              <strong>{wallet.affiliate.statusLabel}</strong>
+              <strong>{activeWallet.affiliate.statusLabel}</strong>
             </motion.article>
           </motion.div>
 
@@ -85,7 +120,7 @@ export function WalletScreen({ wallet }: { wallet: WalletSummary }) {
               <Link href="/help?topic=coupons">Como usar</Link>
             </div>
             <div className={styles.couponList}>
-              {wallet.coupons.map((coupon) => (
+              {activeWallet.coupons.map((coupon) => (
                 <article className={styles.couponCard} key={coupon.id}>
                   <small>{coupon.storeName}</small>
                   <strong>{coupon.discount}</strong>

@@ -32,10 +32,12 @@ export type AffiliateWithdrawalOption = {
 export type AffiliateAccount = {
   activeDays: number;
   availableCommission: string;
+  availableCommissionCents?: number;
   code: string;
   conversionRate: string;
   invitedCount: number;
   minWithdrawal: string;
+  minWithdrawalCents?: number;
   pendingCommission: string;
   rules: AffiliateRule[];
   status: "active" | "paused";
@@ -52,4 +54,16 @@ export type WalletSummary = {
   coupons: WalletCoupon[];
   lastUpdatedAt: string;
   movements: WalletMovement[];
+};
+
+export type WithdrawalRequest = {
+  amountCents: number;
+  destination: "wallet" | "bank";
+};
+
+export type WithdrawalResult = {
+  amountCents: number;
+  destination: "wallet" | "bank";
+  id: string;
+  status: string;
 };

@@ -1,11 +1,13 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useEffect } from "react";
 import Link from "next/link";
 import { motion } from "motion/react";
 import { FaArrowLeft, FaExchangeAlt, FaFilter, FaMinus, FaPlus } from "react-icons/fa";
 import { AppShell } from "@/app/_components/app-shell";
 import type { WalletMovement, WalletSummary } from "@/models/finance";
+import { fetchWalletMovements } from "@/services/finance-client";
 import { containerMotion, riseMotion } from "@/shared/motion/motion-variants";
 import { BottomNavigation } from "@/shared/navigation/bottom-navigation";
 import styles from "./wallet.module.css";
@@ -24,13 +26,38 @@ function MovementIcon({ movement }: { movement: WalletMovement }) {
 
 export function StatementScreen({ wallet }: { wallet: WalletSummary }) {
   const [filter, setFilter] = useState<Filter>("all");
+  const [apiMovements, setApiMovements] = useState<WalletMovement[] | null>(null);
+  const [syncState, setSyncState] = useState<"api" | "fallback" | "loading">("loading");
+  const sourceMovements = apiMovements ?? wallet.movements;
   const movements = useMemo(() => {
     if (filter === "all") {
-      return wallet.movements;
+      return sourceMovements;
     }
 
-    return wallet.movements.filter((movement) => movement.type === filter);
-  }, [filter, wallet.movements]);
+    return sourceMovements.filter((movement) => movement.type === filter);
+  }, [filter, sourceMovements]);
+
+  useEffect(() => {
+    let mounted = true;
+
+    fetchWalletMovements()
+      .then((movementsFromApi) => {
+        if (!mounted) {
+          return;
+        }
+        setApiMovements(movementsFromApi);
+        setSyncState("api");
+      })
+      .catch(() => {
+        if (mounted) {
+          setSyncState("fallback");
+        }
+      });
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   return (
     <AppShell>
@@ -55,6 +82,10 @@ export function StatementScreen({ wallet }: { wallet: WalletSummary }) {
               <FaFilter aria-hidden="true" />
             </Link>
           </motion.header>
+
+          <span className={`${styles.syncPill} ${syncState === "fallback" ? styles.syncPillMuted : ""}`}>
+            {syncState === "loading" ? "Sincronizando" : syncState === "api" ? "API conectada" : "Dados demonstrativos"}
+          </span>
 
           <motion.div className={styles.filterRow} variants={riseMotion}>
             {[
