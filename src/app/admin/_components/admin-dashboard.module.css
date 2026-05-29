@@ -634,6 +634,90 @@
   margin: 0;
 }
 
+.adminGate {
+  align-items: center;
+  background: #f5f7fa;
+  color: #121722;
+  display: grid;
+  min-height: 100%;
+  padding: 24px;
+}
+
+.adminGateCard {
+  background: #fff;
+  border: 1px solid #e6ebf1;
+  border-radius: 8px;
+  box-shadow: 0 12px 30px rgb(17 24 39 / 0.08);
+  display: grid;
+  gap: 10px;
+  justify-self: center;
+  max-width: 380px;
+  padding: 22px;
+  width: 100%;
+}
+
+.adminGateCard > span {
+  align-items: center;
+  background: #eef8f0;
+  border-radius: 8px;
+  color: #08751d;
+  display: grid;
+  font-size: 22px;
+  height: 44px;
+  justify-items: center;
+  width: 44px;
+}
+
+.adminGateCard small {
+  color: #687281;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.adminGateCard h1 {
+  color: #111827;
+  font-size: 24px;
+  line-height: 1.05;
+  margin: 0;
+}
+
+.adminGateCard p {
+  color: #4f5967;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.adminGateCard div {
+  display: grid;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.adminGateCard a {
+  align-items: center;
+  border-radius: 8px;
+  display: inline-flex;
+  font-size: 12px;
+  font-weight: 950;
+  gap: 8px;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 12px;
+  text-decoration: none;
+}
+
+.adminGateCard a:first-child {
+  background: #08751d;
+  color: #fff;
+}
+
+.adminGateCard a:last-child {
+  background: #f6f8fb;
+  color: #111827;
+}
+
 @media (min-width: 720px) {
   .sectionGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
