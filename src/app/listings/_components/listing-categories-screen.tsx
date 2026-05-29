@@ -187,9 +187,9 @@ const categoryGroups: CategoryGroup[] = [
     id: "news",
     name: "Evento e noticia",
     subcategories: [
-      { icon: FaNewspaper, id: "events", name: "Eventos publicos" },
-      { icon: FaNewspaper, id: "private-events", name: "Eventos privados" },
-      { icon: FaNewspaper, id: "local-news", name: "Noticias locais" },
+      { href: "/events/public", icon: FaNewspaper, id: "events", name: "Eventos publicos" },
+      { href: "/events/private", icon: FaNewspaper, id: "private-events", name: "Eventos privados" },
+      { href: "/events", icon: FaNewspaper, id: "local-news", name: "Noticias locais" },
     ],
   },
   {
