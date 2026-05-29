@@ -5,6 +5,7 @@ import type {
   AdminListing,
   AdminModerationItem,
   AdminOrder,
+  AdminSupportTicket,
   AdminUser,
 } from "@/models/admin";
 
@@ -128,7 +129,7 @@ const dashboard: AdminDashboard = {
       summary: "Conteudo, eventos, denuncia e revisao",
     },
     {
-      href: "/admin?view=support",
+      href: "/admin/support",
       id: "support",
       label: "Suporte",
       pending: 9,
@@ -605,6 +606,67 @@ const moderationItems: AdminModerationItem[] = [
   },
 ];
 
+const supportTickets: AdminSupportTicket[] = [
+  {
+    channel: "WhatsApp",
+    customer: "Joao Silva",
+    id: "admin-support-8391",
+    orderId: "#8391",
+    priority: "alta",
+    sla: "Vence em 18 min",
+    status: "open",
+    statusLabel: "Aberto",
+    subject: "Entrega em rota atrasada",
+    updatedAt: "Hoje, 08:55",
+  },
+  {
+    channel: "Chat",
+    customer: "Maria Oliveira",
+    id: "admin-support-saque",
+    priority: "media",
+    sla: "Vence em 42 min",
+    status: "waiting",
+    statusLabel: "Aguardando usuario",
+    subject: "Comprovante de saque afiliado",
+    updatedAt: "Hoje, 08:22",
+  },
+  {
+    channel: "Email",
+    customer: "Studio Thais Lemos",
+    id: "admin-support-evento",
+    priority: "media",
+    sla: "2 h restantes",
+    status: "escalated",
+    statusLabel: "Escalado",
+    subject: "Publicacao de evento privado",
+    updatedAt: "Ontem, 18:10",
+  },
+  {
+    channel: "Chat",
+    customer: "Paulo Mendes",
+    id: "admin-support-delivered",
+    orderId: "#8364",
+    priority: "baixa",
+    sla: "Resolvido",
+    status: "resolved",
+    statusLabel: "Resolvido",
+    subject: "Confirmacao de entrega",
+    updatedAt: "Ontem, 18:35",
+  },
+  {
+    channel: "WhatsApp",
+    customer: "Bruna Lima",
+    id: "admin-support-refund",
+    orderId: "#8337",
+    priority: "alta",
+    sla: "Vence em 8 min",
+    status: "open",
+    statusLabel: "Aberto",
+    subject: "Reembolso por produto indisponivel",
+    updatedAt: "27/05/2026",
+  },
+];
+
 export function getAdminDashboard() {
   return dashboard;
 }
@@ -631,4 +693,8 @@ export function getAdminFinanceItems() {
 
 export function getAdminModerationItems() {
   return moderationItems;
+}
+
+export function getAdminSupportTickets() {
+  return supportTickets;
 }

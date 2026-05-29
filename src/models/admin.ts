@@ -135,6 +135,21 @@ export type AdminModerationItem = {
   title: string;
 };
 
+export type AdminSupportStatus = "open" | "waiting" | "resolved" | "escalated";
+
+export type AdminSupportTicket = {
+  channel: string;
+  customer: string;
+  id: string;
+  orderId?: string;
+  priority: "alta" | "media" | "baixa";
+  sla: string;
+  status: AdminSupportStatus;
+  statusLabel: string;
+  subject: string;
+  updatedAt: string;
+};
+
 export type AdminDashboard = {
   metrics: AdminMetric[];
   queue: AdminQueueItem[];
