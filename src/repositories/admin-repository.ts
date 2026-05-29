@@ -3,6 +3,7 @@ import type {
   AdminDashboard,
   AdminFinanceItem,
   AdminListing,
+  AdminModerationItem,
   AdminOrder,
   AdminUser,
 } from "@/models/admin";
@@ -120,7 +121,7 @@ const dashboard: AdminDashboard = {
       summary: "Carteira, cashback, afiliados e saques",
     },
     {
-      href: "/admin?view=moderation",
+      href: "/admin/moderation",
       id: "moderation",
       label: "Moderacao",
       pending: 17,
@@ -546,6 +547,64 @@ const financeItems: AdminFinanceItem[] = [
   },
 ];
 
+const moderationItems: AdminModerationItem[] = [
+  {
+    age: "12 min",
+    area: "Anuncios",
+    id: "admin-moderation-fone",
+    owner: "Tech Center Sinop",
+    priority: "alta",
+    reason: "Imagem com baixa nitidez",
+    status: "queued",
+    statusLabel: "Na fila",
+    title: "Smartphone preto 256 GB",
+  },
+  {
+    age: "28 min",
+    area: "Eventos",
+    id: "admin-moderation-workshop",
+    owner: "Studio Thais Lemos",
+    priority: "media",
+    reason: "Evento privado aguardando comprovante",
+    status: "reviewing",
+    statusLabel: "Em revisao",
+    title: "Workshop privado de beleza",
+  },
+  {
+    age: "1 h",
+    area: "Denuncias",
+    id: "admin-moderation-comment",
+    owner: "Joao Silva",
+    priority: "alta",
+    reason: "Comentario denunciado por linguagem ofensiva",
+    status: "queued",
+    statusLabel: "Na fila",
+    title: "Avaliacao de pedido #8391",
+  },
+  {
+    age: "2 h",
+    area: "Servicos",
+    id: "admin-moderation-builder",
+    owner: "Norte Construcoes",
+    priority: "baixa",
+    reason: "Perfil atualizado com nova galeria",
+    status: "approved",
+    statusLabel: "Aprovado",
+    title: "Servico de construcao",
+  },
+  {
+    age: "Ontem",
+    area: "Produtos",
+    id: "admin-moderation-rejected",
+    owner: "Conta Bloqueada",
+    priority: "media",
+    reason: "Descricao insuficiente",
+    status: "rejected",
+    statusLabel: "Rejeitado",
+    title: "Anuncio sem descricao suficiente",
+  },
+];
+
 export function getAdminDashboard() {
   return dashboard;
 }
@@ -568,4 +627,8 @@ export function getAdminCategories() {
 
 export function getAdminFinanceItems() {
   return financeItems;
+}
+
+export function getAdminModerationItems() {
+  return moderationItems;
 }

@@ -121,6 +121,20 @@ export type AdminFinanceItem = {
   type: string;
 };
 
+export type AdminModerationStatus = "queued" | "reviewing" | "approved" | "rejected";
+
+export type AdminModerationItem = {
+  age: string;
+  area: string;
+  id: string;
+  owner: string;
+  priority: "alta" | "media" | "baixa";
+  reason: string;
+  status: AdminModerationStatus;
+  statusLabel: string;
+  title: string;
+};
+
 export type AdminDashboard = {
   metrics: AdminMetric[];
   queue: AdminQueueItem[];
