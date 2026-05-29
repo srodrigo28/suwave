@@ -5,11 +5,19 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import {
   FaArrowLeft,
-  FaCheckCircle,
+  FaBolt,
+  FaCartPlus,
+  FaChevronRight,
+  FaMinus,
   FaMapMarkerAlt,
+  FaPlus,
+  FaShareAlt,
   FaShoppingBag,
+  FaShoppingCart,
+  FaStar,
   FaStore,
-  FaWhatsapp,
+  FaTruck,
+  FaUsers,
 } from "react-icons/fa";
 import { AppShell } from "@/app/_components/app-shell";
 import type { Product } from "@/models/product";
@@ -40,6 +48,27 @@ function productAttributes(product: Product) {
   );
 }
 
+function attributeValue(product: Product, key: string) {
+  return Object.values(product.attributes)
+    .map((group) => group[key])
+    .find(Boolean);
+}
+
+function installmentFor(price: string) {
+  const numericPrice = Number(
+    price.replace(/[^\d,]/g, "").replace(/\./g, "").replace(",", "."),
+  );
+
+  if (!Number.isFinite(numericPrice)) {
+    return "Em ate 12x";
+  }
+
+  return new Intl.NumberFormat("pt-BR", {
+    currency: "BRL",
+    style: "currency",
+  }).format(numericPrice / 12);
+}
+
 export function ProductDetailScreen({
   product,
   relatedProducts,
@@ -50,6 +79,11 @@ export function ProductDetailScreen({
   const cover = product.media.find((media) => media.isCover) ?? product.media[0];
   const attributes = productAttributes(product);
   const checkoutHref = product.checkoutHref ?? `/orders?checkout=${product.id}`;
+  const color = attributeValue(product, "color") ?? "Padrao";
+  const size = attributeValue(product, "size") ?? "Unico";
+  const sizes = size.split(",").map((item) => item.trim()).filter(Boolean);
+  const thumbnails = product.media.length ? product.media.slice(0, 4) : [];
+  const variantLabels = [color, "Branco", "Cinza", "Areia"].slice(0, Math.max(1, thumbnails.length + 3));
 
   return (
     <AppShell>
@@ -65,8 +99,8 @@ export function ProductDetailScreen({
               <FaArrowLeft aria-hidden="true" />
             </Link>
             <span>{productTypeLabels[product.type]}</span>
-            <Link aria-label="Meus pedidos" href="/orders">
-              <FaShoppingBag aria-hidden="true" />
+            <Link aria-label="Compartilhar produto" href={`/help?product=${product.id}`}>
+              <FaShareAlt aria-hidden="true" />
             </Link>
           </header>
 
@@ -80,17 +114,107 @@ export function ProductDetailScreen({
                 src={cover.url}
               />
             ) : null}
-            <b>{product.status === "published" ? "Publicado" : "Em analise"}</b>
+            <div className={styles.carouselDots} aria-hidden="true">
+              <span />
+              <span />
+              <span />
+              <span />
+            </div>
+          </section>
+
+          <section className={styles.variantPanel} aria-label="Variacoes do produto">
+            <div className={styles.optionHeader}>
+              <strong>Cor:</strong>
+              <span>{color}</span>
+            </div>
+            <div className={styles.thumbnailRail}>
+              {variantLabels.map((label, index) => (
+                <button className={index === 0 ? styles.activeThumb : undefined} key={label} type="button">
+                  {cover ? (
+                    <Image
+                      alt={`${product.title} - ${label}`}
+                      height={52}
+                      src={cover.thumbnailUrl ?? cover.url}
+                      width={52}
+                    />
+                  ) : null}
+                </button>
+              ))}
+              <FaChevronRight aria-hidden="true" />
+            </div>
+
+            <div className={styles.optionHeader}>
+              <strong>Tamanho:</strong>
+            </div>
+            <div className={styles.sizeRail}>
+              {sizes.map((item) => (
+                <button key={item} type="button">{item}</button>
+              ))}
+              <FaChevronRight aria-hidden="true" />
+            </div>
           </section>
 
           <section className={styles.summary}>
-            <small>
-              <FaMapMarkerAlt aria-hidden="true" />
-              {product.city} - {product.state}
-            </small>
             <h1>{product.title}</h1>
-            <strong>{product.price}</strong>
             <p>{product.description}</p>
+            <div className={styles.priceLine}>
+              <strong>{product.price}</strong>
+              <span>
+                <FaShoppingCart aria-hidden="true" />
+                Em ate 12x de {installmentFor(product.price)}
+              </span>
+            </div>
+          </section>
+
+          <section className={styles.deliveryStrip} aria-label="Entrega e localizacao">
+            <span>
+              <FaMapMarkerAlt aria-hidden="true" />
+              {product.city} {product.state}
+            </span>
+            <span>
+              <FaTruck aria-hidden="true" />
+              Frete gratis
+            </span>
+            <span>
+              <FaBolt aria-hidden="true" />
+              Chega entre hoje ou amanha
+            </span>
+          </section>
+
+          <section className={styles.sharePanel}>
+            <span>
+              <FaUsers aria-hidden="true" />
+              Compartilhe este link e ganhe comissao da venda
+            </span>
+            <strong>10%</strong>
+            <Link href={`/help?product=${product.id}`}>
+              <FaShareAlt aria-hidden="true" />
+              Compartilhar
+            </Link>
+          </section>
+
+          <section className={styles.purchasePanel}>
+            <div className={styles.quantityRow}>
+              <strong>Quantidade:</strong>
+              <div>
+                <button aria-label="Diminuir quantidade" type="button">
+                  <FaMinus aria-hidden="true" />
+                </button>
+                <span>1</span>
+                <button aria-label="Aumentar quantidade" type="button">
+                  <FaPlus aria-hidden="true" />
+                </button>
+              </div>
+              <small>10 disponiveis</small>
+            </div>
+            <Link className={styles.buyNow} href={checkoutHref}>
+              <FaShoppingBag aria-hidden="true" />
+              Comprar agora
+            </Link>
+            <Link className={styles.cartButton} href="/orders">
+              <FaCartPlus aria-hidden="true" />
+              Adicionar ao carrinho
+            </Link>
           </section>
 
           <section className={styles.sellerPanel}>
@@ -98,10 +222,13 @@ export function ProductDetailScreen({
               <FaStore aria-hidden="true" />
             </span>
             <div>
-              <small>Vendedor</small>
-              <strong>{product.sellerName}</strong>
-              <p>Conta preparada para responder, vender e atualizar status do pedido.</p>
+              <small>{product.sellerName}</small>
+              <strong>
+                <FaStar aria-hidden="true" />
+                4,7 (1.256 avaliacoes)
+              </strong>
             </div>
+            <FaChevronRight aria-hidden="true" />
           </section>
 
           <section className={styles.attributeGrid} aria-label="Detalhes do produto">
@@ -111,11 +238,6 @@ export function ProductDetailScreen({
                 <strong>{attribute.value}</strong>
               </article>
             ))}
-          </section>
-
-          <section className={styles.safeBuy}>
-            <FaCheckCircle aria-hidden="true" />
-            <p>Compre pelo SUWAVE para manter historico, suporte e acompanhamento do pedido.</p>
           </section>
 
           {relatedProducts.length ? (
@@ -131,16 +253,6 @@ export function ProductDetailScreen({
           ) : null}
         </div>
 
-        <div className={styles.stickyActions}>
-          <Link href={checkoutHref}>
-            <FaShoppingBag aria-hidden="true" />
-            Comprar
-          </Link>
-          <Link href={`/help?product=${product.id}`}>
-            <FaWhatsapp aria-hidden="true" />
-            Conversar
-          </Link>
-        </div>
         <BottomNavigation />
       </motion.section>
     </AppShell>
