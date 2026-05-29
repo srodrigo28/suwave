@@ -158,11 +158,28 @@ export function RegionalRideScreen({
           <motion.aside className={styles.statusPanel} variants={riseMotion}>
             <strong>
               <FaCheckCircle aria-hidden="true" />
-              Procurando motoristas disponiveis
+              {selectedOption.status}
             </strong>
-            <p>Quando um motorista aceitar, os dados do motorista aparecem aqui.</p>
+            <div className={styles.driverCard}>
+              <span>
+                <FaCar aria-hidden="true" />
+              </span>
+              <div>
+                <h2>{selectedOption.driver.name}</h2>
+                <p>{selectedOption.driver.vehicle}</p>
+              </div>
+              <strong>{selectedOption.driver.rating}</strong>
+            </div>
+            <div className={styles.timeline} aria-label="Status da carona">
+              {selectedOption.steps.map((step) => (
+                <span className={step.done ? styles.timelineDone : styles.timelineStep} key={step.label}>
+                  <b>{step.label}</b>
+                  <small>{step.time}</small>
+                </span>
+              ))}
+            </div>
             <small>
-              <FaShieldAlt aria-hidden="true" /> Viagens seguras com motoristas verificados.
+              <FaShieldAlt aria-hidden="true" /> {selectedOption.driver.eta}. Viagens seguras com motoristas verificados.
             </small>
           </motion.aside>
         </motion.div>

@@ -196,6 +196,32 @@ export function LocalDeliveryScreen({
               Solicitar envio
             </button>
           </motion.section>
+
+          <motion.section className={styles.statusPanel} variants={riseMotion}>
+            <strong>
+              <FaCheckCircle aria-hidden="true" />
+              {quotes[0].status}
+            </strong>
+            <div className={styles.driverCard}>
+              <span>
+                <FaMotorcycle aria-hidden="true" />
+              </span>
+              <div>
+                <h2>{quotes[0].driver.name}</h2>
+                <p>{quotes[0].driver.vehicle}</p>
+              </div>
+              <strong>{quotes[0].driver.rating}</strong>
+            </div>
+            <div className={styles.timeline} aria-label="Status do envio">
+              {quotes[0].steps.map((step) => (
+                <span className={step.done ? styles.timelineDone : styles.timelineStep} key={step.label}>
+                  <b>{step.label}</b>
+                  <small>{step.time}</small>
+                </span>
+              ))}
+            </div>
+            <small>{quotes[0].driver.eta}</small>
+          </motion.section>
         </motion.div>
         <BottomNavigation />
       </section>
