@@ -1,6 +1,6 @@
 import type { IconType } from "react-icons";
 
-export type NotificationTone = "success" | "warning" | "info";
+export type NotificationTone = "affiliate" | "cashback" | "warning" | "deadline" | "promo" | "order" | "info" | "success";
 
 export type Notification = {
   actionHref?: string;
