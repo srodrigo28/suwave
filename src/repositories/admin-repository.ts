@@ -5,6 +5,7 @@ import type {
   AdminListing,
   AdminModerationItem,
   AdminOrder,
+  AdminReport,
   AdminSupportTicket,
   AdminUser,
 } from "@/models/admin";
@@ -136,7 +137,7 @@ const dashboard: AdminDashboard = {
       summary: "Tickets, pedidos, usuarios e SLA",
     },
     {
-      href: "/admin?view=reports",
+      href: "/admin/reports",
       id: "reports",
       label: "Relatorios",
       pending: 2,
@@ -667,6 +668,64 @@ const supportTickets: AdminSupportTicket[] = [
   },
 ];
 
+const reports: AdminReport[] = [
+  {
+    id: "admin-report-sales",
+    metric: "R$ 48.920",
+    name: "Vendas por categoria",
+    owner: "Financeiro",
+    period: "Maio 2026",
+    status: "ready",
+    statusLabel: "Pronto",
+    trend: "+12,4%",
+    updatedAt: "Hoje, 08:30",
+  },
+  {
+    id: "admin-report-users",
+    metric: "1.248 usuarios",
+    name: "Crescimento de usuarios",
+    owner: "Operacao",
+    period: "Ultimos 30 dias",
+    status: "ready",
+    statusLabel: "Pronto",
+    trend: "+8,1%",
+    updatedAt: "Hoje, 07:50",
+  },
+  {
+    id: "admin-report-orders",
+    metric: "42 abertos",
+    name: "Pedidos e entregas",
+    owner: "Suporte",
+    period: "Hoje",
+    status: "processing",
+    statusLabel: "Processando",
+    trend: "-3,2%",
+    updatedAt: "Hoje, 08:10",
+  },
+  {
+    id: "admin-report-moderation",
+    metric: "17 pendentes",
+    name: "Fila de moderacao",
+    owner: "Moderacao",
+    period: "Hoje",
+    status: "scheduled",
+    statusLabel: "Agendado",
+    trend: "+4 itens",
+    updatedAt: "Ontem, 22:00",
+  },
+  {
+    id: "admin-report-audit",
+    metric: "286 logs",
+    name: "Auditoria administrativa",
+    owner: "Super admin",
+    period: "Ultimos 7 dias",
+    status: "ready",
+    statusLabel: "Pronto",
+    trend: "Estavel",
+    updatedAt: "Hoje, 06:20",
+  },
+];
+
 export function getAdminDashboard() {
   return dashboard;
 }
@@ -697,4 +756,8 @@ export function getAdminModerationItems() {
 
 export function getAdminSupportTickets() {
   return supportTickets;
+}
+
+export function getAdminReports() {
+  return reports;
 }

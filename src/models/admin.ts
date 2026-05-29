@@ -150,6 +150,20 @@ export type AdminSupportTicket = {
   updatedAt: string;
 };
 
+export type AdminReportStatus = "ready" | "processing" | "scheduled";
+
+export type AdminReport = {
+  id: string;
+  metric: string;
+  name: string;
+  owner: string;
+  period: string;
+  status: AdminReportStatus;
+  statusLabel: string;
+  trend: string;
+  updatedAt: string;
+};
+
 export type AdminDashboard = {
   metrics: AdminMetric[];
   queue: AdminQueueItem[];
