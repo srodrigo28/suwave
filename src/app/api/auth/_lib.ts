@@ -13,6 +13,7 @@ export type ApiUser = {
   email_verified_at?: string | null;
   full_name?: string;
   profile_completed?: boolean;
+  role?: string;
   whatsapp?: string | null;
 };
 
@@ -29,6 +30,7 @@ export function userToAccount(user: ApiUser) {
     emailVerified: Boolean(user.email_verified),
     emailVerifiedAt: user.email_verified_at ?? "",
     fullName: user.full_name ?? "",
+    role: user.role ?? "buyer",
     whatsapp: user.whatsapp ?? "",
   };
 }

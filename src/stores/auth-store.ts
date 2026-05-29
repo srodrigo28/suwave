@@ -11,6 +11,7 @@ export type AccountDraft = {
   emailVerified?: boolean;
   emailVerifiedAt?: string;
   fullName?: string;
+  role?: string;
   whatsapp?: string;
 };
 

@@ -17,6 +17,7 @@ export type RegisterAccountResult = {
     emailVerified: boolean;
     emailVerifiedAt: string;
     fullName: string;
+    role?: string;
     whatsapp: string;
   };
   accessToken: string;
@@ -38,6 +39,7 @@ export type LoginResult = {
     emailVerified: boolean;
     emailVerifiedAt: string;
     fullName: string;
+    role?: string;
     whatsapp: string;
   };
   accessToken?: string;
@@ -67,6 +69,7 @@ export type CompleteProfileResult = {
     emailVerified: boolean;
     emailVerifiedAt: string;
     fullName: string;
+    role?: string;
     whatsapp: string;
   };
   mode: "local";

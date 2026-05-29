@@ -15,6 +15,7 @@ const localAdminEmails = [
   "moderador@suwave.local",
   "suporte@suwave.local",
 ];
+const adminRoles = ["admin", "super-admin", "super_admin", "operator", "operador", "financeiro", "moderador", "suporte"];
 
 function getAllowedAdminEmails() {
   const configuredEmails = process.env.NEXT_PUBLIC_SUWAVE_ADMIN_EMAILS?.split(",") ?? [];
@@ -65,15 +66,18 @@ export function AdminAuthGate({ children }: { children: ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
   const accountEmail = useAuthStore((state) => state.accountDraft.email);
+  const accountRole = useAuthStore((state) => state.accountDraft.role);
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   const profileCompleted = useAuthStore((state) => state.profileCompleted);
   const isAdmin = useMemo(() => {
-    if (!accountEmail) {
-      return false;
+    const normalizedRole = accountRole?.trim().toLowerCase();
+
+    if (normalizedRole && adminRoles.includes(normalizedRole)) {
+      return true;
     }
 
-    return getAllowedAdminEmails().includes(accountEmail.trim().toLowerCase());
-  }, [accountEmail]);
+    return Boolean(accountEmail && getAllowedAdminEmails().includes(accountEmail.trim().toLowerCase()));
+  }, [accountEmail, accountRole]);
 
   useEffect(() => {
     if (!isAuthenticated) {
