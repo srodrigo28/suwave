@@ -39,7 +39,7 @@ export default function FoodReviewPage() {
         </div>
         <div className={styles.stickyBar}>
           <Link className={styles.secondaryAction} href="/food/bag">Alterar pedido</Link>
-          <Link className={styles.primaryAction} href="/orders">
+          <Link className={styles.primaryAction} href="/orders/pedido-lanche-salamanca-8391">
             <FaCheckCircle aria-hidden="true" />
             Fazer pedido
           </Link>

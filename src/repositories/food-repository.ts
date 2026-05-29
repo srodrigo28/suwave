@@ -86,9 +86,9 @@ export function getSalamancaCombo() {
 
 export function getFoodCartSummary(): FoodCartSummary {
   return {
-    discount: "- R$ 12,00",
-    fee: "Gratis",
-    subtotal: "R$ 51,90",
-    total: "R$ 39,90",
+    discount: "R$ 0,00",
+    fee: "R$ 7,90",
+    subtotal: "R$ 52,90",
+    total: "R$ 60,80",
   };
 }
