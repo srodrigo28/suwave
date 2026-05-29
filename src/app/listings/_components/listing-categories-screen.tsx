@@ -141,10 +141,10 @@ const categoryGroups: CategoryGroup[] = [
     id: "services",
     name: "Prestadores de servico",
     subcategories: [
-      { icon: FaTools, id: "builders", name: "Pedreiros" },
+      { href: "/services/builders", icon: FaTools, id: "builders", name: "Pedreiros" },
       { icon: FaWrench, id: "mechanics", name: "Mecanicos" },
       { icon: FaPaintRoller, id: "painters", name: "Pintores" },
-      { icon: FaHeart, id: "beauty", name: "Cabeleireiras" },
+      { href: "/services/hairdressers", icon: FaHeart, id: "beauty", name: "Cabeleireiras" },
     ],
   },
   {

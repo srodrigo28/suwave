@@ -38,7 +38,7 @@ const categories = [
   { name: "Carona", icon: FaCar, tone: "green", href: "/rides/regional" },
   { name: "Envios", icon: FaCube, tone: "blue", href: "/shipping/local" },
   { name: "Farmacia", icon: FaMedkit, tone: "mint" },
-  { name: "Prestadores de serviço", icon: FaHandshake, tone: "gray" },
+  { name: "Prestadores de serviço", icon: FaHandshake, tone: "gray", href: "/services/builders" },
   { name: "Empregos", icon: FaBriefcase, tone: "violet", href: "/jobs" },
   { name: "Mais categorias", icon: FaPlus, tone: "soft", href: "/listings" },
 ] satisfies {
