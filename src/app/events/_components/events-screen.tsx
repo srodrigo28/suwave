@@ -4,6 +4,7 @@ import {
   FaFilter,
   FaMapMarkerAlt,
   FaNewspaper,
+  FaSearch,
   FaTicketAlt,
   FaUsers,
 } from "react-icons/fa";
@@ -25,6 +26,13 @@ const tabItems = [
   { href: "/events/private", id: "private", label: "Privados", icon: FaUsers },
 ] as const;
 
+const filterItemsByTab: Record<"all" | EventVisibility, string[]> = {
+  all: ["Hoje", "Final de semana", "Musica ao vivo", "Promocoes"],
+  news: ["Cidade", "Agenda", "Comunicados"],
+  private: ["Hoje", "Final de semana", "Musica ao vivo", "Promocoes", "Religiosos"],
+  public: ["Gratis", "Familia", "Ingressos", "Agenda publica"],
+};
+
 function EventMedia({ visibility }: { visibility: EventVisibility }) {
   const Icon = visibility === "private" ? FaUsers : visibility === "news" ? FaNewspaper : FaTicketAlt;
 
@@ -38,6 +46,9 @@ function EventMedia({ visibility }: { visibility: EventVisibility }) {
 export function EventsScreen({ activeTab, events, title }: EventsScreenProps) {
   const privateCount = events.filter((event) => event.visibility === "private").length;
   const publicCount = events.filter((event) => event.visibility === "public").length;
+  const searchPlaceholder =
+    activeTab === "private" ? "Buscar eventos e noticias privadas" : "Buscar noticias e eventos publicos";
+  const filterItems = filterItemsByTab[activeTab];
 
   return (
     <AppShell>
@@ -91,6 +102,20 @@ export function EventsScreen({ activeTab, events, title }: EventsScreenProps) {
               );
             })}
           </nav>
+
+          <section className={styles.searchPanel} aria-label="Busca e filtros de eventos">
+            <label className={styles.searchBox}>
+              <FaSearch aria-hidden="true" />
+              <input aria-label={searchPlaceholder} placeholder={searchPlaceholder} type="search" />
+            </label>
+            <div className={styles.filterChips} aria-label="Filtros rapidos">
+              {filterItems.map((item) => (
+                <button key={item} type="button">
+                  {item}
+                </button>
+              ))}
+            </div>
+          </section>
 
           <section className={styles.sectionHeader}>
             <h2>Em destaque</h2>

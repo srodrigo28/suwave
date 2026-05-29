@@ -26,12 +26,16 @@ function DetailMedia({ visibility }: { visibility: EventVisibility }) {
 }
 
 export function EventDetailScreen({ event }: { event: LocalEvent }) {
+  const backHref = event.visibility === "private" ? "/events/private" : "/events/public";
+  const typeLabel = event.visibility === "private" ? "Privado" : event.visibility === "news" ? "Noticia" : "Publico";
+  const ctaHref = event.visibility === "private" ? "/help" : "/events/public";
+
   return (
     <AppShell>
       <section className={styles.screen}>
         <div className={styles.scroll}>
           <header className={styles.topBar}>
-            <BackButton ariaLabel="Voltar para eventos" href="/events" />
+            <BackButton ariaLabel="Voltar para eventos" href={backHref} />
             <h1>Detalhe</h1>
             <button className={styles.iconButton} aria-label="Compartilhar" type="button">
               <FaShareAlt aria-hidden="true" />
@@ -66,7 +70,7 @@ export function EventDetailScreen({ event }: { event: LocalEvent }) {
               </span>
               <span className={styles.infoItem}>
                 <span>Tipo</span>
-                <strong>{event.visibility === "private" ? "Privado" : "Publico"}</strong>
+                <strong>{typeLabel}</strong>
               </span>
             </div>
             <p>{event.description}</p>
@@ -83,11 +87,11 @@ export function EventDetailScreen({ event }: { event: LocalEvent }) {
             </span>
             <div>
               <h2>{event.host}</h2>
-              <p>Organizador vinculado ao card para contato, reserva ou leitura completa.</p>
+              <p>Organizador vinculado ao card para contato, reserva, participacao ou leitura completa.</p>
             </div>
           </section>
 
-          <Link className={styles.cta} href="/affiliate">
+          <Link className={styles.cta} href={ctaHref}>
             <FaBell aria-hidden="true" />
             {event.ctaLabel}
           </Link>

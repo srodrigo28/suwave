@@ -151,6 +151,62 @@
   color: #ffffff;
 }
 
+.searchPanel {
+  background: #ffffff;
+  border: 1px solid #dce4ee;
+  border-radius: 8px;
+  display: grid;
+  gap: 0.75rem;
+  padding: 0.75rem;
+}
+
+.searchBox {
+  align-items: center;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  color: #64748b;
+  display: grid;
+  gap: 0.55rem;
+  grid-template-columns: 1rem 1fr;
+  min-height: 2.75rem;
+  padding: 0 0.8rem;
+}
+
+.searchBox input {
+  background: transparent;
+  border: 0;
+  color: #172033;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  min-width: 0;
+  outline: 0;
+}
+
+.searchBox input::placeholder {
+  color: #64748b;
+}
+
+.filterChips {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.1rem;
+}
+
+.filterChips button {
+  background: #edf2f7;
+  border: 1px solid #dce4ee;
+  border-radius: 999px;
+  color: #334155;
+  flex: 0 0 auto;
+  font-size: 0.74rem;
+  font-weight: 900;
+  min-height: 2.15rem;
+  padding: 0 0.75rem;
+}
+
 .sectionHeader {
   align-items: end;
   display: flex;
