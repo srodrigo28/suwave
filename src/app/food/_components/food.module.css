@@ -1,0 +1,416 @@
+.foodScreen {
+  color: #101317;
+  height: calc(100% - 58px);
+  min-height: 0;
+  position: relative;
+}
+
+.foodScroll {
+  height: calc(100% - 70px);
+  overflow: auto;
+  padding: 12px 16px 92px;
+  scrollbar-width: none;
+}
+
+.foodScroll::-webkit-scrollbar {
+  display: none;
+}
+
+.topBar {
+  align-items: center;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) 42px;
+  min-height: 52px;
+}
+
+.topBar h1 {
+  font-size: 16px;
+  font-weight: 950;
+  letter-spacing: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: center;
+}
+
+.iconButton {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  color: #11151b;
+  cursor: pointer;
+  display: grid;
+  font-size: 18px;
+  height: 42px;
+  place-items: center;
+  text-decoration: none;
+  width: 42px;
+}
+
+.searchBar {
+  align-items: center;
+  border: 1px solid #eef0f4;
+  border-radius: 7px;
+  color: #717781;
+  display: grid;
+  font-size: 11px;
+  gap: 8px;
+  grid-template-columns: auto 1fr;
+  height: 42px;
+  margin-bottom: 12px;
+  padding: 0 11px;
+}
+
+.restaurantList,
+.optionGroup,
+.summaryList {
+  display: grid;
+  gap: 9px;
+}
+
+.restaurantCard,
+.optionCard,
+.panel {
+  background: #fff;
+  border: 1px solid #edf0f4;
+  border-radius: 8px;
+  color: #11151b;
+  text-decoration: none;
+}
+
+.restaurantCard {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 56px minmax(0, 1fr);
+  padding: 11px;
+}
+
+.restaurantCardActive,
+.optionCardActive {
+  border-color: #08751d;
+  box-shadow: 0 0 0 1px #08751d;
+}
+
+.logo {
+  align-items: center;
+  background: #fff5ea;
+  border-radius: 50%;
+  color: #cb5f12;
+  display: grid;
+  font-size: 25px;
+  height: 52px;
+  place-items: center;
+  width: 52px;
+}
+
+.restaurantCopy {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+}
+
+.restaurantCopy h2,
+.comboInfo h1,
+.panel h2,
+.optionGroup h2 {
+  font-size: 13px;
+  font-weight: 950;
+  letter-spacing: 0;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.metaLine {
+  align-items: center;
+  color: #56606d;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 8px;
+  font-weight: 850;
+  gap: 8px;
+  line-height: 1.2;
+}
+
+.metaLine svg {
+  color: #08751d;
+}
+
+.badgeRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.badgeRow span,
+.couponRow span {
+  background: #eef7f0;
+  border-radius: 999px;
+  color: #08751d;
+  font-size: 8px;
+  font-weight: 950;
+  padding: 5px 7px;
+}
+
+.hero {
+  background: #fff1e7;
+  border-radius: 8px;
+  display: grid;
+  min-height: 148px;
+  overflow: hidden;
+  place-items: center;
+  position: relative;
+}
+
+.hero img {
+  object-fit: cover;
+}
+
+.storeHeader {
+  align-items: center;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 52px minmax(0, 1fr);
+  margin: 12px 0;
+}
+
+.storeHeader h2 {
+  font-size: 14px;
+  font-weight: 950;
+  margin: 0 0 4px;
+}
+
+.storeHeader p,
+.comboInfo p,
+.optionCard p,
+.panel p {
+  color: #59616b;
+  font-size: 9px;
+  font-weight: 750;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.couponRow {
+  display: flex;
+  gap: 7px;
+  margin-bottom: 12px;
+}
+
+.comboInfo {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.priceLine {
+  align-items: center;
+  display: flex;
+  gap: 9px;
+}
+
+.priceLine strong {
+  color: #08751d;
+  font-size: 18px;
+  font-weight: 950;
+}
+
+.priceLine del {
+  color: #88909b;
+  font-size: 11px;
+  font-weight: 850;
+}
+
+.optionGroup {
+  margin-bottom: 14px;
+}
+
+.optionCard {
+  align-items: center;
+  display: grid;
+  gap: 9px;
+  grid-template-columns: minmax(0, 1fr) 34px;
+  padding: 10px;
+}
+
+.optionCard strong {
+  display: block;
+  font-size: 11px;
+  font-weight: 950;
+  margin-bottom: 3px;
+}
+
+.optionCard small {
+  color: #08751d;
+  font-size: 9px;
+  font-weight: 950;
+}
+
+.addIcon {
+  align-items: center;
+  background: #08751d;
+  border-radius: 50%;
+  color: #fff;
+  display: grid;
+  height: 30px;
+  place-items: center;
+  width: 30px;
+}
+
+.observation {
+  display: grid;
+  gap: 7px;
+  margin-bottom: 14px;
+}
+
+.observation textarea {
+  background: #f8fafc;
+  border: 1px solid #e6ebf1;
+  border-radius: 8px;
+  color: #11151b;
+  font: inherit;
+  font-size: 11px;
+  min-height: 72px;
+  padding: 10px;
+  resize: none;
+}
+
+.stickyBar {
+  align-items: center;
+  background: #fff;
+  border-top: 1px solid #edf0f4;
+  bottom: 58px;
+  box-shadow: 0 -10px 24px rgb(18 25 38 / 0.08);
+  display: grid;
+  gap: 9px;
+  grid-template-columns: auto minmax(0, 1fr);
+  left: 0;
+  padding: 10px 16px;
+  position: absolute;
+  right: 0;
+}
+
+.quantity {
+  align-items: center;
+  background: #f6f8fb;
+  border-radius: 999px;
+  display: flex;
+  font-size: 11px;
+  font-weight: 950;
+  gap: 10px;
+  height: 42px;
+  padding: 0 11px;
+}
+
+.quantity button {
+  background: transparent;
+  border: 0;
+  color: #08751d;
+  cursor: pointer;
+  display: grid;
+  padding: 0;
+  place-items: center;
+}
+
+.primaryAction {
+  align-items: center;
+  background: #08751d;
+  border: 0;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  font-size: 12px;
+  font-weight: 950;
+  gap: 8px;
+  height: 42px;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.addressSheet {
+  background: rgb(0 0 0 / 0.4);
+  inset: 0 0 58px;
+  display: grid;
+  align-items: end;
+  position: absolute;
+  z-index: 5;
+}
+
+.addressSheet section {
+  background: #fff;
+  border-radius: 14px 14px 0 0;
+  display: grid;
+  gap: 11px;
+  padding: 18px 16px;
+}
+
+.addressCard,
+.cartItem,
+.summaryRow {
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 11px;
+}
+
+.addressActions,
+.cartActions {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.secondaryAction {
+  align-items: center;
+  background: #fff;
+  border: 1px solid #dfe5ec;
+  border-radius: 8px;
+  color: #11151b;
+  cursor: pointer;
+  display: flex;
+  font-size: 11px;
+  font-weight: 950;
+  height: 42px;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.panel {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 10px;
+  padding: 13px;
+}
+
+.cartItem {
+  display: grid;
+  gap: 5px;
+}
+
+.cartItem strong,
+.summaryRow strong {
+  font-size: 11px;
+  font-weight: 950;
+}
+
+.cartActions button {
+  align-items: center;
+  background: #fff;
+  border: 1px solid #dfe5ec;
+  border-radius: 7px;
+  color: #08751d;
+  cursor: pointer;
+  display: grid;
+  height: 32px;
+  place-items: center;
+}
+
+.summaryRow {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 430px) {
+  .foodScroll {
+    padding-inline: 13px;
+  }
+}

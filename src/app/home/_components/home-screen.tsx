@@ -34,7 +34,7 @@ import styles from "@/app/_components/suwave-home.module.css";
 
 const categories = [
   { name: "Mercado", icon: FaShoppingCart, tone: "lime" },
-  { name: "Comida e bebida", icon: FaHamburger, tone: "food" },
+  { name: "Comida e bebida", icon: FaHamburger, tone: "food", href: "/food/snacks" },
   { name: "Carona", icon: FaCar, tone: "green", href: "/rides/regional" },
   { name: "Envios", icon: FaCube, tone: "blue", href: "/shipping/local" },
   { name: "Farmacia", icon: FaMedkit, tone: "mint" },

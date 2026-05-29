@@ -79,7 +79,7 @@ const categoryGroups: CategoryGroup[] = [
     name: "Comida e bebida",
     subcategories: [
       { icon: FaUtensils, id: "restaurants", name: "Restaurantes" },
-      { icon: FaHamburger, id: "snacks", name: "Lanches" },
+      { href: "/food/snacks", icon: FaHamburger, id: "snacks", name: "Lanches" },
       { icon: FaShoppingBasket, id: "drinks", name: "Distribuidora de Bebidas" },
       { icon: FaPizzaSlice, id: "pizza", name: "Pizzarias" },
       { icon: FaAppleAlt, id: "japanese", name: "Japonesa" },
