@@ -1,6 +1,7 @@
 import type {
   AdminCategory,
   AdminDashboard,
+  AdminFinanceItem,
   AdminListing,
   AdminOrder,
   AdminUser,
@@ -112,7 +113,7 @@ const dashboard: AdminDashboard = {
       summary: "Pagamento, entrega, cancelamento e suporte",
     },
     {
-      href: "/admin?view=finance",
+      href: "/admin/finance",
       id: "finance",
       label: "Financeiro",
       pending: 5,
@@ -482,6 +483,69 @@ const categories: AdminCategory[] = [
   },
 ];
 
+const financeItems: AdminFinanceItem[] = [
+  {
+    amount: "R$ 84,70",
+    city: "Sinop - MT",
+    createdAt: "Hoje, 08:13",
+    id: "admin-finance-saque-maria",
+    method: "Pix",
+    owner: "Maria Oliveira",
+    reason: "Saque afiliado",
+    status: "pending",
+    statusLabel: "Validar saque",
+    type: "Afiliados",
+  },
+  {
+    amount: "R$ 1.248,90",
+    city: "Sinop - MT",
+    createdAt: "Hoje, 07:44",
+    id: "admin-finance-repasse-salamanca",
+    method: "Carteira SUWAVE",
+    owner: "Hamburgueria Salamanca Ca'dore",
+    reason: "Repasse de vendas",
+    status: "approved",
+    statusLabel: "Aprovado",
+    type: "Repasse",
+  },
+  {
+    amount: "R$ 36,20",
+    city: "Sorriso - MT",
+    createdAt: "Ontem, 18:02",
+    id: "admin-finance-cashback-lucas",
+    method: "Carteira",
+    owner: "Lucas Andrade",
+    reason: "Cashback promocional",
+    status: "paid",
+    statusLabel: "Pago",
+    type: "Cashback",
+  },
+  {
+    amount: "R$ 450,00",
+    city: "Sinop - MT",
+    createdAt: "Ontem, 16:35",
+    id: "admin-finance-estorno-conta",
+    method: "Pix",
+    owner: "Conta Pendente",
+    reason: "Estorno pedido #8349",
+    status: "pending",
+    statusLabel: "Aguardando analise",
+    type: "Estorno",
+  },
+  {
+    amount: "R$ 2.980,00",
+    city: "Lucas do Rio Verde - MT",
+    createdAt: "27/05/2026",
+    id: "admin-finance-bloqueio-auto",
+    method: "Transferencia",
+    owner: "Auto Center Silva",
+    reason: "Divergencia documental",
+    status: "blocked",
+    statusLabel: "Bloqueado",
+    type: "Repasse",
+  },
+];
+
 export function getAdminDashboard() {
   return dashboard;
 }
@@ -500,4 +564,8 @@ export function getAdminOrders() {
 
 export function getAdminCategories() {
   return categories;
+}
+
+export function getAdminFinanceItems() {
+  return financeItems;
 }

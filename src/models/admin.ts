@@ -106,6 +106,21 @@ export type AdminCategory = {
   updatedAt: string;
 };
 
+export type AdminFinanceStatus = "pending" | "approved" | "paid" | "blocked";
+
+export type AdminFinanceItem = {
+  amount: string;
+  city: string;
+  createdAt: string;
+  id: string;
+  method: string;
+  owner: string;
+  reason: string;
+  status: AdminFinanceStatus;
+  statusLabel: string;
+  type: string;
+};
+
 export type AdminDashboard = {
   metrics: AdminMetric[];
   queue: AdminQueueItem[];
