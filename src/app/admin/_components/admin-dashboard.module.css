@@ -414,6 +414,31 @@
   padding: 12px;
 }
 
+.listingRow {
+  align-items: center;
+  background: #fff;
+  border: 1px solid #e6ebf1;
+  border-radius: 8px;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 48px minmax(0, 1fr);
+  padding: 12px;
+}
+
+.listingThumb {
+  align-items: center;
+  background: #eef8f0;
+  border: 1px solid #cfe7d4;
+  border-radius: 8px;
+  color: #08751d;
+  display: grid;
+  font-size: 12px;
+  font-weight: 950;
+  height: 48px;
+  justify-items: center;
+  width: 48px;
+}
+
 .userAvatar {
   align-items: center;
   background: #111827;
@@ -499,6 +524,21 @@
   color: #b51e1e;
 }
 
+.userStatus.published {
+  background: #eef8f0;
+  color: #08751d;
+}
+
+.userStatus.paused {
+  background: #eef3ff;
+  color: #3152a3;
+}
+
+.userStatus.rejected {
+  background: #ffecec;
+  color: #b51e1e;
+}
+
 .userActions {
   display: flex;
   gap: 7px;
@@ -554,6 +594,10 @@
   }
 
   .userRow {
+    grid-template-columns: 42px minmax(0, 1fr) auto 96px;
+  }
+
+  .listingRow {
     grid-template-columns: 42px minmax(0, 1fr) auto 96px;
   }
 

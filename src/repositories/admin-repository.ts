@@ -1,4 +1,4 @@
-import type { AdminDashboard, AdminUser } from "@/models/admin";
+import type { AdminDashboard, AdminListing, AdminUser } from "@/models/admin";
 
 const dashboard: AdminDashboard = {
   metrics: [
@@ -92,7 +92,7 @@ const dashboard: AdminDashboard = {
       summary: "Arvore, icones, destaque e ordenacao",
     },
     {
-      href: "/admin?view=listings",
+      href: "/admin/listings",
       id: "listings",
       label: "Produtos e anuncios",
       pending: 17,
@@ -209,10 +209,95 @@ const users: AdminUser[] = [
   },
 ];
 
+const listings: AdminListing[] = [
+  {
+    city: "Sinop - MT",
+    createdAt: "29/05/2026",
+    id: "admin-listing-ranger",
+    mediaCount: 5,
+    price: "R$ 179.900,00",
+    seller: "Auto Center Silva",
+    status: "published",
+    statusLabel: "Publicado",
+    title: "Ford Ranger XLT 3.2 4x4",
+    type: "Veiculo",
+    updatedAt: "Hoje, 08:55",
+  },
+  {
+    city: "Sinop - MT",
+    createdAt: "29/05/2026",
+    id: "admin-listing-fone",
+    mediaCount: 2,
+    price: "R$ 3.499,00",
+    seller: "Tech Center Sinop",
+    status: "review",
+    statusLabel: "Revisar midias",
+    title: "Smartphone preto 256 GB",
+    type: "Produto",
+    updatedAt: "Hoje, 08:12",
+  },
+  {
+    city: "Sinop - MT",
+    createdAt: "28/05/2026",
+    id: "admin-listing-pizza",
+    mediaCount: 3,
+    price: "R$ 49,90",
+    seller: "Hamburgueria Salamanca Ca'dore",
+    status: "published",
+    statusLabel: "Publicado",
+    title: "Pizza grande com entrega",
+    type: "Comida",
+    updatedAt: "Ontem, 19:30",
+  },
+  {
+    city: "Sorriso - MT",
+    createdAt: "27/05/2026",
+    id: "admin-listing-beauty",
+    mediaCount: 4,
+    price: "A partir de R$ 80,00",
+    seller: "Studio Thais Lemos",
+    status: "review",
+    statusLabel: "Aprovar servico",
+    title: "Pacote de escova e hidratacao",
+    type: "Servico",
+    updatedAt: "Ontem, 17:05",
+  },
+  {
+    city: "Sinop - MT",
+    createdAt: "26/05/2026",
+    id: "admin-listing-house",
+    mediaCount: 6,
+    price: "R$ 750.000,00",
+    seller: "Oliveira Imoveis",
+    status: "paused",
+    statusLabel: "Pausado",
+    title: "Casa a venda - Jardim das Oliveiras",
+    type: "Imovel",
+    updatedAt: "26/05/2026",
+  },
+  {
+    city: "Lucas do Rio Verde - MT",
+    createdAt: "25/05/2026",
+    id: "admin-listing-rejected",
+    mediaCount: 1,
+    price: "R$ 120,00",
+    seller: "Conta Bloqueada",
+    status: "rejected",
+    statusLabel: "Rejeitado",
+    title: "Anuncio sem descricao suficiente",
+    type: "Produto",
+    updatedAt: "25/05/2026",
+  },
+];
+
 export function getAdminDashboard() {
   return dashboard;
 }
 
 export function getAdminUsers() {
   return users;
+}
+
+export function getAdminListings() {
+  return listings;
 }

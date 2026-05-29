@@ -49,6 +49,22 @@ export type AdminUser = {
   verified: boolean;
 };
 
+export type AdminListingStatus = "published" | "review" | "paused" | "rejected";
+
+export type AdminListing = {
+  city: string;
+  createdAt: string;
+  id: string;
+  mediaCount: number;
+  price: string;
+  seller: string;
+  status: AdminListingStatus;
+  statusLabel: string;
+  title: string;
+  type: string;
+  updatedAt: string;
+};
+
 export type AdminDashboard = {
   metrics: AdminMetric[];
   queue: AdminQueueItem[];
