@@ -145,14 +145,14 @@ export function OrderDetailScreen({ order }: { order: Order }) {
           </section>
 
           <div className={styles.detailActions}>
-            <button type="button">
+            <Link href={order.supportHref}>
               <FaHeadset aria-hidden="true" />
               Suporte
-            </button>
-            <button type="button">
+            </Link>
+            <Link href={order.reorderHref}>
               <FaRedo aria-hidden="true" />
               Pedir novamente
-            </button>
+            </Link>
           </div>
 
           <aside className={styles.securityTip}>

@@ -508,22 +508,22 @@
   margin-bottom: 10px;
 }
 
-.detailActions button {
+.detailActions a {
   align-items: center;
   background: #fff;
   border: 1px solid #dfe4ea;
   border-radius: 8px;
   color: #111317;
-  cursor: pointer;
   display: flex;
   font-size: 12px;
   font-weight: 950;
   gap: 8px;
   height: 46px;
   justify-content: center;
+  text-decoration: none;
 }
 
-.detailActions button:first-child {
+.detailActions a:first-child {
   background: #087c1e;
   border-color: #087c1e;
   color: #fff;

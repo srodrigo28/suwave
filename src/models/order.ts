@@ -29,6 +29,7 @@ export type Order = {
   items: OrderItem[];
   paymentMethod: string;
   placedAt: string;
+  reorderHref: string;
   seller: string;
   sellerAvatar: string;
   shortId: string;
@@ -36,6 +37,7 @@ export type Order = {
   statusLabel: string;
   subtotal: string;
   supportReason?: string;
+  supportHref: string;
   total: string;
   trackingSteps: OrderStep[];
 };
