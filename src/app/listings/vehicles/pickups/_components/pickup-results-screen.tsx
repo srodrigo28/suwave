@@ -1,15 +1,53 @@
 "use client";
 
 import Link from "next/link";
+import { useMemo, useState } from "react";
 import { FaFilter, FaMapMarkerAlt, FaSearch } from "react-icons/fa";
 import { AppShell } from "@/app/_components/app-shell";
+import { ListingResultsFilters } from "@/app/listings/_components/listing-results-filters";
 import type { Listing } from "@/models/listing";
 import { BackButton } from "@/shared/navigation/back-button";
 import { BottomNavigation } from "@/shared/navigation/bottom-navigation";
 import { PickupMedia } from "@/app/listings/_components/pickup-media";
 import styles from "@/app/listings/_components/listing-flow.module.css";
 
+const pickupFilters = [
+  { label: "Todas", value: "all" },
+  { label: "2023", value: "2023" },
+  { label: "2022", value: "2022" },
+  { label: "Diesel", value: "diesel" },
+];
+
 export function PickupResultsScreen({ listings }: { listings: Listing[] }) {
+  const [search, setSearch] = useState("");
+  const [activeFilter, setActiveFilter] = useState("all");
+  const filteredListings = useMemo(
+    () =>
+      listings.filter((listing) => {
+        const haystack = [
+          listing.title,
+          listing.place,
+          listing.price,
+          listing.modelYear,
+          listing.fuel,
+          listing.mileage,
+          listing.color,
+          listing.transmission,
+        ]
+          .filter(Boolean)
+          .join(" ")
+          .toLowerCase();
+        const matchesSearch = haystack.includes(search.trim().toLowerCase());
+        const matchesFilter =
+          activeFilter === "all" ||
+          listing.modelYear === activeFilter ||
+          listing.fuel?.toLowerCase() === activeFilter;
+
+        return matchesSearch && matchesFilter;
+      }),
+    [activeFilter, listings, search],
+  );
+
   return (
     <AppShell>
       <section className={styles.flowScreen}>
@@ -27,14 +65,19 @@ export function PickupResultsScreen({ listings }: { listings: Listing[] }) {
             </div>
           </header>
 
-          <label className={styles.searchBar}>
-            <FaSearch aria-hidden="true" />
-            <span>Buscar caminhonetes</span>
-          </label>
-          <span className={styles.resultCount}>156 resultados encontrados</span>
+          <ListingResultsFilters
+            activeFilter={activeFilter}
+            ariaLabel="Filtros de caminhonetes"
+            filters={pickupFilters}
+            onFilterChange={setActiveFilter}
+            onSearchChange={setSearch}
+            resultCount={filteredListings.length}
+            searchLabel="Buscar caminhonetes"
+            searchValue={search}
+          />
 
           <div className={styles.resultList}>
-            {listings.slice(0, 4).map((listing) => (
+            {filteredListings.length ? filteredListings.map((listing) => (
               <Link
                 className={styles.resultCard}
                 href={`/listings/vehicles/pickups/${listing.slug}`}
@@ -55,7 +98,13 @@ export function PickupResultsScreen({ listings }: { listings: Listing[] }) {
                   </em>
                 </span>
               </Link>
-            ))}
+            )) : (
+              <article className={styles.emptyResults}>
+                <FaSearch aria-hidden="true" />
+                <h2>Nenhuma caminhonete encontrada</h2>
+                <p>Altere a busca ou escolha outro filtro.</p>
+              </article>
+            )}
           </div>
         </div>
         <BottomNavigation />
