@@ -19,6 +19,7 @@ export type Listing = {
   modelYear?: string;
   place: string;
   price: string;
+  productId?: string;
   seller?: string;
   slug?: string;
   tags?: ListingTag[];

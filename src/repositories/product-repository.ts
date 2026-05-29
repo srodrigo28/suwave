@@ -184,3 +184,17 @@ export function getProductMediaRules() {
 export function getSeedProducts() {
   return products;
 }
+
+export function getProductById(productId: string) {
+  return products.find((product) => product.id === productId);
+}
+
+export function getRelatedProducts(productId: string) {
+  const product = getProductById(productId);
+
+  if (!product) {
+    return [];
+  }
+
+  return products.filter((item) => item.id !== product.id && item.type === product.type);
+}

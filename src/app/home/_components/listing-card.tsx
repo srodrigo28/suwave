@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "motion/react";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import type { Listing } from "@/models/listing";
@@ -17,8 +18,8 @@ const listingImageClasses = {
 };
 
 export function ListingCard({ listing }: { listing: Listing }) {
-  return (
-    <motion.article className={styles.listing} variants={riseMotion}>
+  const content = (
+    <>
       <div className={styles.listingImage}>
         {listing.badge ? <b>{listing.badge}</b> : null}
         <Image
@@ -37,6 +38,18 @@ export function ListingCard({ listing }: { listing: Listing }) {
           {listing.place}
         </p>
       </div>
+    </>
+  );
+
+  return (
+    <motion.article className={styles.listing} variants={riseMotion}>
+      {listing.productId ? (
+        <Link className={styles.listingLink} href={`/products/${listing.productId}`}>
+          {content}
+        </Link>
+      ) : (
+        content
+      )}
     </motion.article>
   );
 }

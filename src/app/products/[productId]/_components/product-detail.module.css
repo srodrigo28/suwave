@@ -1,0 +1,260 @@
+.productScreen {
+  background: #f6f8fb;
+  color: #111317;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.productScroll {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+  overflow-y: auto;
+  padding: 14px 14px 138px;
+}
+
+.productScroll::-webkit-scrollbar {
+  display: none;
+}
+
+.productHeader {
+  align-items: center;
+  display: grid;
+  grid-template-columns: 40px 1fr 40px;
+  min-height: 42px;
+}
+
+.productHeader a {
+  align-items: center;
+  background: #fff;
+  border: 1px solid #edf0f4;
+  border-radius: 50%;
+  color: #111317;
+  display: inline-flex;
+  height: 38px;
+  justify-content: center;
+  text-decoration: none;
+  width: 38px;
+}
+
+.productHeader span {
+  color: #4b5563;
+  font-size: 12px;
+  font-weight: 900;
+  text-align: center;
+}
+
+.mediaStage {
+  aspect-ratio: 1.08;
+  background: #eef1f4;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+.mediaStage img {
+  object-fit: contain;
+  padding: 12px;
+}
+
+.mediaStage b {
+  background: #087c1e;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 950;
+  left: 12px;
+  padding: 7px 10px;
+  position: absolute;
+  top: 12px;
+}
+
+.summary,
+.sellerPanel,
+.safeBuy,
+.relatedList {
+  background: #fff;
+  border: 1px solid #eceef2;
+  border-radius: 8px;
+  padding: 14px;
+}
+
+.summary small {
+  align-items: center;
+  color: #6b7280;
+  display: inline-flex;
+  font-size: 12px;
+  font-weight: 850;
+  gap: 6px;
+}
+
+.summary h1 {
+  color: #111317;
+  font-size: 22px;
+  line-height: 1.1;
+  margin: 9px 0 8px;
+}
+
+.summary strong {
+  color: #087c1e;
+  display: block;
+  font-size: 24px;
+  font-weight: 950;
+  margin-bottom: 10px;
+}
+
+.summary p,
+.sellerPanel p,
+.safeBuy p {
+  color: #4b5563;
+  font-size: 13px;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.sellerPanel {
+  align-items: center;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 46px 1fr;
+}
+
+.sellerPanel > span {
+  align-items: center;
+  background: #eefaf1;
+  border-radius: 50%;
+  color: #087c1e;
+  display: inline-flex;
+  height: 46px;
+  justify-content: center;
+  width: 46px;
+}
+
+.sellerPanel small {
+  color: #6b7280;
+  display: block;
+  font-size: 11px;
+  font-weight: 850;
+  margin-bottom: 3px;
+}
+
+.sellerPanel strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 950;
+  margin-bottom: 3px;
+}
+
+.attributeGrid {
+  display: grid;
+  gap: 9px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.attributeGrid article {
+  background: #fff;
+  border: 1px solid #eceef2;
+  border-radius: 8px;
+  min-width: 0;
+  padding: 12px;
+}
+
+.attributeGrid small {
+  color: #6b7280;
+  display: block;
+  font-size: 11px;
+  font-weight: 850;
+  margin-bottom: 4px;
+  text-transform: capitalize;
+}
+
+.attributeGrid strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 950;
+  overflow-wrap: anywhere;
+}
+
+.safeBuy {
+  align-items: center;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 24px 1fr;
+}
+
+.safeBuy svg {
+  color: #087c1e;
+}
+
+.relatedList h2 {
+  font-size: 15px;
+  margin: 0 0 10px;
+}
+
+.relatedList a {
+  align-items: center;
+  border-top: 1px solid #eef0f4;
+  color: inherit;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  padding: 12px 0 0;
+  text-decoration: none;
+}
+
+.relatedList span {
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.relatedList strong {
+  color: #087c1e;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.stickyActions {
+  background: #fff;
+  border-top: 1px solid #e7ebef;
+  bottom: 64px;
+  display: grid;
+  gap: 9px;
+  grid-template-columns: 1fr 1fr;
+  left: 0;
+  padding: 10px 14px;
+  position: absolute;
+  right: 0;
+}
+
+.stickyActions a {
+  align-items: center;
+  border: 1px solid #dfe5ec;
+  border-radius: 8px;
+  color: #111317;
+  display: inline-flex;
+  font-size: 13px;
+  font-weight: 950;
+  gap: 8px;
+  height: 48px;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.stickyActions a:first-child {
+  background: #087c1e;
+  border-color: #087c1e;
+  color: #fff;
+}
+
+@media (max-width: 380px) {
+  .summary h1 {
+    font-size: 20px;
+  }
+
+  .summary strong {
+    font-size: 22px;
+  }
+}

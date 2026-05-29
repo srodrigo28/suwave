@@ -739,6 +739,12 @@
   overflow: hidden;
 }
 
+.listingLink {
+  color: inherit;
+  display: block;
+  text-decoration: none;
+}
+
 .listingImage {
   background: #f4f4f4;
   height: 128px;

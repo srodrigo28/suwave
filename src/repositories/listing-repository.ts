@@ -6,6 +6,7 @@ const listings: Listing[] = [
     imageKind: "outfit",
     place: "Sinop - MT",
     price: "R$ 89,90",
+    productId: "produto-conjunto-masculino-premium",
     tags: ["destaque"],
     title: "Conjunto Masculino Básico Premium",
   },
@@ -31,6 +32,7 @@ const listings: Listing[] = [
     imageKind: "pizza",
     place: "Centro",
     price: "R$ 49,90",
+    productId: "produto-pizza-grande-entrega",
     title: "Pizza grande com entrega",
   },
 ];
