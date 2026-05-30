@@ -4,15 +4,23 @@ import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "motion/react";
 import { useMemo, useState } from "react";
+import type { IconType } from "react-icons";
 import {
   FaArrowLeft,
+  FaBriefcase,
   FaCamera,
+  FaCar,
   FaCheckCircle,
+  FaHamburger,
+  FaHome,
   FaImage,
   FaMapMarkerAlt,
   FaRegImage,
   FaSearch,
+  FaShoppingBasket,
+  FaTools,
   FaTimes,
+  FaTruck,
 } from "react-icons/fa";
 import { AppShell } from "@/app/_components/app-shell";
 import type { SearchCategory, SearchResult, SearchSuggestion } from "@/models/search";
@@ -29,6 +37,16 @@ const listingImageClasses: Record<SearchResult["imageKind"], string> = {
   "pickup-black": styles.phonePair,
   "pickup-white": styles.phonePair,
   pizza: styles.pizza,
+};
+
+const categoryIcons: Record<SearchCategory["iconKey"], IconType> = {
+  briefcase: FaBriefcase,
+  car: FaCar,
+  food: FaHamburger,
+  home: FaHome,
+  market: FaShoppingBasket,
+  services: FaTools,
+  truck: FaTruck,
 };
 
 function SearchResultCard({ result }: { result: SearchResult }) {
@@ -203,20 +221,24 @@ export function SearchScreen({
           </motion.section>
 
           <motion.div className={styles.categoryRail} variants={containerMotion}>
-            {categories.map(({ icon: Icon, id, label, query: categoryQuery }) => (
-              <motion.button
-                key={id}
-                onClick={() => {
-                  setQuery(categoryQuery);
-                  setImageSearchDone(false);
-                }}
-                type="button"
-                variants={riseMotion}
-              >
-                <Icon aria-hidden="true" />
-                {label}
-              </motion.button>
-            ))}
+            {categories.map(({ iconKey, id, label, query: categoryQuery }) => {
+              const Icon = categoryIcons[iconKey];
+
+              return (
+                <motion.button
+                  key={id}
+                  onClick={() => {
+                    setQuery(categoryQuery);
+                    setImageSearchDone(false);
+                  }}
+                  type="button"
+                  variants={riseMotion}
+                >
+                  <Icon aria-hidden="true" />
+                  {label}
+                </motion.button>
+              );
+            })}
           </motion.div>
 
           <motion.div className={styles.suggestionList} variants={containerMotion}>

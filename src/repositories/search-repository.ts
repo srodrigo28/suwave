@@ -1,12 +1,3 @@
-import {
-  FaBriefcase,
-  FaCar,
-  FaHamburger,
-  FaHome,
-  FaShoppingBasket,
-  FaTools,
-  FaTruck,
-} from "react-icons/fa";
 import type {
   SearchCategory,
   SearchResult,
@@ -40,13 +31,13 @@ const serviceResults: SearchResult[] = [
 ];
 
 const categories: SearchCategory[] = [
-  { icon: FaShoppingBasket, id: "mercado", label: "Mercado", query: "mercado" },
-  { icon: FaHamburger, id: "comida", label: "Comida", query: "pizza" },
-  { icon: FaCar, id: "veiculos", label: "Veiculos", query: "ford" },
-  { icon: FaHome, id: "imoveis", label: "Imoveis", query: "casa" },
-  { icon: FaTools, id: "servicos", label: "Servicos", query: "entregador" },
-  { icon: FaBriefcase, id: "empregos", label: "Empregos", query: "empresa" },
-  { icon: FaTruck, id: "fretes", label: "Fretes", query: "entrega" },
+  { iconKey: "market", id: "mercado", label: "Mercado", query: "mercado" },
+  { iconKey: "food", id: "comida", label: "Comida", query: "pizza" },
+  { iconKey: "car", id: "veiculos", label: "Veiculos", query: "ford" },
+  { iconKey: "home", id: "imoveis", label: "Imoveis", query: "casa" },
+  { iconKey: "services", id: "servicos", label: "Servicos", query: "entregador" },
+  { iconKey: "briefcase", id: "empregos", label: "Empregos", query: "empresa" },
+  { iconKey: "truck", id: "fretes", label: "Fretes", query: "entrega" },
 ];
 
 const suggestions: SearchSuggestion[] = [

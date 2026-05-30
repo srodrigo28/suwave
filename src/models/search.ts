@@ -1,8 +1,7 @@
-import type { IconType } from "react-icons";
 import type { Listing } from "@/models/listing";
 
 export type SearchCategory = {
-  icon: IconType;
+  iconKey: "briefcase" | "car" | "food" | "home" | "market" | "services" | "truck";
   id: string;
   label: string;
   query: string;
