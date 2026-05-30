@@ -8,7 +8,6 @@ import {
   FaCar,
   FaEnvelope,
   FaHome,
-  FaChevronLeft,
   FaPlus,
   FaShoppingCart,
   FaUser,
@@ -34,10 +33,6 @@ export function AnnounceAuthScreen() {
   return (
     <AuthFrame>
       <div className={styles.announceContent}>
-        <Link aria-label="Voltar para inicio" className={styles.authExit} href="/">
-          <FaChevronLeft aria-hidden="true" />
-          Inicio
-        </Link>
         <div className={styles.announceArt} aria-hidden="true">
           <span className={styles.announceAvatar}>
             <FaUser />
@@ -75,7 +70,7 @@ export function AnnounceAuthScreen() {
         </div>
 
         <p className={styles.signinLine}>
-          Ja tem conta?
+          Já tem conta?
           <Link href="/auth/login">
             Entrar
           </Link>

@@ -1,5 +1,5 @@
 import { ListingCategoriesScreen } from "./_components/listing-categories-screen";
 
 export default function ListingsPage() {
-  return <ListingCategoriesScreen />;
+  return <ListingCategoriesScreen initialCategory="automotive" />;
 }

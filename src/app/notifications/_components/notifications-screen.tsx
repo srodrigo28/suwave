@@ -21,7 +21,7 @@ function NotificationCard({ notification }: { notification: Notification }) {
       </div>
       <span className={styles.notificationMeta}>
         <small>{notification.createdAt}</small>
-        {notification.read ? null : <i aria-label="Nao lida" />}
+        {notification.read ? null : <i aria-label="Não lida" />}
       </span>
     </>
   );
@@ -58,19 +58,19 @@ export function NotificationsScreen({
         >
           <motion.header className={styles.notificationHeader} variants={riseMotion}>
             <span />
-            <h1>Notificacoes</h1>
-            <Link aria-label="Fechar notificacoes" href="/">
+            <h1>Notificações</h1>
+            <Link aria-label="Fechar notificações" href="/">
               <FaTimes aria-hidden="true" />
             </Link>
           </motion.header>
 
           <motion.section className={styles.notificationSearch} variants={riseMotion}>
             <FaSearch aria-hidden="true" />
-            <span>Buscar nas notificacoes...</span>
+            <span>Buscar nas notificações...</span>
           </motion.section>
 
           <motion.div
-            aria-label="Lista de notificacoes"
+            aria-label="Lista de notificações"
             className={styles.notificationList}
             variants={containerMotion}
           >
@@ -84,7 +84,7 @@ export function NotificationsScreen({
           <motion.footer className={styles.notificationLegend} variants={riseMotion}>
             <span>
               <i />
-              Nao lida
+              Não lida
             </span>
             <span>
               <i />

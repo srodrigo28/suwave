@@ -222,14 +222,20 @@
 .place {
   align-items: center;
   background: transparent;
+  border-radius: 14px;
   color: #111;
   display: flex;
   font-size: 16px;
   gap: 9px;
   justify-content: center;
-  padding: 0;
+  padding: 9px 12px;
   text-decoration: none;
   white-space: nowrap;
+}
+
+.placeActive {
+  outline: 2px dashed #7947ff;
+  outline-offset: 5px;
 }
 
 .place svg:first-child {
@@ -255,14 +261,14 @@
   color: #111318;
   display: grid;
   gap: 17px;
-  left: -92px;
+  left: -20px;
   max-height: min(520px, calc(100svh - 126px));
   overflow: auto;
   padding: 22px 0 14px;
   position: absolute;
   top: calc(100% + 16px);
   transform-origin: top center;
-  width: min(350px, calc(100vw - 38px));
+  width: min(330px, calc(100vw - 38px));
   z-index: 7;
 }
 

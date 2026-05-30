@@ -10,11 +10,13 @@ import {
   FaBriefcase,
   FaCamera,
   FaCar,
+  FaCheckCircle,
   FaChevronDown,
   FaChevronRight,
   FaCube,
   FaHamburger,
   FaHandshake,
+  FaInfoCircle,
   FaMapMarkerAlt,
   FaMedkit,
   FaPercent,
@@ -24,6 +26,7 @@ import {
   FaTicketAlt,
 } from "react-icons/fa";
 import type { Listing } from "@/models/listing";
+import { getLocationCities } from "@/repositories/location-repository";
 import {
   containerMotion,
   riseMotion,
@@ -50,13 +53,15 @@ const categories = [
 
 const cityStorageKey = "suwave-selected-city";
 const cityLabels: Record<string, string> = {
-  "claudia-mt": "Claudia - MT",
+  "claudia-mt": "Cláudia - MT",
   "lucas-rio-verde-mt": "Lucas do Rio Verde - MT",
   "mutum-mt": "Mutum - MT",
   "sinop-mt": "Sinop - MT",
   "sorriso-mt": "Sorriso - MT",
-  "uniao-sul-mt": "Uniao do Sul - MT",
+  "uniao-sul-mt": "União do Sul - MT",
 };
+
+const availableCities = getLocationCities();
 
 function BannerChip({
   children,
@@ -77,12 +82,13 @@ function BannerChip({
 }
 
 function HomeHeader() {
-  const [selectedCity, setSelectedCity] = useState(cityLabels["sinop-mt"]);
+  const [selectedCity, setSelectedCity] = useState("sinop-mt");
+  const [isCityFilterOpen, setIsCityFilterOpen] = useState(false);
 
   useEffect(() => {
     const syncSelectedCity = () => {
       const storedCity = window.localStorage.getItem(cityStorageKey);
-      setSelectedCity(cityLabels[storedCity ?? "sinop-mt"] ?? cityLabels["sinop-mt"]);
+      setSelectedCity(cityLabels[storedCity ?? "sinop-mt"] ? storedCity ?? "sinop-mt" : "sinop-mt");
     };
 
     syncSelectedCity();
@@ -95,6 +101,13 @@ function HomeHeader() {
     };
   }, []);
 
+  const handleSelectCity = (cityId: string) => {
+    setSelectedCity(cityId);
+    window.localStorage.setItem(cityStorageKey, cityId);
+    window.dispatchEvent(new Event("suwave-city-change"));
+    setIsCityFilterOpen(false);
+  };
+
   return (
     <motion.header className={styles.header} variants={riseMotion}>
       <div className={styles.balance}>
@@ -106,14 +119,55 @@ function HomeHeader() {
         </button>
       </div>
       <div className={styles.cityPicker}>
-        <Link
-          className={styles.place}
-          href="/location"
+        <button
+          className={`${styles.place} ${isCityFilterOpen ? styles.placeActive : ""}`}
+          onClick={() => setIsCityFilterOpen((isOpen) => !isOpen)}
+          type="button"
         >
           <FaMapMarkerAlt aria-hidden="true" />
-          {selectedCity}
+          {cityLabels[selectedCity]}
           <FaChevronDown aria-hidden="true" />
-        </Link>
+        </button>
+        <AnimatePresence>
+          {isCityFilterOpen ? (
+            <motion.div
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              className={styles.cityFilter}
+              exit={{ opacity: 0, scale: 0.96, y: -8 }}
+              initial={{ opacity: 0, scale: 0.96, y: -8 }}
+              transition={{ duration: 0.18, ease: "easeOut" }}
+            >
+              <strong>Selecione sua cidade</strong>
+              <div className={styles.cityOptions}>
+                {availableCities.map((city) => {
+                  const isSelected = city.id === selectedCity;
+
+                  return (
+                    <button
+                      className={`${styles.cityOption} ${
+                        isSelected ? styles.cityOptionActive : ""
+                      }`}
+                      key={city.id}
+                      onClick={() => handleSelectCity(city.id)}
+                      type="button"
+                    >
+                      <FaMapMarkerAlt aria-hidden="true" />
+                      <span>{cityLabels[city.id] ?? `${city.name} - ${city.state}`}</span>
+                      {isSelected ? <FaCheckCircle aria-hidden="true" /> : <span />}
+                    </button>
+                  );
+                })}
+              </div>
+              <p>
+                <FaInfoCircle aria-hidden="true" />
+                <span>
+                  Ao trocar de cidade, todo o conteúdo será atualizado de acordo
+                  com a disponibilidade local.
+                </span>
+              </p>
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
       </div>
       <Link className={styles.alert} href="/notifications" aria-label="Notificacoes">
         <FaBell aria-hidden="true" />

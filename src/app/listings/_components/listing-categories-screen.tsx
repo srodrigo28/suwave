@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { IconType } from "react-icons";
@@ -18,6 +19,7 @@ import {
   FaGuitar,
   FaHamburger,
   FaHammer,
+  FaHandshake,
   FaHeart,
   FaHome,
   FaLaptop,
@@ -52,6 +54,7 @@ type Subcategory = {
   href?: string;
   icon: IconType;
   id: string;
+  imageSrc?: string;
   name: string;
   selected?: boolean;
 };
@@ -94,11 +97,11 @@ const categoryGroups: CategoryGroup[] = [
   },
   {
     id: "pharmacy",
-    name: "Farmacia",
+    name: "Farmácia",
     subcategories: [
       { icon: FaPrescriptionBottleAlt, id: "medicine", name: "Medicamentos" },
-      { icon: FaMedkit, id: "medical-equipment", name: "Equipamentos medicos" },
-      { icon: FaHeart, id: "wellness", name: "Saude e bem-estar" },
+      { icon: FaMedkit, id: "medical-equipment", name: "Equipamentos médicos" },
+      { icon: FaHeart, id: "wellness", name: "Saúde e bem-estar" },
     ],
   },
   {
@@ -129,20 +132,20 @@ const categoryGroups: CategoryGroup[] = [
   },
   {
     id: "fashion",
-    name: "Moda vestuario",
+    name: "Moda e vestuário",
     subcategories: [
       { icon: FaTshirt, id: "men", name: "Masculino" },
       { icon: FaTshirt, id: "women", name: "Feminino" },
       { icon: FaBaby, id: "kids-fashion", name: "Infantil" },
-      { icon: FaRing, id: "accessories-fashion", name: "Acessorios" },
+      { icon: FaRing, id: "accessories-fashion", name: "Acessórios" },
     ],
   },
   {
     id: "services",
-    name: "Prestadores de servico",
+    name: "Prestadores de serviço",
     subcategories: [
       { href: "/services/builders", icon: FaTools, id: "builders", name: "Pedreiros" },
-      { icon: FaWrench, id: "mechanics", name: "Mecanicos" },
+      { icon: FaWrench, id: "mechanics", name: "Mecânicos" },
       { icon: FaPaintRoller, id: "painters", name: "Pintores" },
       { href: "/services/hairdressers", icon: FaHeart, id: "beauty", name: "Cabeleireiras" },
     ],
@@ -153,35 +156,86 @@ const categoryGroups: CategoryGroup[] = [
     subcategories: [
       { href: "/jobs", icon: FaBriefcase, id: "job-categories", name: "Categorias de vagas" },
       { href: "/jobs/companies", icon: FaBuilding, id: "companies", name: "Empresas" },
-      { icon: FaPen, id: "resume", name: "Curriculo" },
+      { icon: FaPen, id: "resume", name: "Currículo" },
     ],
   },
   {
     id: "properties",
-    name: "Venda e locacao de imoveis",
+    name: "Venda e locação de imóveis",
     subcategories: [
       { href: "/listings/properties/houses", icon: FaHome, id: "houses", name: "Casas" },
       { icon: FaBuilding, id: "apartments", name: "Apartamentos" },
-      { icon: FaSeedling, id: "farms", name: "Chacaras" },
+      { icon: FaSeedling, id: "farms", name: "Chácaras" },
       { icon: FaStore, id: "commercial", name: "Comercial" },
     ],
   },
   {
     id: "automotive",
-    name: "Automoveis",
+    name: "Automóveis",
     subcategories: [
-      { href: "/listings/vehicles/bicycles", icon: FaBicycle, id: "bicycle", name: "Bicicleta" },
-      { icon: FaMotorcycle, id: "motorcycles", name: "Motos" },
-      { icon: FaCar, id: "cars", name: "Carros" },
+      {
+        href: "/listings/vehicles/bicycles",
+        icon: FaBicycle,
+        id: "bicycle",
+        imageSrc: "/listings/categories/bicycle.png",
+        name: "Bicicleta",
+      },
+      {
+        icon: FaMotorcycle,
+        id: "motorcycles",
+        imageSrc: "/listings/categories/motorcycle-red.png",
+        name: "Motos",
+      },
+      {
+        icon: FaCar,
+        id: "cars",
+        imageSrc: "/listings/categories/car-red.png",
+        name: "Carros",
+      },
       {
         href: "/listings/vehicles/pickups",
         icon: FaTruck,
         id: "pickups",
+        imageSrc: "/listings/categories/truck.png",
         name: "Caminhonetes",
         selected: true,
       },
-      { icon: FaTruck, id: "trucks", name: "Caminhoes" },
-      { icon: FaCar, id: "vans", name: "Onibus / Vans" },
+      {
+        icon: FaTruck,
+        id: "trucks",
+        imageSrc: "/listings/categories/van.png",
+        name: "Caminhões",
+      },
+      {
+        icon: FaCar,
+        id: "vans",
+        imageSrc: "/listings/categories/van-v2.png",
+        name: "Ônibus / Vans",
+      },
+      {
+        icon: FaTruck,
+        id: "heavy",
+        imageSrc: "/listings/categories/heavy-vehicle.png",
+        name: "Veículo Pesado",
+      },
+      {
+        icon: FaHandshake,
+        id: "consortium",
+        imageSrc: "/listings/categories/consortium.png",
+        name: "Consórcio",
+      },
+      {
+        icon: FaCar,
+        id: "boats",
+        imageSrc: "/listings/categories/boat.png",
+        name: "Náutica",
+      },
+      {
+        icon: FaCar,
+        id: "classic-cars",
+        imageSrc: "/listings/categories/vintage-car.png",
+        name: "Carros Antigos",
+      },
     ],
   },
   {
@@ -195,61 +249,61 @@ const categoryGroups: CategoryGroup[] = [
   },
   {
     id: "news",
-    name: "Evento e noticia",
+    name: "Eventos e notícia",
     subcategories: [
-      { href: "/events/public", icon: FaNewspaper, id: "events", name: "Eventos publicos" },
+      { href: "/events/public", icon: FaNewspaper, id: "events", name: "Eventos públicos" },
       { href: "/events/private", icon: FaNewspaper, id: "private-events", name: "Eventos privados" },
-      { href: "/events", icon: FaNewspaper, id: "local-news", name: "Noticias locais" },
+      { href: "/events", icon: FaNewspaper, id: "local-news", name: "Notícias locais" },
     ],
   },
   {
     id: "pets",
-    name: "Animais de estimacao",
+    name: "Animais de estimação",
     subcategories: [
       { icon: FaDog, id: "dogs", name: "Cachorros" },
       { icon: FaPaw, id: "pet-products", name: "Produtos pet" },
-      { icon: FaMedkit, id: "vets", name: "Veterinarios" },
+      { icon: FaMedkit, id: "vets", name: "Veterinários" },
     ],
   },
   {
     id: "agro",
-    name: "Agropecuaria",
+    name: "Agropecuária",
     subcategories: [
       { icon: FaSeedling, id: "seeds", name: "Sementes" },
-      { icon: FaTruck, id: "farm-machines", name: "Maquinas agricolas" },
+      { icon: FaTruck, id: "farm-machines", name: "Máquinas agrícolas" },
       { icon: FaStore, id: "farm-stores", name: "Lojas agro" },
     ],
   },
   {
     id: "parts",
-    name: "Autopecas e acessorios",
+    name: "Autopeças e acessórios",
     subcategories: [
-      { icon: FaWrench, id: "parts", name: "Pecas" },
-      { icon: FaTools, id: "accessories", name: "Acessorios" },
+      { icon: FaWrench, id: "parts", name: "Peças" },
+      { icon: FaTools, id: "accessories", name: "Acessórios" },
       { icon: FaChargingStation, id: "batteries", name: "Baterias" },
     ],
   },
   {
     id: "computing",
-    name: "Informatica",
+    name: "Informática",
     subcategories: [
       { icon: FaLaptop, id: "notebooks", name: "Notebooks" },
       { icon: FaTv, id: "monitors", name: "Monitores" },
-      { icon: FaTools, id: "support", name: "Suporte tecnico" },
+      { icon: FaTools, id: "support", name: "Suporte técnico" },
     ],
   },
   {
     id: "electronics",
-    name: "Tecnologia e eletronicos",
+    name: "Tecnologia e eletrônicos",
     subcategories: [
       { icon: FaMobileAlt, id: "phones", name: "Smartphones" },
       { icon: FaTv, id: "tvs", name: "TVs" },
-      { icon: FaLaptop, id: "gadgets", name: "Eletronicos" },
+      { icon: FaLaptop, id: "gadgets", name: "Eletrônicos" },
     ],
   },
   {
     id: "building",
-    name: "Construcao e materiais",
+    name: "Construção e materiais",
     subcategories: [
       { icon: FaHammer, id: "materials", name: "Materiais" },
       { icon: FaTools, id: "construction-tools", name: "Ferramentas" },
@@ -258,10 +312,10 @@ const categoryGroups: CategoryGroup[] = [
   },
   {
     id: "furniture",
-    name: "Moveis e decoracao",
+    name: "Móveis e decoração",
     subcategories: [
-      { icon: FaHome, id: "furniture", name: "Moveis" },
-      { icon: FaPaintRoller, id: "decor", name: "Decoracao" },
+      { icon: FaHome, id: "furniture", name: "Móveis" },
+      { icon: FaPaintRoller, id: "decor", name: "Decoração" },
       { icon: FaStore, id: "planned", name: "Planejados" },
     ],
   },
@@ -270,7 +324,7 @@ const categoryGroups: CategoryGroup[] = [
     name: "Celular e telefonia",
     subcategories: [
       { icon: FaMobileAlt, id: "cellphones", name: "Celulares" },
-      { icon: FaTools, id: "phone-repair", name: "Assistencia tecnica" },
+      { icon: FaTools, id: "phone-repair", name: "Assistência técnica" },
       { icon: FaChargingStation, id: "chargers", name: "Carregadores" },
     ],
   },
@@ -284,35 +338,35 @@ const categoryGroups: CategoryGroup[] = [
   },
   {
     id: "health-beauty",
-    name: "Produtos para saude e beleza",
+    name: "Produtos para saúde e beleza",
     subcategories: [
       { icon: FaHeart, id: "beauty-products", name: "Beleza" },
-      { icon: FaMedkit, id: "health-products", name: "Saude" },
+      { icon: FaMedkit, id: "health-products", name: "Saúde" },
       { icon: FaPrescriptionBottleAlt, id: "supplements", name: "Suplementos" },
     ],
   },
   {
     id: "office",
-    name: "Papelaria e escritorio",
+    name: "Papelaria e escritório",
     subcategories: [
       { icon: FaPen, id: "stationery", name: "Papelaria" },
-      { icon: FaBriefcase, id: "office", name: "Escritorio" },
+      { icon: FaBriefcase, id: "office", name: "Escritório" },
     ],
   },
   {
     id: "electric",
-    name: "Materiais eletricos",
+    name: "Materiais elétricos",
     subcategories: [
       { icon: FaChargingStation, id: "wires", name: "Fios e cabos" },
-      { icon: FaTools, id: "electric-installation", name: "Instalacao" },
+      { icon: FaTools, id: "electric-installation", name: "Instalação" },
     ],
   },
   {
     id: "jewelry",
-    name: "Joias e acessorios",
+    name: "Joias e acessórios",
     subcategories: [
       { icon: FaRing, id: "jewelry", name: "Joias" },
-      { icon: FaRing, id: "watches", name: "Relogios" },
+      { icon: FaRing, id: "watches", name: "Relógios" },
     ],
   },
   {
@@ -333,9 +387,9 @@ const categoryGroups: CategoryGroup[] = [
   },
   {
     id: "babies",
-    name: "Bebes",
+    name: "Bebês",
     subcategories: [
-      { icon: FaBaby, id: "baby-products", name: "Produtos para bebes" },
+      { icon: FaBaby, id: "baby-products", name: "Produtos para bebês" },
       { icon: FaTshirt, id: "baby-clothes", name: "Roupas infantis" },
     ],
   },
@@ -351,7 +405,7 @@ const categoryGroups: CategoryGroup[] = [
     id: "other",
     name: "Outros",
     subcategories: [
-      { icon: FaStore, id: "others", name: "Outros anuncios" },
+      { icon: FaStore, id: "others", name: "Outros anúncios" },
       { icon: FaTools, id: "custom", name: "Sob consulta" },
     ],
   },
@@ -370,7 +424,17 @@ function CategoryTile({ subcategory }: { subcategory: Subcategory }) {
   const content = (
     <>
       <span>
-        <Icon aria-hidden="true" />
+        {subcategory.imageSrc ? (
+          <Image
+            alt=""
+            aria-hidden="true"
+            fill
+            sizes="64px"
+            src={subcategory.imageSrc}
+          />
+        ) : (
+          <Icon aria-hidden="true" />
+        )}
       </span>
       {subcategory.name}
     </>

@@ -16,7 +16,7 @@ import styles from "@/app/_components/suwave-home.module.css";
 
 const helpShortcuts = [
   "Devolver um produto",
-  "Iniciar ou seguir uma reclamacao",
+  "Iniciar ou seguir uma reclamação",
   "Quando recebo minhas compras",
   "Ajuda com cupons",
 ];
@@ -105,7 +105,7 @@ export function HelpScreen() {
         </motion.section>
 
         <motion.div variants={riseMotion}>
-          <HelpRow label="Conheca as perguntas frequentes" />
+          <HelpRow label="Conheça as perguntas frequentes" />
         </motion.div>
 
         <motion.section className={styles.helpContact} variants={riseMotion}>
